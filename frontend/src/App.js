@@ -1,10 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Register from './pages/Register';
-import Error from './pages/Error';
+import { Landing, Register, Error, SharedLayout } from './pages';
 import { Budget, Expenses, Settings, Stats } from './pages/dashboard';
-import SharedLayout from './pages/SharedLayout';
 import ExpensesForm from './components/ExpensesForm';
 
 function App() {

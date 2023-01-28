@@ -26,8 +26,9 @@ const Wrapper = styled.aside`
         padding: 4rem 2rem;
         position: relative;
         display: flex;
-        align-items: center;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .close-btn {
@@ -36,7 +37,7 @@ const Wrapper = styled.aside`
         left: 10px;
         background: transparent;
         border-color: transparent;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: var(--red-dark);
         cursor: pointer;
     }
@@ -45,20 +46,23 @@ const Wrapper = styled.aside`
         padding-top: 2rem;
         display: flex;
         flex-direction: column;
-        text-transform: uppercase;
     }
 
     .nav-link {
         display: flex;
         align-items: center;
-        color: var(--grey-500);
-        padding: 1rem 0;
-        text-transform: capitalize;
+        color: var(--grey-400);
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: 400;
+        text-transform: uppercase;
         transition: var(--transition);
     }
 
     .nav-link:hover {
-        color: var(--grey-900);
+        background: var(--primary-200);
+        color: var(--primary-800);
+        border-radius: var(--borderRadius);
     }
 
     .nav-link:hover .icon {
@@ -74,12 +78,11 @@ const Wrapper = styled.aside`
     }
 
     .active {
-        color: var(--primary-500);
-        font-weight: 500;
+        color: var(--primary-800);
     }
 
     .active .icon {
-        color: var(--primary-500);
+        color: var(--primary-800);
     }
 
     @media (min-width: 992px) {

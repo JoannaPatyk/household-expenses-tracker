@@ -27,7 +27,7 @@ const Wrapper = styled.nav`
     }
 
     h4 {
-        letter-spacing: 0.3rem;
+        letter-spacing: var(--letterSpacing);
         text-align: center;
     }
 
@@ -39,7 +39,8 @@ const Wrapper = styled.nav`
     }
 
     span {
-        color: #ee9ba9;
+        color: var(--primary-800);
     }
 `;
+
 export default Wrapper;

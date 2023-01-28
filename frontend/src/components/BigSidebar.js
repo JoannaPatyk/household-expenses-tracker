@@ -1,8 +1,8 @@
 import React from 'react';
-import Wrapper from '../assets/wrappers/BigSidebar';
-import { useCategoriesContext } from '../context/CategoriesContext';
 import Logo from './Logo';
 import NavLinks from './NavLinks';
+import Wrapper from '../assets/wrappers/BigSidebar';
+import { useCategoriesContext } from '../context/CategoriesContext';
 
 function BigSidebar() {
     const { isSidebarOpen } = useCategoriesContext();

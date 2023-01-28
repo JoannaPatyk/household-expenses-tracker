@@ -10,30 +10,7 @@ const Wrapper = styled.div`
     }
 
     h2 {
-        text-transform: uppercase;
-    }
-
-    h3 {
-    }
-
-    input {
-        width: 40vw;
-    }
-
-    .categories {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .category {
-        position: relative;
-        width: 250px;
-        height: 50px;
-        border-radius: var(--borderRadius);
-        background-color: var(--primary-300);
-        line-height: 50px;
-        margin: 1rem;
-        padding-left: 1rem;
+        font-size: 1.2rem;
     }
 
     .edit-container {
@@ -45,12 +22,48 @@ const Wrapper = styled.div`
         margin: 1rem;
     }
 
-    .btn {
-        width: 350px;
-        font-size: 14px;
+    input {
+        width: 80vw;
     }
 
-    .edit-button {
+    .categories {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .category {
+        position: relative;
+        justify-self: center;
+        font-size: 0.9rem;
+        border-radius: var(--borderRadius);
+        background-color: var(--primary-200);
+        width: 60%;
+        height: 50px;
+        line-height: 50px;
+        margin: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .btn {
+        width: 300px;
+        font-size: 1rem;
+    }
+
+    .back-btn {
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        font-size: 1.4rem;
+        color: var(--grey-600);
+        transition: var(--transition);
+        cursor: pointer;
+    }
+
+    .back-btn:hover {
+        color: var(--primary-700);
+    }
+
+    .edit-btn {
         position: absolute;
         top: 30%;
         font-size: 1.4rem;
@@ -59,7 +72,7 @@ const Wrapper = styled.div`
         cursor: pointer;
     }
 
-    .edit-button:hover {
+    .edit-btn:hover {
         color: var(--primary-700);
     }
 
@@ -69,6 +82,32 @@ const Wrapper = styled.div`
 
     .delete {
         right: 2%;
+    }
+
+    @media (min-width: 1220px) {
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        .categories {
+            grid-template-columns: 1fr 1fr;
+            width: 70vw;
+        }
+
+        .category {
+            width: 70%;
+            margin: 1rem;
+            padding-left: 1rem;
+        }
+
+        .btn {
+            width: 350px;
+            font-size: 1.2rem;
+        }
+
+        input {
+            width: 45vw;
+        }
     }
 `;
 export default Wrapper;
