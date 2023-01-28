@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.aside`
+const Wrapper = styled.div`
     display: none;
 
     @media (min-width: 992px) {
@@ -11,8 +11,8 @@ const Wrapper = styled.aside`
         .sidebar-container {
             min-height: 100vh;
             height: 100%;
-            width: 320px;
-            margin-left: -320px;
+            width: 350px;
+            margin-left: -350px;
             transition: var(--transition);
         }
 
@@ -22,7 +22,7 @@ const Wrapper = styled.aside`
         }
 
         .logo-container {
-            margin-top: -1.5rem;
+            margin-top: -0.5rem;
         }
 
         .show-sidebar {
