@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.main`
+const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,8 +22,7 @@ const Wrapper = styled.main`
     }
 
     p,
-    h5,
-    h4 {
+    h5 {
         margin: 0.8rem;
         color: var(--grey-500);
         font-size: 0.95rem;

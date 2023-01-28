@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Button from './Button';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { CiEdit } from 'react-icons/ci';
 import { TfiBackLeft } from 'react-icons/tfi';
+import Button from './Button';
 import Wrapper from '../assets/wrappers/EditCategory';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
@@ -32,15 +32,13 @@ function EditCategory() {
     }, [currentlyEditedCategory]);
 
     const handleNameChange = (event) => {
-        const newName = event.target.value;
-
-        if (newName === '' || categories.find((category) => category.name === newName)) {
+        if (event.target.value === '' || categories.find((category) => category.name === event.target.value)) {
             setButtonDisabled(true);
         } else {
             setButtonDisabled(false);
         }
 
-        setCategoryName(newName);
+        setCategoryName(event.target.value);
     };
 
     const handleEdit = (category) => {
@@ -93,7 +91,6 @@ function EditCategory() {
                             onChange={handleNameChange}
                         />
                         <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                            {' '}
                             zapisz
                         </Button>
                     </form>

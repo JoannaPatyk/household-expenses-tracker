@@ -19,27 +19,29 @@ const modalStyles = {
 
 function ExpensesForm() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
+    const [newAmount, setNewAmount] = useState('');
+    const [newComment, setNewComment] = useState('');
     const { categories, toggleModal, showEditModal } = useCategoriesContext();
-    const { amount, comment, setName, setAmount, setComment, addExpense } = useExpensesContext();
+    const { addExpense } = useExpensesContext();
 
     const handleAmountChange = (event) => {
-        const newAmount = event.target.value;
-
-        if (newAmount === '' || newAmount < 0) {
+        if (event.target.value === '' || event.target.value < 0) {
             setButtonDisabled(true);
         } else {
             setButtonDisabled(false);
         }
 
-        setAmount(newAmount);
+        setNewAmount(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const selectedCategory = document.getElementById('select').value;
 
-        addExpense(selectedCategory, amount, comment);
-        setName('');
+        addExpense(selectedCategory, newAmount, newComment);
+        setNewAmount('');
+        setNewComment('');
+        setButtonDisabled(true);
     };
 
     return (
@@ -47,40 +49,36 @@ function ExpensesForm() {
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <div className="categories-container">
                     <h2>Dodaj nowy wydatek</h2>
-                    <label>
-                        Wybierz kategorię:
-                        <select id="select" className="form-select">
-                            {categories.map((category) => {
-                                return (
-                                    <option key={category.id} value={category.name}>
-                                        {category.name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </label>
+                    <label htmlFor="select">Wybierz kategorię:</label>
+                    <select id="select" className="form-select">
+                        {categories.map((item, index) => {
+                            return (
+                                <option key={index} value={item.name}>
+                                    {item.name}
+                                </option>
+                            );
+                        })}
+                    </select>
                 </div>
                 <div className="expense-container">
-                    <label>
-                        Kwota:
-                        <input
-                            value={amount}
-                            type="number"
-                            className="form-input"
-                            placeholder="wydana kwota"
-                            onChange={handleAmountChange}
-                        />
-                    </label>
-                    <label>
-                        Komentarz:
-                        <input
-                            value={comment}
-                            type="text"
-                            className="form-input"
-                            placeholder="komentarz"
-                            onChange={(event) => setComment(event.target.value)}
-                        />
-                    </label>
+                    <label htmlFor="amountInput">Kwota:</label>
+                    <input
+                        id="amountInput"
+                        value={newAmount}
+                        type="number"
+                        className="form-input"
+                        placeholder="wydana kwota"
+                        onChange={handleAmountChange}
+                    />
+                    <label htmlFor="commentInput">Komentarz:</label>
+                    <input
+                        id="commentInput"
+                        value={newComment}
+                        type="text"
+                        className="form-input"
+                        placeholder="komentarz"
+                        onChange={(event) => setNewComment(event.target.value)}
+                    />
                 </div>
                 <Button type="submit" version="hero" isDisabled={buttonDisabled}>
                     dodaj
