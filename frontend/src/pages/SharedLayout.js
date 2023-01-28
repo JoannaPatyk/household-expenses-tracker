@@ -1,26 +1,28 @@
 import React from 'react';
-import { useState } from 'react';
 import SmallSidebar from '../components/SmallSidebar';
 import BigSidebar from '../components/BigSidebar';
-import Navbar from '../components/Navbar';
-import ExpensesForm from '../components/ExpensesForm';
 import Wrapper from '../assets/wrappers/SharedLayout';
+import { Outlet } from 'react-router-dom';
+import { RiMenu4Fill } from 'react-icons/ri';
+import { useCategoriesContext } from '../context/CategoriesContext';
 
 function SharedLayout() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-    const toggle = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+    const { toggleSidebar } = useCategoriesContext();
 
     return (
         <Wrapper>
             <main className="dashboard">
-                <SmallSidebar toggle={toggle} isSidebarOpen={isSidebarOpen} />
-                <BigSidebar toggle={toggle} isSidebarOpen={isSidebarOpen} />
-                <div className="container">
-                    <Navbar toggle={toggle} />
-                    <ExpensesForm />
+                <SmallSidebar />
+                <BigSidebar />
+                <div>
+                    <div>
+                        <button className="toggle-btn" onClick={toggleSidebar}>
+                            <RiMenu4Fill />
+                        </button>
+                    </div>
+                    <div className="dashboard-page">
+                        <Outlet />
+                    </div>
                 </div>
             </main>
         </Wrapper>
