@@ -20,7 +20,9 @@ const CategoriesContext = createContext();
 
 export const CategoriesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [categoriesEdit, setCategoriesEdit] = useState({
+    const [categoryName, setCategoryName] = useState('');
+
+    const [currentlyEditedCategory, setCurrentlyEditedCategory] = useState({
         category: {},
         edit: false
     });
@@ -39,7 +41,7 @@ export const CategoriesProvider = ({ children }) => {
 
     const updateCategory = (id, updateCategoryName) => {
         dispatch({ type: UPDATE_CATEGORY, payload: { id, updateCategoryName } });
-        setCategoriesEdit({
+        setCurrentlyEditedCategory({
             category: {},
             edit: false
         });
@@ -50,7 +52,7 @@ export const CategoriesProvider = ({ children }) => {
     };
 
     const saveCategoryForEdit = (category) => {
-        setCategoriesEdit({
+        setCurrentlyEditedCategory({
             category,
             edit: true
         });
@@ -60,7 +62,9 @@ export const CategoriesProvider = ({ children }) => {
         <CategoriesContext.Provider
             value={{
                 ...state,
-                categoriesEdit,
+                categoryName,
+                currentlyEditedCategory,
+                setCategoryName,
                 toggleSidebar,
                 toggleModal,
                 addCategory,
@@ -75,7 +79,7 @@ export const CategoriesProvider = ({ children }) => {
 };
 
 CategoriesProvider.propTypes = {
-    children: PropTypes.any
+    children: PropTypes.any.isRequired
 };
 
 export const useCategoriesContext = () => {
