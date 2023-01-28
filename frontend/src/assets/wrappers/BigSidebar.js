@@ -5,19 +5,24 @@ const Wrapper = styled.aside`
 
     @media (min-width: 992px) {
         display: block;
+        background: var(--primary-100);
+        box-shadow: 0px 5px 5px 10px var(--primary-200);
 
         .sidebar-container {
-            background: var(--white);
             min-height: 100vh;
             height: 100%;
-            width: 280px;
-            margin-left: -280px;
+            width: 320px;
+            margin-left: -320px;
             transition: var(--transition);
         }
 
         .content {
             position: sticky;
             top: 0;
+        }
+
+        .logo-container {
+            margin-top: -2rem;
         }
 
         .show-sidebar {
@@ -27,7 +32,7 @@ const Wrapper = styled.aside`
         .nav-links {
             display: flex;
             flex-direction: column;
-            padding-top: 5rem;
+            padding-top: 2rem;
         }
 
         .nav-link {
@@ -37,7 +42,7 @@ const Wrapper = styled.aside`
             padding: 1rem 0;
             padding-left: 2rem;
             font-family: var(--logoFont);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             transition: var(--transition);
         }

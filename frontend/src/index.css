@@ -1,6 +1,8 @@
 *,
 ::after,
 ::before {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -8,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;800;900&display=swap');
 
 html {
-    font-family: var(--fontFamily);
+    font-family: var(--font-family);
     font-size: 100%;
 }
 
@@ -44,7 +46,7 @@ html {
     --green: #0f5132;
 
     /* fonts  */
-    --fontFamily: 'Montserrat', Sans-Seri;
+    --font-family: 'Montserrat', Sans-Seri;
     --small-text: 0.875rem;
     --extra-small-text: 0.7em;
 
@@ -69,7 +71,7 @@ html {
 
 body {
     background: var(--backgroundColor);
-    font-family: var(--fontFamily);
+    font-family: var(--font-family);
     color: var(--textColor);
 }
 
@@ -133,7 +135,7 @@ ul {
     width: 12rem;
     margin: 1rem;
     color: var(--textColor);
-    font-family: var(--fontFamily);
+    font-family: var(--font-family);
     font-size: 1.5rem;
     text-align: center;
     background: var(--primary-700);
