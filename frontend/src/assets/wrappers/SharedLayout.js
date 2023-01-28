@@ -17,15 +17,22 @@ const Wrapper = styled.section`
         margin-left: 2%;
         background: transparent;
         border-color: transparent;
-        font-size: 2.5rem;
-        color: var(--primary-700);
+        font-size: 2rem;
+        color: var(--primary-400);
+        transition: var(--transition);
         cursor: pointer;
+    }
+
+    .toggle-btn:hover {
+        transform: rotate(0.2turn);
+        color: var(--primary-800);
     }
 
     @media (min-width: 992px) {
         .dashboard {
             grid-template-columns: auto 1fr;
         }
+
         .dashboard-page {
             width: 90%;
         }
