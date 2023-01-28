@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
-import EditCategory from './EditCategory';
+import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/ExpensesForm';
-import { useExpensesContext } from '../context/ExpensesContext';
 import { useCategoriesContext } from '../context/CategoriesContext';
+import { useExpensesContext } from '../context/ExpensesContext';
 
-const modalStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
-};
-
-function ExpensesForm() {
+function EditExpense() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
-    const { categories, toggleModal, showEditModal } = useCategoriesContext();
-    const { amount, comment, setName, setAmount, setComment, addExpense } = useExpensesContext();
+    const { categories, toggleModal } = useCategoriesContext();
+    const { name, amount, comment, setName, setAmount, setComment, expenseForEdit, updateExpense } =
+        useExpensesContext();
+
+    useEffect(() => {
+        if (expenseForEdit.edit === true) {
+            setName(expenseForEdit.expense.name);
+            setAmount(expenseForEdit.expense.amount);
+            setComment(expenseForEdit.expense.comment);
+        }
+        // eslint-disable-next-line
+    }, [expenseForEdit]);
+
+    const handleNameChange = (event) => {
+        const newName = event.target.value;
+
+        setName(newName);
+    };
 
     const handleAmountChange = (event) => {
         const newAmount = event.target.value;
@@ -34,22 +38,36 @@ function ExpensesForm() {
         setAmount(newAmount);
     };
 
+    const handleCommentChange = (event) => {
+        const newComment = event.target.value;
+
+        setComment(newComment);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const selectedCategory = document.getElementById('select').value;
 
-        addExpense(selectedCategory, amount, comment);
-        setName('');
+        if (expenseForEdit.edit === true) {
+            updateExpense(expenseForEdit.expense.id, name, amount, comment);
+        }
+
+        toggleModal();
+        setAmount('');
+        setComment('');
     };
 
     return (
         <Wrapper>
+            <button onClick={() => toggleModal()}>
+                <TfiBackLeft className="edit-btn edit" />
+            </button>
+
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <div className="categories-container">
-                    <h2>Dodaj nowy wydatek</h2>
+                    <h2>Edytuj wybrany wydatek</h2>
                     <label>
-                        Wybierz kategorię:
-                        <select id="select" className="form-select">
+                        Zmień kategorię:
+                        <select id="select" className="form-select" value={name} onChange={handleNameChange}>
                             {categories.map((category) => {
                                 return (
                                     <option key={category.id} value={category.name}>
@@ -62,7 +80,7 @@ function ExpensesForm() {
                 </div>
                 <div className="expense-container">
                     <label>
-                        Kwota:
+                        Zmień kwotę:
                         <input
                             value={amount}
                             type="number"
@@ -72,30 +90,22 @@ function ExpensesForm() {
                         />
                     </label>
                     <label>
-                        Komentarz:
+                        Zmień treść komentarza:
                         <input
                             value={comment}
                             type="text"
                             className="form-input"
                             placeholder="komentarz"
-                            onChange={(event) => setComment(event.target.value)}
+                            onChange={handleCommentChange}
                         />
                     </label>
                 </div>
                 <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                    dodaj
+                    zapisz
                 </Button>
             </form>
-            <div className="editCategoryBtn-container">
-                <Button version="hipster" onClick={() => toggleModal()}>
-                    edytuj dostępne kategorie
-                </Button>
-                <Modal isOpen={showEditModal} ariaHideApp={false} style={modalStyles}>
-                    <EditCategory />
-                </Modal>
-            </div>
         </Wrapper>
     );
 }
 
-export default ExpensesForm;
+export default EditExpense;

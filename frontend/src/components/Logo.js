@@ -9,7 +9,9 @@ function Logo() {
                 <div className="logo-container">
                     <img src={logo} alt="logo" className="logo"></img>
                 </div>
-                <h4>household expenses tracker</h4>
+                <h4>
+                    <span>h</span>ousehold <span>e</span>xpenses <span>t</span>racker
+                </h4>
             </div>
         </Wrapper>
     );
