@@ -22,7 +22,8 @@
     },
     "rules": {
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/exhaustive-deps": "warn",
+        "react/no-unescaped-entities": "off"
     },
     "settings": {
         "react": {

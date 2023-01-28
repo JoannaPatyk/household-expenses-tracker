@@ -27,7 +27,7 @@ const Wrapper = styled.nav`
     }
 
     h4 {
-        letter-spacing: 0.5rem;
+        letter-spacing: 0.3rem;
         text-align: center;
     }
 
