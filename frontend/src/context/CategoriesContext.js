@@ -1,18 +1,19 @@
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, { createContext, useEffect, useContext, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
-import { TOGGLE_SIDEBAR, TOGGLE_MODAL, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/actions';
+import {
+    TOGGLE_SIDEBAR,
+    TOGGLE_MODAL,
+    ADD_CATEGORIES,
+    ADD_CATEGORY,
+    UPDATE_CATEGORY,
+    DELETE_CATEGORY
+} from '../utils/actions';
 import reducer from '../reducers/CategoryReducer';
+import apiConfig from '../apiConfig';
 
 const initialState = {
     isSidebarOpen: false,
-    categories: [
-        { id: 1, name: 'zakupy' },
-        { id: 2, name: 'mieszkanie' },
-        { id: 3, name: 'higiena' },
-        { id: 4, name: 'transport' },
-        { id: 5, name: 'rozrywka' },
-        { id: 6, name: 'zdrowie' }
-    ],
+    categories: [],
     showEditModal: false
 };
 
@@ -21,11 +22,21 @@ const CategoriesContext = createContext();
 export const CategoriesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [categoryName, setCategoryName] = useState('');
-
     const [currentlyEditedCategory, setCurrentlyEditedCategory] = useState({
         category: {},
         edit: false
     });
+
+    const fetchCategories = async () => {
+        const response = await fetch(`${apiConfig.api}/categories`);
+        const data = await response.json();
+        addAllCategories(data);
+    };
+
+    useEffect(() => {
+        fetchCategories();
+        // eslint-disable-next-line
+    }, []);
 
     const toggleSidebar = () => {
         dispatch({ type: TOGGLE_SIDEBAR });
@@ -35,11 +46,32 @@ export const CategoriesProvider = ({ children }) => {
         dispatch({ type: TOGGLE_MODAL });
     };
 
-    const addCategory = (name) => {
-        dispatch({ type: ADD_CATEGORY, payload: name });
+    const addAllCategories = (categories) => {
+        dispatch({ type: ADD_CATEGORIES, payload: categories });
     };
 
-    const updateCategory = (id, updateCategoryName) => {
+    const addCategory = async (name) => {
+        await fetch(`${apiConfig.api}/categories`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name })
+        });
+
+        dispatch({ type: ADD_CATEGORY, payload: name });
+        fetchCategories();
+    };
+
+    const updateCategory = async (id, updateCategoryName) => {
+        await fetch(`${apiConfig.api}/categories/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: updateCategoryName })
+        });
+
         dispatch({ type: UPDATE_CATEGORY, payload: { id, updateCategoryName } });
         setCurrentlyEditedCategory({
             category: {},
@@ -47,7 +79,11 @@ export const CategoriesProvider = ({ children }) => {
         });
     };
 
-    const deleteCategory = (id) => {
+    const deleteCategory = async (id) => {
+        await fetch(`${apiConfig.api}/categories/${id}`, {
+            method: 'DELETE'
+        });
+
         dispatch({ type: DELETE_CATEGORY, payload: id });
     };
 

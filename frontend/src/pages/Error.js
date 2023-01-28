@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import img from '../assets/images/404.png';
-import Wrapper from '../assets/wrappers/ErrorPage';
+import Wrapper from '../assets/wrappers/Error';
 
 export default function Error() {
     return (

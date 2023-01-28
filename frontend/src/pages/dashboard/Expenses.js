@@ -42,7 +42,7 @@ function Expenses() {
                     return (
                         <div key={expense.id} className="expense-container">
                             <p>{index + 1}</p>
-                            <p>{expense.name}</p>
+                            <p>{expense.category}</p>
                             <p>{expense.amount} zł</p>
                             <h5>{expense.comment}</h5>
                             <div className="btn-container">
@@ -52,7 +52,6 @@ function Expenses() {
                                 <Button version="hipster" id="big-btn" onClick={() => deleteExpense(expense.id)}>
                                     usuń
                                 </Button>
-
                                 <Button version="hipster" id="small-btn" onClick={() => handleEditButtonClick(expense)}>
                                     <CiEdit />
                                 </Button>
