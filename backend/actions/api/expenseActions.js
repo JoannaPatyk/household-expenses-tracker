@@ -2,7 +2,7 @@ const Expense = require('../../database/models/expenseModel');
 
 class ExpenseActions {
     async save(req, res) {
-        const category = req.body.name;
+        const category = req.body.category;
         const amount = req.body.amount;
         const comment = req.body.comment;
         let expense;
@@ -24,11 +24,15 @@ class ExpenseActions {
     }
 
     async update(req, res) {
+        const category = req.body.category;
         const amount = req.body.amount;
+        const comment = req.body.comment;
         const id = req.params.id;
 
         const expense = await Expense.findOne({ _id: id });
+        expense.category = category;
         expense.amount = amount;
+        expense.comment = comment;
         await expense.save();
 
         res.status(201).json(expense);

@@ -4,6 +4,7 @@ const categoryRouters = require('./routes/categoryRoutes');
 const expenseRouters = require('./routes/expenseRoutes');
 const budgetRouters = require('./routes/budgetRouters');
 const cors = require('cors');
+const morgan = require('morgan');
 const { server_port, server_host } = require('./config');
 
 const app = express();
@@ -16,6 +17,12 @@ app.use(bodyParser.json());
 
 // cors
 app.use(cors());
+
+// morgan
+morgan.token('body', (req) => {
+    return JSON.stringify(req.body);
+});
+app.use(morgan(':method :date[iso] :status :response-time ms :url - :body'));
 
 // routes
 app.use('/api/v1', categoryRouters);
