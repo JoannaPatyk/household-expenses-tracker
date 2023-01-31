@@ -5,14 +5,13 @@ const Wrapper = styled.div`
 
     @media (min-width: 992px) {
         display: block;
-        background: var(--primary-100);
+        background-color: var(--primary-100);
         box-shadow: var(--shadow-4);
 
         .sidebar-container {
-            min-height: 100vh;
-            height: 100%;
-            width: 350px;
-            margin-left: -350px;
+            height: 90vh;
+            width: 300px;
+            margin-left: -300px;
             transition: var(--transition);
         }
 
@@ -22,7 +21,7 @@ const Wrapper = styled.div`
         }
 
         .logo-container {
-            margin-top: -0.5rem;
+            /* margin-top: -0.2rem; */
         }
 
         .show-sidebar {
@@ -41,7 +40,7 @@ const Wrapper = styled.div`
             color: var(--grey-400);
             padding: 1rem 0;
             padding-left: 2rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 400;
             text-transform: uppercase;
             transition: var(--transition);
@@ -54,7 +53,7 @@ const Wrapper = styled.div`
         }
 
         .icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-right: 1rem;
             display: grid;
             place-items: center;
@@ -66,4 +65,5 @@ const Wrapper = styled.div`
         }
     }
 `;
+
 export default Wrapper;

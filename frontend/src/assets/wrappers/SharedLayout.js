@@ -9,30 +9,29 @@ const Wrapper = styled.section`
     .dashboard-page {
         width: 90vw;
         margin: 0 auto;
-        padding: 2rem 0;
+        padding: 4rem 0;
     }
 
     .toggle-btn {
-        margin-top: 2%;
-        margin-left: 2%;
+        position: absolute;
+        margin-top: 1%;
+        margin-left: 1%;
         background: transparent;
         border-color: transparent;
         font-size: 2rem;
-        color: var(--primary-400);
+        color: var(--primary-800);
         transition: var(--transition);
         cursor: pointer;
     }
 
     .toggle-btn:hover {
         transform: rotate(0.2turn);
-        color: var(--primary-800);
+        color: var(--primary-300);
     }
-
     @media (min-width: 992px) {
         .dashboard {
             grid-template-columns: auto 1fr;
         }
-
         .dashboard-page {
             width: 90%;
         }

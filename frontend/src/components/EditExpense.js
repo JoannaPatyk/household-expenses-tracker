@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/ExpensesForm';
+import FormRowInput from './FormRowInput';
+import FormRowSelect from './FormRowSelect';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
 
@@ -54,7 +56,7 @@ function EditExpense() {
             updateExpense(expenseForEdit.expense.id, editCategory, editAmount, editComment);
         }
 
-        setButtonDisabled(true);
+        toggleModal();
     };
 
     return (
@@ -66,37 +68,29 @@ function EditExpense() {
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <div className="categories-container">
                     <h2>Edytuj wybrany wydatek</h2>
-                    <label htmlFor="select">Zmień kategorię:</label>
-                    <select id="select" className="form-select" onChange={handleCategoryChange}>
-                        {categories.map((category) => {
-                            return (
-                                <option
-                                    key={category.name}
-                                    value={category.name}
-                                    selected={category.name === expenseForEdit.expense.category}
-                                >
-                                    {category.name}
-                                </option>
-                            );
-                        })}
-                    </select>
+                    <FormRowSelect
+                        name="Zmień kategorię:"
+                        id="select"
+                        list={[...categories]}
+                        onChange={handleCategoryChange}
+                        value={expenseForEdit.expense.category}
+                    />
                 </div>
+
                 <div className="expense-container">
-                    <label htmlFor="amount">Zmień kwotę:</label>
-                    <input
+                    <FormRowInput
+                        name="Zmień kwotę:"
                         id="amount"
                         value={editAmount}
                         type="number"
-                        className="form-input"
                         placeholder="wydana kwota"
                         onChange={handleAmountChange}
                     />
-                    <label htmlFor="comment">Zmień treść komentarza:</label>
-                    <input
+                    <FormRowInput
+                        name="Zmień treść komentarza:"
                         id="comment"
                         value={editComment}
                         type="text"
-                        className="form-input"
                         placeholder="komentarz"
                         onChange={handleCommentChange}
                     />

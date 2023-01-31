@@ -3,6 +3,7 @@ import React, { createContext, useReducer, useEffect, useContext, useState } fro
 import { ADD_EXPENSE, ADD_EXPENSES, UPDATE_EXPENSE, DELETE_EXPENSE, UPDATE_NAME_CATEGORY } from '../utils/actions';
 import reducer from '../reducers/ExpensesReducer';
 import apiConfig from '../apiConfig';
+import { useCategoriesContext } from './CategoriesContext';
 
 const initialState = {
     expenses: []
@@ -12,21 +13,23 @@ const ExpensesContext = createContext();
 
 export const ExpensesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const { categories } = useCategoriesContext();
     const [expenseForEdit, setExpenseForEdit] = useState({
         expense: {},
         edit: false
     });
 
-    const fetchExpenses = async () => {
-        const response = await fetch(`${apiConfig.api}/expenses`);
-        const data = await response.json();
-        addAllExpenses(data);
-    };
-
     useEffect(() => {
-        fetchExpenses();
-        // eslint-disable-next-line
-    }, []);
+        const getDataInterval = setInterval(async () => {
+            const response = await fetch(`${apiConfig.api}/expenses`);
+            const data = await response.json();
+            addAllExpenses(data);
+        }, 1000);
+
+        return () => {
+            clearInterval(getDataInterval);
+        };
+    }, [categories]);
 
     const addAllExpenses = (expenses) => {
         dispatch({ type: ADD_EXPENSES, payload: expenses });
@@ -42,7 +45,6 @@ export const ExpensesProvider = ({ children }) => {
         });
 
         dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
-        fetchExpenses();
     };
 
     const updateExpense = async (id, updateCategory, updateAmount, updateComment) => {
