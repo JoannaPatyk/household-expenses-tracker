@@ -4,6 +4,7 @@ import { CiEdit } from 'react-icons/ci';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Button from './Button';
 import Wrapper from '../assets/wrappers/EditCategory';
+import FormRowInput from '../components/FormRowInput';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
 
@@ -83,7 +84,7 @@ function EditCategory() {
                         })}
                     </div>
                     <form className="edit-container" onSubmit={handleSubmit}>
-                        <input
+                        <FormRowInput
                             value={categoryName}
                             type="text"
                             className="form-input"

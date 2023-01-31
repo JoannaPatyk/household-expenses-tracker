@@ -4,13 +4,16 @@ import App from './App';
 import './index.css';
 import { CategoriesProvider } from './context/CategoriesContext';
 import { ExpensesProvider } from './context/ExpensesContext';
+import { BudgetProvider } from './context/BudgetContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-    <ExpensesProvider>
-        <CategoriesProvider>
-            <App />
-        </CategoriesProvider>
-    </ExpensesProvider>
+    <CategoriesProvider>
+        <ExpensesProvider>
+            <BudgetProvider>
+                <App />
+            </BudgetProvider>
+        </ExpensesProvider>
+    </CategoriesProvider>
 );

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     display: flex;
+    align-items: center;
     justify-content: center;
 
     table {
@@ -10,18 +11,25 @@ const Wrapper = styled.div`
 
     .title {
         display: grid;
-        grid-template-columns: 0.25fr 0.8fr 0.8fr 1fr 0.25fr;
+        grid-template-columns: 1fr 1fr 1fr;
         place-items: center;
         box-shadow: var(--shadow-4);
         letter-spacing: var(--letterSpacing);
         background-color: var(--primary-100);
     }
 
-    .expense-container {
+    .budget-container {
         display: grid;
-        grid-template-columns: 0.25fr 0.8fr 0.8fr 1fr 0.25fr;
+        grid-template-columns: 1fr 1fr 1fr;
         place-items: center;
         box-shadow: var(--shadow-4);
+    }
+
+    th,
+    td {
+        margin: 0.2rem;
+        color: var(--grey-500);
+        text-align: center;
     }
 
     th,
@@ -43,28 +51,20 @@ const Wrapper = styled.div`
         text-transform: uppercase;
     }
 
-    .btn-container {
-        display: flex;
-        flex-direction: column;
+    .category {
+        text-align: center;
     }
 
-    #btn {
-        position: relative;
-        font-size: 1.5rem;
-        width: 2rem;
-        height: 2rem;
-        background-color: transparent;
-        box-shadow: none;
-        margin: 0.1rem;
+    input {
+        width: 100px;
+        height: 35px;
+        text-align: center;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        /* border: none; */
+        /* background: transparent; */
     }
-
-    .btn-icone {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
     @media (max-width: 500px) {
         table {
             width: 90vw;
@@ -81,11 +81,9 @@ const Wrapper = styled.div`
             text-align: center;
         }
 
-        #btn {
-            font-size: 1rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            margin: 0;
+        input {
+            width: 60px;
+            margin-right: 5px;
         }
     }
 
@@ -105,16 +103,6 @@ const Wrapper = styled.div`
         th {
             font-size: 1.1rem;
         }
-
-        .btn-container {
-            flex-direction: row;
-        }
-
-        .btn {
-            margin: 0.5rem;
-            font-size: 0.8rem;
-        }
     }
 `;
-
 export default Wrapper;

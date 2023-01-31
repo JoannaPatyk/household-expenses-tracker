@@ -22,12 +22,11 @@ const CategoryReducer = (state, action) => {
             };
         }
         case ADD_CATEGORIES: {
-            const categories = action.payload.map((item) => {
-                return { id: item._id, name: item.name };
-            });
             return {
                 ...state,
-                categories: categories
+                categories: action.payload.map((item) => {
+                    return { id: item._id, name: item.name };
+                })
             };
         }
         case ADD_CATEGORY: {
@@ -37,12 +36,13 @@ const CategoryReducer = (state, action) => {
             };
         }
         case UPDATE_CATEGORY: {
-            const id = action.payload.id;
-            const updateCategoryName = action.payload.updateCategoryName;
-            const updatedCategory = { id, name: updateCategoryName };
             return {
                 ...state,
-                categories: state.categories.map((category) => (category.id === id ? updatedCategory : category))
+                categories: state.categories.map((category) =>
+                    category.id === action.payload.id
+                        ? { id: action.payload.id, name: action.payload.updateCategoryName }
+                        : category
+                )
             };
         }
         case DELETE_CATEGORY: {
