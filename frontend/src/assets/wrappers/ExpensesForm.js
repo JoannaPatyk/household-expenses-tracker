@@ -6,7 +6,8 @@ const Wrapper = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-top: 3.5rem;
+        height: 90vh;
+        position: relative;
     }
 
     .categories-container {
@@ -22,9 +23,13 @@ const Wrapper = styled.div`
         justify-content: center;
     }
 
+    h2 {
+        font-size: 1rem;
+    }
+
     input,
     select {
-        width: 12rem;
+        width: 15rem;
     }
 
     .link {
@@ -45,6 +50,7 @@ const Wrapper = styled.div`
 
     .btn {
         font-size: 0.9rem;
+        width: 15rem;
     }
 
     .edit-btn {
@@ -75,7 +81,7 @@ const Wrapper = styled.div`
         margin-top: 1rem;
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: 1015px) {
         h2 {
             font-size: 1.8rem;
         }
@@ -88,10 +94,6 @@ const Wrapper = styled.div`
         .btn {
             width: 24rem;
             font-size: 1.2rem;
-        }
-
-        form {
-            margin-bottom: 2rem;
         }
     }
 `;

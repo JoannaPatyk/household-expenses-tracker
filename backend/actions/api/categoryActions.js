@@ -1,4 +1,6 @@
 const Category = require('../../database/models/categoryModel');
+const budgetActions = require('./budgetActions');
+const expenseActions = require('./expenseActions');
 
 class CategoryActions {
     async save(req, res) {
@@ -13,6 +15,7 @@ class CategoryActions {
         }
 
         res.status(201).json(category);
+        budgetActions.updateBudgetOnCategoryAddition(name);
     }
 
     async get(req, res) {
@@ -26,18 +29,24 @@ class CategoryActions {
         const id = req.params.id;
 
         const category = await Category.findOne({ _id: id });
+        const oldName = category.name;
         category.name = name;
         await category.save();
 
         res.status(201).json(category);
+
+        budgetActions.updateBudgetOnCategoryUpdate(oldName, name);
+        expenseActions.updateExpenseOnCategoryUpdate(oldName, name);
     }
 
     async delete(req, res) {
         const id = req.params.id;
+        const category = await Category.findOne({ _id: id });
 
         await Category.deleteOne({ _id: id });
-
         res.sendStatus(204);
+
+        budgetActions.updateBudgetOnCategoryDelete(category.name);
     }
 }
 

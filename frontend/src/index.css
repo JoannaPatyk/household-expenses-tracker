@@ -17,7 +17,7 @@ html {
 :root {
     /* colors */
     --primary: #f387bd;
-    --primary-100: #fdeaf3;
+    --primary-100: #fcecf2;
     --primary-200: #fcd6e9;
     --primary-300: #f8c3de;
     --primary-400: #fcb6d9;
@@ -75,8 +75,16 @@ body {
     color: var(--textColor);
 }
 
+.dark {
+    background-color: #888;
+}
+
+.light {
+    background-color: #fff;
+}
+
 p {
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
     max-width: 40em;
 }
 
@@ -231,16 +239,6 @@ ul {
 .form-alert {
     color: var(--red-dark);
     letter-spacing: var(--letterSpacing);
-}
-
-.title {
-    text-align: center;
-}
-
-.container {
-    width: var(--fluid-width);
-    max-width: var(--max-width);
-    margin: 0 auto;
 }
 
 .full-page {

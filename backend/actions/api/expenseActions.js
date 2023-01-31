@@ -41,8 +41,13 @@ class ExpenseActions {
     async delete(req, res) {
         const id = req.params.id;
         await Expense.deleteOne({ _id: id });
+
         res.sendStatus(204);
     }
+
+    updateExpenseOnCategoryUpdate = async (oldCategoryName, newCategoryName) => {
+        await Expense.updateMany({ category: oldCategoryName }, { category: newCategoryName });
+    };
 }
 
 module.exports = new ExpenseActions();

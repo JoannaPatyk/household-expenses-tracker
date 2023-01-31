@@ -8,7 +8,7 @@ function Landing() {
         <Wrapper>
             <main>
                 <Logo />
-                <div className="container">
+                <div className="container page">
                     <div className="info">
                         <h1>Naucz się panować nad swoimi finansami</h1>
                         <h1>oszczędzaj i wydawaj mądrze . . .</h1>

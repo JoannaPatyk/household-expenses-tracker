@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import Button from './Button';
 import EditCategory from './EditCategory';
+import FormRowInput from './FormRowInput';
+import FormRowSelect from './FormRowSelect';
 import Wrapper from '../assets/wrappers/ExpensesForm';
 import { useExpensesContext } from '../context/ExpensesContext';
 import { useCategoriesContext } from '../context/CategoriesContext';
@@ -49,33 +51,20 @@ function ExpensesForm() {
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <div className="categories-container">
                     <h2>Dodaj nowy wydatek</h2>
-                    <label htmlFor="select">Wybierz kategorię:</label>
-                    <select id="select" className="form-select">
-                        {categories.map((item, index) => {
-                            return (
-                                <option key={index} value={item.name}>
-                                    {item.name}
-                                </option>
-                            );
-                        })}
-                    </select>
+                    <FormRowSelect name="Wybierz kategorię:" id="select" list={[...categories]} />
                 </div>
                 <div className="expense-container">
-                    <label htmlFor="amountInput">Kwota:</label>
-                    <input
+                    <FormRowInput
                         id="amountInput"
                         value={newAmount}
                         type="number"
-                        className="form-input"
                         placeholder="wydana kwota"
                         onChange={handleAmountChange}
                     />
-                    <label htmlFor="commentInput">Komentarz:</label>
-                    <input
+                    <FormRowInput
                         id="commentInput"
                         value={newComment}
                         type="text"
-                        className="form-input"
                         placeholder="komentarz"
                         onChange={(event) => setNewComment(event.target.value)}
                     />
@@ -83,11 +72,11 @@ function ExpensesForm() {
                 <Button type="submit" version="hero" isDisabled={buttonDisabled}>
                     dodaj
                 </Button>
+                <Button version="hipster" onClick={() => toggleModal()}>
+                    Edytuj kategorie
+                </Button>
             </form>
             <div className="editCategoryBtn-container">
-                <Button version="hipster" onClick={() => toggleModal()}>
-                    edytuj dostępne kategorie
-                </Button>
                 <Modal isOpen={showEditModal} ariaHideApp={false} style={modalStyles}>
                     <EditCategory />
                 </Modal>

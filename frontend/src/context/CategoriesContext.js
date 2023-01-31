@@ -60,7 +60,6 @@ export const CategoriesProvider = ({ children }) => {
         });
 
         dispatch({ type: ADD_CATEGORY, payload: name });
-        fetchCategories();
     };
 
     const updateCategory = async (id, updateCategoryName) => {

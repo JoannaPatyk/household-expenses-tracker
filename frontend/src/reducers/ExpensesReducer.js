@@ -17,45 +17,41 @@ const ExpenseReducer = (state, action) => {
             };
         }
         case ADD_EXPENSES: {
-            const expenses = action.payload.map((item) => {
-                return {
-                    id: item._id,
-                    category: item.category,
-                    amount: item.amount,
-                    comment: item.comment
-                };
-            });
             return {
                 ...state,
-                expenses: expenses
+                expenses: action.payload.map((item) => {
+                    return {
+                        id: item._id,
+                        category: item.category,
+                        amount: item.amount,
+                        comment: item.comment
+                    };
+                })
             };
         }
         case UPDATE_EXPENSE: {
-            const id = action.payload.id;
-            const updateCategory = action.payload.updateCategory;
-            const updateAmount = action.payload.updateAmount;
-            const updateComment = action.payload.updateComment;
-            const updatedExpense = {
-                id,
-                category: updateCategory,
-                amount: updateAmount,
-                comment: updateComment
-            };
-            return {
-                ...state,
-                expenses: state.expenses.map((expense) => (expense.id === id ? updatedExpense : expense))
-            };
-        }
-        case UPDATE_NAME_CATEGORY: {
-            const oldName = action.payload.oldName;
-            const updateCategoryName = action.payload.updateName;
             return {
                 ...state,
                 expenses: state.expenses.map((expense) =>
-                    expense.name === oldName
+                    expense.id === action.payload.id
+                        ? {
+                              id: action.payload.id,
+                              category: action.payload.updateCategory,
+                              amount: action.payload.updateAmount,
+                              comment: action.payload.updateComment
+                          }
+                        : expense
+                )
+            };
+        }
+        case UPDATE_NAME_CATEGORY: {
+            return {
+                ...state,
+                expenses: state.expenses.map((expense) =>
+                    expense.name === action.payload.oldName
                         ? {
                               id: expense.id,
-                              category: updateCategoryName,
+                              category: action.payload.updateName,
                               amount: expense.amount,
                               comment: expense.comment
                           }

@@ -6,10 +6,10 @@
     "scripts": {
         "eslint-check": "npx eslint .",
         "eslint-fix": "npx eslint --fix .",
-        "nodemon": "nodemon app.js",
         "prettier-check": "npx prettier --check .",
         "prettier-fix": "npx prettier --write .",
-        "start": "node app.js",
+        "server": "node app.js",
+        "start": "nodemon app.js",
         "test": "echo No tests for now..."
     },
     "author": "Joanna Patyk",

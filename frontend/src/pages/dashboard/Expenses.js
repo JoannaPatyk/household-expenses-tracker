@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 import Button from '../../components/Button';
 import EditExpense from '../../components/EditExpense';
 import { CiEdit } from 'react-icons/ci';
-import { TfiBackLeft } from 'react-icons/tfi';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
 
 const modalStyles = {
     content: {
@@ -31,40 +31,44 @@ function Expenses() {
     return (
         <Wrapper>
             <div className="container">
-                <div className="title">
-                    <h4>LP.</h4>
-                    <h4>kategoria</h4>
-                    <h4>kwota</h4>
-                    <h4>komentarz</h4>
-                    <h4> </h4>
-                </div>
-                {expenses.map((expense, index) => {
-                    return (
-                        <div key={expense.id} className="expense-container">
-                            <p>{index + 1}</p>
-                            <p>{expense.category}</p>
-                            <p>{expense.amount} zł</p>
-                            <h5>{expense.comment}</h5>
-                            <div className="btn-container">
-                                <Button version="hipster" id="big-btn" onClick={() => handleEditButtonClick(expense)}>
-                                    edytuj
-                                </Button>
-                                <Button version="hipster" id="big-btn" onClick={() => deleteExpense(expense.id)}>
-                                    usuń
-                                </Button>
-                                <Button version="hipster" id="small-btn" onClick={() => handleEditButtonClick(expense)}>
-                                    <CiEdit />
-                                </Button>
-                                <Button version="hipster" id="small-btn" onClick={() => deleteExpense(expense.id)}>
-                                    <TfiBackLeft />
-                                </Button>
-                            </div>
-                            <Modal isOpen={showEditModal} ariaHideApp={false} style={modalStyles}>
-                                <EditExpense />
-                            </Modal>
-                        </div>
-                    );
-                })}
+                <table>
+                    <thead>
+                        <tr className="title">
+                            <th>LP.</th>
+                            <th>kategoria</th>
+                            <th>kwota</th>
+                            <th>komentarz</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {expenses.map((expense, index) => {
+                            return (
+                                <tr key={expense.id} className="expense-container">
+                                    <td>{index + 1}.</td>
+                                    <td>{expense.category}</td>
+                                    <td>{expense.amount} zł</td>
+                                    <td>{expense.comment}</td>
+                                    <td className="btn-container">
+                                        <Button
+                                            version="hipster"
+                                            id="btn"
+                                            onClick={() => handleEditButtonClick(expense)}
+                                        >
+                                            <CiEdit className="btn-icone" />
+                                        </Button>
+                                        <Button version="hipster" id="btn" onClick={() => deleteExpense(expense.id)}>
+                                            <IoIosCloseCircleOutline className="btn-icone" />
+                                        </Button>
+                                    </td>
+                                    <Modal isOpen={showEditModal} ariaHideApp={false} style={modalStyles}>
+                                        <EditExpense />
+                                    </Modal>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
         </Wrapper>
     );
