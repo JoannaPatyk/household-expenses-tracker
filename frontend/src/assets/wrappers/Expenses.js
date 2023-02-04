@@ -6,6 +6,7 @@ const Wrapper = styled.div`
 
     table {
         width: 90vw;
+        margin-top: 4rem;
     }
 
     .title {
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
         place-items: center;
         box-shadow: var(--shadow-4);
         letter-spacing: var(--letterSpacing);
-        background-color: var(--primary-100);
+        background-color: var(--secondary-800);
     }
 
     .expense-container {
@@ -22,25 +23,6 @@ const Wrapper = styled.div`
         grid-template-columns: 0.25fr 0.8fr 0.8fr 1fr 0.25fr;
         place-items: center;
         box-shadow: var(--shadow-4);
-    }
-
-    th,
-    td {
-        margin: 0.2rem;
-        color: var(--grey-500);
-        text-align: center;
-    }
-
-    td {
-        font-size: 0.85rem;
-    }
-
-    th {
-        margin: 1.2rem 0;
-        color: var(--primary-800);
-        font-weight: 600;
-        font-size: 1rem;
-        text-transform: uppercase;
     }
 
     .btn-container {
@@ -63,6 +45,12 @@ const Wrapper = styled.div`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        color: var(--secondary-800);
+        transition: var(--transition);
+    }
+
+    .btn-icone:hover {
+        color: var(--primary-800);
     }
 
     @media (max-width: 500px) {

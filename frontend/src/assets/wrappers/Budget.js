@@ -7,6 +7,7 @@ const Wrapper = styled.div`
 
     table {
         width: 90vw;
+        margin-top: 4rem;
     }
 
     .title {
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
         place-items: center;
         box-shadow: var(--shadow-4);
         letter-spacing: var(--letterSpacing);
-        background-color: var(--primary-100);
+        background-color: var(--secondary-800);
     }
 
     .budget-container {
@@ -25,50 +26,28 @@ const Wrapper = styled.div`
         box-shadow: var(--shadow-4);
     }
 
-    th,
-    td {
-        margin: 0.2rem;
-        color: var(--grey-500);
-        text-align: center;
-    }
-
-    th,
-    td {
-        margin: 0.2rem;
-        color: var(--grey-500);
-        text-align: center;
-    }
-
-    td {
-        font-size: 0.85rem;
-    }
-
-    th {
-        margin: 1.2rem 0;
-        color: var(--primary-800);
-        font-weight: 600;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
     .category {
         text-align: center;
     }
 
-    input {
-        width: 100px;
-        height: 35px;
+    #input {
+        width: 5rem;
+        height: 25px;
         text-align: center;
         font-family: inherit;
         font-size: inherit;
         color: inherit;
-        /* border: none; */
-        /* background: transparent; */
     }
-    @media (max-width: 500px) {
+
+    #input:focus {
+        width: 8rem;
+    }
+
+    @media (min-width: 540px) {
         table {
             width: 90vw;
         }
+
         th {
             font-size: 0.6rem;
             margin: 0.6rem 0rem;
@@ -79,21 +58,27 @@ const Wrapper = styled.div`
             font-size: 0.7rem;
             margin: 0.1rem 0;
             text-align: center;
+            text-transform: uppercase;
         }
 
-        input {
-            width: 60px;
+        #input {
+            width: 4rem;
             margin-right: 5px;
+        }
+
+        #input:focus {
+            width: 5rem;
         }
     }
 
-    @media (min-width: 1125px) {
+    @media (min-width: 980px) {
         table {
             width: 70vw;
         }
+
         th,
         td {
-            margin: 1rem;
+            margin: 0.6rem;
         }
 
         td {
@@ -102,6 +87,14 @@ const Wrapper = styled.div`
 
         th {
             font-size: 1.1rem;
+        }
+
+        #input {
+            width: 8rem;
+        }
+
+        #input:focus {
+            width: 13rem;
         }
     }
 `;

@@ -51,7 +51,7 @@ const Wrapper = styled.aside`
     .nav-link {
         display: flex;
         align-items: center;
-        color: var(--grey-400);
+        color: var(--secondary-400);
         padding: 0.5rem 1rem;
         font-size: 1rem;
         font-weight: 400;

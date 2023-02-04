@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { CiEdit } from 'react-icons/ci';
 import { TfiBackLeft } from 'react-icons/tfi';
@@ -17,7 +18,6 @@ function EditCategory() {
         deleteCategory,
         updateCategory,
         currentlyEditedCategory,
-        toggleModal,
         saveCategoryForEdit,
         categoryName,
         setCategoryName
@@ -63,38 +63,36 @@ function EditCategory() {
 
     return (
         <Wrapper>
-            <button onClick={() => toggleModal()}>
-                <TfiBackLeft className="back-btn edit" />
-            </button>
-            <div className="container">
+            <Link to="/" className="back-btn">
+                <TfiBackLeft />
+            </Link>
+            <div className="edit-container">
                 <h2>Dodaj lub edytuj kategorie</h2>
-                <div className="categories-container">
-                    <div className="categories">
-                        {categories.map((category) => {
-                            return (
-                                <div className="category" key={category.id}>
-                                    {category.name}
-                                    <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
-                                    <IoIosCloseCircleOutline
-                                        className="edit-btn delete"
-                                        onClick={() => deleteCategory(category.id)}
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <form className="edit-container" onSubmit={handleSubmit}>
-                        <FormRowInput
-                            value={categoryName}
-                            type="text"
-                            className="form-input"
-                            placeholder="Dodaj brakującą kategorie lub edytuj istniejącą..."
-                            onChange={handleNameChange}
-                        />
-                        <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                            zapisz
-                        </Button>
-                    </form>
+                <form onSubmit={handleSubmit}>
+                    <FormRowInput
+                        value={categoryName}
+                        type="text"
+                        className="form-input"
+                        placeholder="Dodaj nową lub edytuj istniejącą kategorie..."
+                        onChange={handleNameChange}
+                    />
+                    <Button type="submit" version="hero" isDisabled={buttonDisabled}>
+                        zapisz
+                    </Button>
+                </form>
+                <div className="categories">
+                    {categories.map((category) => {
+                        return (
+                            <div className="category" key={category.id}>
+                                {category.name}
+                                <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
+                                <IoIosCloseCircleOutline
+                                    className="edit-btn delete"
+                                    onClick={() => deleteCategory(category.id)}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </Wrapper>

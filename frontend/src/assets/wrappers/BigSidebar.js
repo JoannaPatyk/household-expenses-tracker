@@ -5,23 +5,20 @@ const Wrapper = styled.div`
 
     @media (min-width: 992px) {
         display: block;
-        background-color: var(--primary-100);
+        background-color: var(--secondary-800);
         box-shadow: var(--shadow-4);
 
         .sidebar-container {
-            height: 90vh;
-            width: 300px;
-            margin-left: -300px;
+            min-height: 98.25vh;
+            height: 90%;
+            width: 400px;
+            margin-left: -400px;
             transition: var(--transition);
         }
 
         .content {
             position: sticky;
-            top: 0;
-        }
-
-        .logo-container {
-            /* margin-top: -0.2rem; */
+            top: 10%;
         }
 
         .show-sidebar {
@@ -37,7 +34,7 @@ const Wrapper = styled.div`
         .nav-link {
             display: flex;
             align-items: center;
-            color: var(--grey-400);
+            color: var(--secondary-400);
             padding: 1rem 0;
             padding-left: 2rem;
             font-size: 1rem;
@@ -47,9 +44,9 @@ const Wrapper = styled.div`
         }
 
         .nav-link:hover {
-            background: var(--primary-200);
+            background: var(--secondary-200);
             padding-left: 3rem;
-            color: var(--primary-800);
+            color: var(--secondary-800);
         }
 
         .icon {
