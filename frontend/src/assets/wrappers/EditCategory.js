@@ -1,111 +1,109 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    .container {
-        height: 80vh;
+    .edit-container {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        text-align: center;
+        margin-top: 6rem;
     }
 
     h2 {
         font-size: 1.2rem;
+        margin: 0;
     }
 
-    .edit-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 1rem;
-    }
-
-    input {
+    .form-input {
         width: 80vw;
     }
 
+    .form-input::placeholder {
+        font-size: 0.8rem;
+    }
+
+    .form-input:focus {
+        width: 60vw;
+    }
+
     .categories {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
     }
 
     .category {
         position: relative;
-        justify-self: center;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         border-radius: var(--borderRadius);
-        background-color: var(--primary-200);
-        width: 60%;
+        color: var(--secondary-900);
+        background-color: var(--secondary-400);
+        width: 80%;
         height: 50px;
         line-height: 50px;
         margin: 0.5rem;
-        padding-left: 0.5rem;
     }
 
     .btn {
-        width: 300px;
+        width: 80%;
         font-size: 1rem;
-    }
-
-    .back-btn {
-        position: absolute;
-        top: 2%;
-        left: 2%;
-        font-size: 1.4rem;
-        color: var(--grey-600);
-        transition: var(--transition);
-        cursor: pointer;
-    }
-
-    .back-btn:hover {
-        color: var(--primary-700);
     }
 
     .edit-btn {
         position: absolute;
         top: 30%;
         font-size: 1.4rem;
-        color: var(--grey-600);
+        color: var(--secondary-800);
         transition: var(--transition);
         cursor: pointer;
     }
 
     .edit-btn:hover {
-        color: var(--primary-700);
+        color: var(--primary-800);
     }
 
     .edit {
-        right: 12%;
+        right: 10%;
     }
 
     .delete {
         right: 2%;
     }
 
-    @media (min-width: 1220px) {
+    @media (min-width: 820px) {
         h2 {
             font-size: 1.8rem;
         }
 
+        .form-input {
+            width: 40rem;
+        }
+
+        .form-input::placeholder {
+            font-size: 1rem;
+        }
+
         .categories {
+            display: grid;
             grid-template-columns: 1fr 1fr;
-            width: 70vw;
         }
 
         .category {
+            place-self: center;
             width: 70%;
-            margin: 1rem;
-            padding-left: 1rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
         }
 
         .btn {
-            width: 350px;
+            width: 35%;
             font-size: 1.2rem;
         }
-
-        input {
-            width: 45vw;
+    }
+    @media (min-width: 1420px) {
+        .categories {
+            grid-template-columns: 1fr 1fr 1fr;
         }
     }
 `;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/ExpensesForm';
@@ -13,7 +14,7 @@ function EditExpense() {
     const [editAmount, setEditAmount] = useState('');
     const [editComment, setEditComment] = useState('');
 
-    const { categories, toggleModal } = useCategoriesContext();
+    const { categories } = useCategoriesContext();
     const { expenseForEdit, updateExpense } = useExpensesContext();
 
     useEffect(() => {
@@ -45,60 +46,52 @@ function EditExpense() {
         setButtonDisabled(false);
     };
 
-    const handleBackButton = () => {
-        toggleModal();
-    };
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
         if (expenseForEdit.edit === true) {
             updateExpense(expenseForEdit.expense.id, editCategory, editAmount, editComment);
         }
-
-        toggleModal();
     };
 
     return (
         <Wrapper>
-            <button onClick={handleBackButton}>
-                <TfiBackLeft className="edit-btn edit" />
-            </button>
+            <Link to="/expenses" className="back-btn">
+                <TfiBackLeft />
+            </Link>
+            <div className="container">
+                <form id="form" className="form-container" onSubmit={handleSubmit}>
+                    <div className="categories-container">
+                        <h2>Edytuj wybrany wydatek</h2>
+                        <FormRowSelect
+                            id="select"
+                            list={[...categories]}
+                            name={expenseForEdit.expense.category}
+                            onChange={handleCategoryChange}
+                        />
+                    </div>
 
-            <form id="form" className="form-container" onSubmit={handleSubmit}>
-                <div className="categories-container">
-                    <h2>Edytuj wybrany wydatek</h2>
-                    <FormRowSelect
-                        name="Zmień kategorię:"
-                        id="select"
-                        list={[...categories]}
-                        onChange={handleCategoryChange}
-                        value={expenseForEdit.expense.category}
-                    />
-                </div>
-
-                <div className="expense-container">
-                    <FormRowInput
-                        name="Zmień kwotę:"
-                        id="amount"
-                        value={editAmount}
-                        type="number"
-                        placeholder="wydana kwota"
-                        onChange={handleAmountChange}
-                    />
-                    <FormRowInput
-                        name="Zmień treść komentarza:"
-                        id="comment"
-                        value={editComment}
-                        type="text"
-                        placeholder="komentarz"
-                        onChange={handleCommentChange}
-                    />
-                </div>
-                <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                    zapisz
-                </Button>
-            </form>
+                    <div className="expense-container">
+                        <FormRowInput
+                            id="amount"
+                            value={editAmount}
+                            type="number"
+                            placeholder="wydana kwota"
+                            onChange={handleAmountChange}
+                        />
+                        <FormRowInput
+                            id="comment"
+                            value={editComment}
+                            type="text"
+                            placeholder="komentarz"
+                            onChange={handleCommentChange}
+                        />
+                    </div>
+                    <Button type="submit" version="hero" isDisabled={buttonDisabled}>
+                        <Link to="/expenses"> zapisz </Link>
+                    </Button>
+                </form>
+            </div>
         </Wrapper>
     );
 }

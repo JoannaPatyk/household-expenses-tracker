@@ -1,20 +1,12 @@
 import React, { createContext, useEffect, useContext, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-    TOGGLE_SIDEBAR,
-    TOGGLE_MODAL,
-    ADD_CATEGORIES,
-    ADD_CATEGORY,
-    UPDATE_CATEGORY,
-    DELETE_CATEGORY
-} from '../utils/actions';
+import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/actions';
 import reducer from '../reducers/CategoryReducer';
 import apiConfig from '../apiConfig';
 
 const initialState = {
     isSidebarOpen: false,
-    categories: [],
-    showEditModal: false
+    categories: []
 };
 
 const CategoriesContext = createContext();
@@ -40,10 +32,6 @@ export const CategoriesProvider = ({ children }) => {
 
     const toggleSidebar = () => {
         dispatch({ type: TOGGLE_SIDEBAR });
-    };
-
-    const toggleModal = () => {
-        dispatch({ type: TOGGLE_MODAL });
     };
 
     const addAllCategories = (categories) => {
@@ -101,7 +89,6 @@ export const CategoriesProvider = ({ children }) => {
                 currentlyEditedCategory,
                 setCategoryName,
                 toggleSidebar,
-                toggleModal,
                 addCategory,
                 saveCategoryForEdit,
                 updateCategory,

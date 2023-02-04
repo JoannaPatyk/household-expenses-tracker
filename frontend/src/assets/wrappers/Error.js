@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     p {
         margin-top: 0;
         margin-bottom: 0.5rem;
-        color: var(--grey-500);
+        color: var(--secondary-500);
     }
 
     a {

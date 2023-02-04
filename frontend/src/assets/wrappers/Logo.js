@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.nav`
-    .container {
+    .logo-container {
         width: 100%;
-        margin-top: 5rem;
+        margin-top: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .logo-container {
+    .logo {
         height: 10rem;
-        margin-top: 2rem;
+        height: 8rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
-    .logo {
-        height: 8rem;
+    .logo-img {
+        height: 7rem;
     }
 
     h1 {
@@ -28,6 +28,7 @@ const Wrapper = styled.nav`
 
     h4 {
         letter-spacing: var(--letterSpacing);
+        color: var(--secondary-400);
         text-align: center;
     }
 
@@ -40,6 +41,7 @@ const Wrapper = styled.nav`
 
     span {
         color: var(--primary-800);
+        font-weight: 800;
     }
 `;
 

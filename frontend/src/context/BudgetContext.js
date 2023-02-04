@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/actions';
 import reducer from '../reducers/BudgetReducer';
 import apiConfig from '../apiConfig';
 import { useCategoriesContext } from './CategoriesContext';
+import { useExpensesContext } from './ExpensesContext';
 
 const initialState = {
     budget: []
@@ -13,7 +14,9 @@ const BudgetContext = createContext();
 
 export const BudgetProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [summedByCategory, setSummedByCategory] = useState([]);
     const { categories } = useCategoriesContext();
+    const { expenses } = useExpensesContext();
 
     const fetchBudget = async () => {
         const response = await fetch(`${apiConfig.api}/budget`);
@@ -24,6 +27,10 @@ export const BudgetProvider = ({ children }) => {
     useEffect(() => {
         fetchBudget();
     }, [categories]);
+
+    useEffect(() => {
+        setSummedByCategory(sumBudgetByCategory(expenses, 'category', 'amount'));
+    }, [expenses]);
 
     const updateBudget = async (id, updateBudgetEntryAmount) => {
         await fetch(`${apiConfig.api}/budget/${id}`, {
@@ -44,13 +51,14 @@ export const BudgetProvider = ({ children }) => {
             map.set(expense[key], sum + expense[value]);
         }
 
-        return Array.from(map, ([k, v]) => ({ [key]: k, [value]: v }));
+        return Array.from(map, ([k, v]) => ({ [key]: k, [value]: Math.round(v * 100) / 100 }));
     };
 
     return (
         <BudgetContext.Provider
             value={{
                 ...state,
+                summedByCategory,
                 updateBudget,
                 sumBudgetByCategory
             }}

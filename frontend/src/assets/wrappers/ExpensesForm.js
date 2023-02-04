@@ -6,8 +6,8 @@ const Wrapper = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 90vh;
-        position: relative;
+        height: 70vh;
+        margin: 5rem;
     }
 
     .categories-container {
@@ -25,6 +25,11 @@ const Wrapper = styled.div`
 
     h2 {
         font-size: 1rem;
+    }
+
+    label {
+        font-size: 1.2rem;
+        font-weight: 600;
     }
 
     input,
@@ -57,13 +62,13 @@ const Wrapper = styled.div`
         position: absolute;
         top: 2%;
         font-size: 1.4rem;
-        color: var(--grey-600);
+        color: var(--secondary-800);
         transition: var(--transition);
         cursor: pointer;
     }
 
     .edit-btn:hover {
-        color: var(--primary-700);
+        color: var(--primary-800);
     }
 
     .edit {
@@ -88,11 +93,11 @@ const Wrapper = styled.div`
 
         input,
         select {
-            width: 24rem;
+            width: 25rem;
         }
 
         .btn {
-            width: 24rem;
+            width: 25rem;
             font-size: 1.2rem;
         }
     }

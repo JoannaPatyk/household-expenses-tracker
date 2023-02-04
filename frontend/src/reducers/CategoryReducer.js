@@ -1,11 +1,4 @@
-import {
-    TOGGLE_SIDEBAR,
-    TOGGLE_MODAL,
-    ADD_CATEGORIES,
-    ADD_CATEGORY,
-    UPDATE_CATEGORY,
-    DELETE_CATEGORY
-} from '../utils/actions';
+import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/actions';
 
 const CategoryReducer = (state, action) => {
     switch (action.type) {
@@ -13,12 +6,6 @@ const CategoryReducer = (state, action) => {
             return {
                 ...state,
                 isSidebarOpen: !state.isSidebarOpen
-            };
-        }
-        case TOGGLE_MODAL: {
-            return {
-                ...state,
-                showEditModal: !state.showEditModal
             };
         }
         case ADD_CATEGORIES: {

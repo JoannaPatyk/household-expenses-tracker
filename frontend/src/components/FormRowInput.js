@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function FormRow({ type, name, value, onChange, placeholder }) {
+function FormRow({ id, type, name, value, onChange, placeholder }) {
     return (
-        <>
+        <div>
             <label htmlFor={name}>{name}</label>
             <input
+                id={id}
                 type={type}
                 value={value}
                 name={name}
@@ -13,11 +14,12 @@ function FormRow({ type, name, value, onChange, placeholder }) {
                 onChange={onChange}
                 placeholder={placeholder}
             />
-        </>
+        </div>
     );
 }
 
 FormRow.propTypes = {
+    id: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.any,
     name: PropTypes.string,

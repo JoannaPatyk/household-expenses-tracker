@@ -6,20 +6,22 @@ const Wrapper = styled.main`
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-top: 2rem;
     }
 
-    .info {
+    .landing-title {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 3.5rem 0;
+        margin-top: 3rem;
+        margin-bottom: 2.5rem;
     }
 
     h1 {
-        color: var(--grey-600);
-        font-weight: 200;
-        font-size: 3rem;
+        color: var(--secondary-600);
+        font-weight: 00;
+        font-size: 2.5rem;
         margin: 0.3rem;
         text-align: center;
     }
@@ -33,8 +35,40 @@ const Wrapper = styled.main`
         line-height: 1rem;
     }
 
+    span {
+        font-weight: 800;
+    }
+
+    .goals-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .goal {
+        width: 22rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        letter-spacing: var(--letterSpacing);
+        margin: 1.5rem 2rem;
+    }
+
+    .goal-icone {
+        font-size: 2.2rem;
+        margin: 1rem;
+    }
+
+    h5 {
+        font-weight: 400;
+        line-height: 28px;
+    }
+
     .btn {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 `;
 export default Wrapper;
