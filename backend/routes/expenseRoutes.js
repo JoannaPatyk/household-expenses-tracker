@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const expenseActions = require('../actions/api/expenseActions');
+const expenseActions = require('../actions/api/v1/expenseActions');
 
 router.get('/expenses', expenseActions.get);
 router.post('/expenses', expenseActions.save);

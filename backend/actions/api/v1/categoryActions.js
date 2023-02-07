@@ -1,4 +1,4 @@
-const Category = require('../../database/models/categoryModel');
+const Category = require('../../../database/models/categoryModel');
 const budgetActions = require('./budgetActions');
 const expenseActions = require('./expenseActions');
 

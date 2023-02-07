@@ -1,4 +1,4 @@
-const Budget = require('../../database/models/budgetModel');
+const Budget = require('../../../database/models/budgetModel');
 
 class BudgetActions {
     async get(req, res) {

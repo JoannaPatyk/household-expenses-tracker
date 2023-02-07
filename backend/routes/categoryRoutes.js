@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const categoryActions = require('../actions/api/categoryActions');
+const categoryActions = require('../actions/api/v1/categoryActions');
 
 router.get('/categories', categoryActions.get);
 router.post('/categories', categoryActions.save);

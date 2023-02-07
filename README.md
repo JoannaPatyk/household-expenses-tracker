@@ -15,3 +15,7 @@ Run server:
 ```shell
 npm start
 ```
+
+## Local MongoDB
+
+Guide on how to setup local MongoDB server: [link](https://zellwk.com/blog/local-mongodb/).

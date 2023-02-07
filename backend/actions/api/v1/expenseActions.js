@@ -1,4 +1,4 @@
-const Expense = require('../../database/models/expenseModel');
+const Expense = require('../../../database/models/expenseModel');
 
 class ExpenseActions {
     async save(req, res) {

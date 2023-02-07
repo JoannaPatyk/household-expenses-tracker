@@ -22,7 +22,7 @@ app.use(cors());
 morgan.token('body', (req) => {
     return JSON.stringify(req.body);
 });
-app.use(morgan(':method :date[iso] :status :response-time ms :url - :body'));
+app.use(morgan(':date[iso] :method :status :response-time ms :url - :body'));
 
 // routes
 app.use('/api/v1', categoryRouters);
