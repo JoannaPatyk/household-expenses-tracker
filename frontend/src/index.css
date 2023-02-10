@@ -67,7 +67,6 @@ body {
     font-family: var(--fontFamily);
     color: var(--textColor);
     background-color: var(--backgroundColor);
-    background: url('../src/assets/images/background.png') no-repeat bottom -1000px right -600px;
 }
 
 .dark {

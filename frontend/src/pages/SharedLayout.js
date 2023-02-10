@@ -4,6 +4,7 @@ import BigSidebar from '../components/BigSidebar';
 import Wrapper from '../assets/wrappers/SharedLayout';
 import { Outlet } from 'react-router-dom';
 import { CgMenuGridO } from 'react-icons/cg';
+import background from '../assets/images/background.png';
 import { useCategoriesContext } from '../context/CategoriesContext';
 
 function SharedLayout() {
@@ -22,6 +23,7 @@ function SharedLayout() {
                     </div>
                     <div className="dashboard-page">
                         <Outlet />
+                        <img src={background} alt="background" className="bg" />
                     </div>
                 </div>
             </main>

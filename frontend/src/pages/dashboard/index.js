@@ -1,7 +1,7 @@
 import Budget from './Budget';
 import Expenses from './Expenses';
 import Settings from './Settings';
-import Stats from './Stats';
-import Profile from './Stats';
+import Statistics from './Statistics';
+import Profile from './Statistics';
 
-export { Budget, Expenses, Settings, Stats, Profile };
+export { Budget, Expenses, Settings, Statistics, Profile };
