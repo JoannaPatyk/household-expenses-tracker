@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     @media (min-width: 992px) {
         display: block;
         background-color: var(--secondary-800);
-        box-shadow: var(--shadow-4);
+        /* box-shadow: var(--shadow-4); */
 
         .sidebar-container {
             min-height: 98.25vh;
