@@ -9,10 +9,8 @@ function BigSidebar() {
     return (
         <Wrapper>
             <div className={`${isSidebarOpen ? 'sidebar-container' : 'sidebar-container show-sidebar'}`}>
-                <div className="content">
-                    <Logo className="logo-container" />
-                    <NavLinks />
-                </div>
+                <Logo className="logo-container" />
+                <NavLinks />
             </div>
         </Wrapper>
     );

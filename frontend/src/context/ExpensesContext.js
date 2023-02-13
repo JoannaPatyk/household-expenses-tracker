@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import React, { createContext, useReducer, useEffect, useContext, useState } from 'react';
 import { ADD_EXPENSE, ADD_EXPENSES, UPDATE_EXPENSE, DELETE_EXPENSE, UPDATE_NAME_CATEGORY } from '../utils/actions';
 import reducer from '../reducers/ExpensesReducer';
 import apiConfig from '../apiConfig';
 import { useCategoriesContext } from './CategoriesContext';
+import { useUserContext } from './UserContext';
+import { trackPromise } from 'react-promise-tracker';
 
 const initialState = {
     expenses: []
@@ -14,64 +17,78 @@ const ExpensesContext = createContext();
 export const ExpensesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { categories } = useCategoriesContext();
+    const { isLogged } = useUserContext();
     const [expenseForEdit, setExpenseForEdit] = useState({
         expense: {},
         edit: false
     });
 
     useEffect(() => {
+        const fetchExpenses = async () => {
+            try {
+                const response = await axios.get(`${apiConfig.api}/expenses`);
+
+                const data = response.data;
+                addAllExpenses(data);
+            } catch (error) {
+                console.error('error: ', error.response);
+            }
+        };
+
         const getDataInterval = setInterval(async () => {
-            const response = await fetch(`${apiConfig.api}/expenses`);
-            const data = await response.json();
-            addAllExpenses(data);
+            if (isLogged) {
+                trackPromise(fetchExpenses());
+            }
         }, 1000);
 
         return () => {
             clearInterval(getDataInterval);
         };
-    }, [categories]);
+    }, [categories, isLogged]);
 
     const addAllExpenses = (expenses) => {
         dispatch({ type: ADD_EXPENSES, payload: expenses });
     };
 
     const addExpense = async (category, amount, comment) => {
-        await fetch(`${apiConfig.api}/expenses`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ category, amount, comment })
-        });
+        try {
+            await axios.post(`${apiConfig.api}/expenses`, { category, amount, comment });
 
-        dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
+            dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const updateExpense = async (id, updateCategory, updateAmount, updateComment) => {
-        await fetch(`${apiConfig.api}/expenses/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ category: updateCategory, amount: updateAmount, comment: updateComment })
-        });
+        try {
+            await axios.patch(`${apiConfig.api}/expenses/${id}`, {
+                category: updateCategory,
+                amount: updateAmount,
+                comment: updateComment
+            });
 
-        dispatch({
-            type: UPDATE_EXPENSE,
-            payload: { id, updateCategory, updateAmount, updateComment }
-        });
-        setExpenseForEdit({
-            expense: {},
-            edit: false
-        });
+            dispatch({
+                type: UPDATE_EXPENSE,
+                payload: { id, updateCategory, updateAmount, updateComment }
+            });
+            setExpenseForEdit({
+                expense: {},
+                edit: false
+            });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const deleteExpense = async (id) => {
-        await fetch(`${apiConfig.api}/expenses/${id}`, {
-            method: 'DELETE'
-        });
+        try {
+            await axios.delete(`${apiConfig.api}/expenses/${id}`);
 
-        dispatch({ type: DELETE_EXPENSE, payload: id });
+            dispatch({ type: DELETE_EXPENSE, payload: id });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const updateNameCategory = (oldName, updateName) => {

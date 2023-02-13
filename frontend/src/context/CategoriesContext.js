@@ -1,8 +1,11 @@
 import React, { createContext, useEffect, useContext, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/actions';
 import reducer from '../reducers/CategoryReducer';
 import apiConfig from '../apiConfig';
+import { useUserContext } from './UserContext';
+import { trackPromise } from 'react-promise-tracker';
 
 const initialState = {
     isSidebarOpen: false,
@@ -14,21 +17,28 @@ const CategoriesContext = createContext();
 export const CategoriesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [categoryName, setCategoryName] = useState('');
+    const { isLogged } = useUserContext();
     const [currentlyEditedCategory, setCurrentlyEditedCategory] = useState({
         category: {},
         edit: false
     });
 
-    const fetchCategories = async () => {
-        const response = await fetch(`${apiConfig.api}/categories`);
-        const data = await response.json();
-        addAllCategories(data);
-    };
-
     useEffect(() => {
-        fetchCategories();
-        // eslint-disable-next-line
-    }, []);
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get(`${apiConfig.api}/categories`);
+
+                const data = response.data;
+                addAllCategories(data);
+            } catch (error) {
+                console.error('error: ', error.response);
+            }
+        };
+
+        if (isLogged) {
+            trackPromise(fetchCategories());
+        }
+    }, [isLogged]);
 
     const toggleSidebar = () => {
         dispatch({ type: TOGGLE_SIDEBAR });
@@ -39,39 +49,37 @@ export const CategoriesProvider = ({ children }) => {
     };
 
     const addCategory = async (name) => {
-        await fetch(`${apiConfig.api}/categories`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name })
-        });
+        try {
+            await axios.post(`${apiConfig.api}/categories`, { name });
 
-        dispatch({ type: ADD_CATEGORY, payload: name });
+            dispatch({ type: ADD_CATEGORY, payload: name });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const updateCategory = async (id, updateCategoryName) => {
-        await fetch(`${apiConfig.api}/categories/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: updateCategoryName })
-        });
+        try {
+            await axios.patch(`${apiConfig.api}/categories/${id}`, { name: updateCategoryName });
 
-        dispatch({ type: UPDATE_CATEGORY, payload: { id, updateCategoryName } });
-        setCurrentlyEditedCategory({
-            category: {},
-            edit: false
-        });
+            dispatch({ type: UPDATE_CATEGORY, payload: { id, updateCategoryName } });
+            setCurrentlyEditedCategory({
+                category: {},
+                edit: false
+            });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const deleteCategory = async (id) => {
-        await fetch(`${apiConfig.api}/categories/${id}`, {
-            method: 'DELETE'
-        });
+        try {
+            await axios.delete(`${apiConfig.api}/categories/${id}`);
 
-        dispatch({ type: DELETE_CATEGORY, payload: id });
+            dispatch({ type: DELETE_CATEGORY, payload: id });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const saveCategoryForEdit = (category) => {

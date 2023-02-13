@@ -5,15 +5,19 @@ import './index.css';
 import { CategoriesProvider } from './context/CategoriesContext';
 import { ExpensesProvider } from './context/ExpensesContext';
 import { BudgetProvider } from './context/BudgetContext';
+import { UserProvider } from './context/UserContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
 root.render(
-    <CategoriesProvider>
-        <ExpensesProvider>
-            <BudgetProvider>
-                <App />
-            </BudgetProvider>
-        </ExpensesProvider>
-    </CategoriesProvider>
+    <UserProvider>
+        <CategoriesProvider>
+            <ExpensesProvider>
+                <BudgetProvider>
+                    <App />
+                </BudgetProvider>
+            </ExpensesProvider>
+        </CategoriesProvider>
+    </UserProvider>
 );

@@ -63,7 +63,7 @@ function EditCategory() {
 
     return (
         <Wrapper>
-            <Link to="/" className="back-btn">
+            <Link to="/add" className="back-btn">
                 <TfiBackLeft />
             </Link>
             <div className="edit-container">

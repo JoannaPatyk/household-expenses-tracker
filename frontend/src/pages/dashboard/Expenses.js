@@ -5,6 +5,7 @@ import Wrapper from '../../assets/wrappers/Expenses';
 import Button from '../../components/Button';
 import { CiEdit } from 'react-icons/ci';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 function Expenses() {
     const { expenses, saveExpenseForEdit, deleteExpense } = useExpensesContext();
@@ -29,14 +30,14 @@ function Expenses() {
                     <tbody>
                         {expenses.map((expense, index) => {
                             return (
-                                <tr key={expense.id} className="expense-container">
+                                <tr key={index} className="expense-container">
                                     <td>{index + 1}.</td>
                                     <td>{expense.category}</td>
-                                    <td>{expense.amount.toFixed(2)} zł</td>
+                                    <td>{expense.amount} zł</td>
                                     <td>{expense.comment}</td>
                                     <td className="btn-container">
                                         <Link
-                                            to="edit-expense"
+                                            to="/edit_expense"
                                             id="btn"
                                             className="btn-hipster"
                                             onClick={() => handleEditButtonClick(expense)}
@@ -53,6 +54,7 @@ function Expenses() {
                         })}
                     </tbody>
                 </table>
+                <LoadingIndicator />
             </div>
         </Wrapper>
     );
