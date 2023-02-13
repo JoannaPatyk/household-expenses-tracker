@@ -19,7 +19,7 @@ const Wrapper = styled.nav`
     }
 
     .logo-img {
-        height: 7rem;
+        height: 8rem;
     }
 
     h1 {
@@ -34,7 +34,7 @@ const Wrapper = styled.nav`
 
     h1,
     h4 {
-        margin: 0.5rem;
+        margin: 1.1rem;
         font-weight: 400;
         text-transform: uppercase;
     }

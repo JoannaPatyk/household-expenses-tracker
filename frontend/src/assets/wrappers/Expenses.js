@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 4rem;
 
     table {
         width: 90vw;
-        margin-top: 4rem;
     }
 
     .title {

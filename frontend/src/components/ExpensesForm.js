@@ -60,7 +60,7 @@ function ExpensesForm() {
                 <Button type="submit" version="hero" isDisabled={buttonDisabled}>
                     dodaj
                 </Button>
-                <Link to="edit-category" className="btn btn-hipster">
+                <Link to="/edit_category" className="btn btn-hipster">
                     edytuj kategorie
                 </Link>
             </form>

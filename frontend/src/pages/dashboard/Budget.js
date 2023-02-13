@@ -2,6 +2,7 @@ import React from 'react';
 import Wrapper from '../../assets/wrappers/Budget';
 import FormRowInput from '../../components/FormRowInput';
 import { useBudgetContext } from '../../context/BudgetContext';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 function Budget() {
     const { budget, updateBudget, summedByCategory } = useBudgetContext();
@@ -48,6 +49,7 @@ function Budget() {
                         })}
                     </tbody>
                 </table>
+                <LoadingIndicator />
             </div>
         </Wrapper>
     );

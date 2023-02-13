@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/ExpensesForm';
@@ -13,7 +13,7 @@ function EditExpense() {
     const [editCategory, setEditCategory] = useState('');
     const [editAmount, setEditAmount] = useState('');
     const [editComment, setEditComment] = useState('');
-
+    const navigate = useNavigate();
     const { categories } = useCategoriesContext();
     const { expenseForEdit, updateExpense } = useExpensesContext();
 
@@ -51,6 +51,7 @@ function EditExpense() {
 
         if (expenseForEdit.edit === true) {
             updateExpense(expenseForEdit.expense.id, editCategory, editAmount, editComment);
+            navigate('/expenses');
         }
     };
 
@@ -88,7 +89,7 @@ function EditExpense() {
                         />
                     </div>
                     <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                        <Link to="/expenses"> zapisz </Link>
+                        zapisz
                     </Button>
                 </form>
             </div>

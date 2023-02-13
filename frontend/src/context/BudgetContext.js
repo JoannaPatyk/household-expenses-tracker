@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/actions';
 import reducer from '../reducers/BudgetReducer';
 import apiConfig from '../apiConfig';
-import { useCategoriesContext } from './CategoriesContext';
 import { useExpensesContext } from './ExpensesContext';
+import { useUserContext } from './UserContext';
+import { trackPromise } from 'react-promise-tracker';
 
 const initialState = {
     budget: []
@@ -15,33 +17,38 @@ const BudgetContext = createContext();
 export const BudgetProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [summedByCategory, setSummedByCategory] = useState([]);
-    const { categories } = useCategoriesContext();
     const { expenses } = useExpensesContext();
+    const { isLogged } = useUserContext();
 
     const fetchBudget = async () => {
-        const response = await fetch(`${apiConfig.api}/budget`);
-        const data = await response.json();
-        dispatch({ type: ADD_BUDGET, payload: data });
+        try {
+            const response = await axios.get(`${apiConfig.api}/budget`);
+
+            const data = response.data;
+            dispatch({ type: ADD_BUDGET, payload: data });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     useEffect(() => {
-        fetchBudget();
-    }, [categories]);
+        if (isLogged) {
+            trackPromise(fetchBudget());
+        }
+    }, [expenses, isLogged]);
 
     useEffect(() => {
         setSummedByCategory(sumBudgetByCategory(expenses, 'category', 'amount'));
     }, [expenses]);
 
     const updateBudget = async (id, updateBudgetEntryAmount) => {
-        await fetch(`${apiConfig.api}/budget/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ amount: updateBudgetEntryAmount })
-        });
+        try {
+            await axios.patch(`${apiConfig.api}/budget/${id}`, { amount: updateBudgetEntryAmount });
 
-        dispatch({ type: UPDATE_BUDGET, payload: { id, updateBudgetEntryAmount } });
+            dispatch({ type: UPDATE_BUDGET, payload: { id, updateBudgetEntryAmount } });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
     };
 
     const sumBudgetByCategory = (expenses, key, value) => {

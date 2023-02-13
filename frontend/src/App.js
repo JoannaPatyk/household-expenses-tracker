@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { BsMoonStars, BsSun } from 'react-icons/bs';
-import { Landing, Register, Error, SharedLayout } from './pages';
-import { Budget, Expenses, Settings, Statistics } from './pages/dashboard';
+import { Landing, Login, Error, SharedLayout, Registration } from './pages';
+import { Budget, Expenses, Settings, Statistics, ProtectedRoute } from './pages/dashboard';
 import ExpensesForm from './components/ExpensesForm';
-import EditExpense from './components/EditExpense';
 import EditCategory from './components/EditCategory';
+import EditExpense from './components/EditExpense';
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -34,21 +34,28 @@ function App() {
                     </div>
                 </label>
             </div>
-
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<SharedLayout />}>
-                        <Route index element={<ExpensesForm />} />
+                    <Route
+                        path="/"
+                        element={
+                            <ProtectedRoute>
+                                <SharedLayout />
+                            </ProtectedRoute>
+                        }
+                    >
+                        <Route index path="add" element={<ExpensesForm />} />
                         <Route path="expenses" element={<Expenses />} />
                         <Route path="budget" element={<Budget />} />
                         <Route path="statistics" element={<Statistics />} />
                         <Route path="settings" element={<Settings />} />
                     </Route>
                     <Route path="landing" element={<Landing />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="edit-category" element={<EditCategory />} />
-                    <Route path="expenses/edit-expense" element={<EditExpense />} />
-                    <Route path="*" element={<Error />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="registration" element={<Registration />} />
+                    <Route path="edit_category" element={<EditCategory />} />
+                    <Route path="edit_expense" element={<EditExpense />} />
+                    <Route path="*" element={<Error />}></Route>
                 </Routes>
             </BrowserRouter>
         </>

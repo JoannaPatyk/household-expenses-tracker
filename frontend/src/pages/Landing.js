@@ -1,10 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { GiStairsGoal, GiChart, GiCalculator } from 'react-icons/gi';
 import Wrapper from '../assets/wrappers/Landing';
 import Logo from '../components/Logo';
+import { useUserContext } from '../context/UserContext';
 
 function Landing() {
+    const navigate = useNavigate();
+    const { isLogged } = useUserContext();
+
+    useEffect(() => {
+        if (isLogged) {
+            navigate('/add');
+        }
+    }, [isLogged, navigate]);
+
     return (
         <Wrapper>
             <main>
@@ -32,10 +42,10 @@ function Landing() {
                         </div>
                     </div>
 
-                    <Link to="/register" className="btn btn-hero">
+                    <Link to="/login" className="btn btn-hero">
                         zaloguj się
                     </Link>
-                    <Link to="/register" className="btn btn-hipster">
+                    <Link to="/registration" className="btn btn-hipster">
                         rejestracja
                     </Link>
                     <p>
