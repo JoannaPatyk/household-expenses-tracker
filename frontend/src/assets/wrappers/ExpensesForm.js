@@ -6,8 +6,7 @@ const Wrapper = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 70vh;
-        margin: 5rem;
+        height: 100vh;
     }
 
     .categories-container {
@@ -25,11 +24,6 @@ const Wrapper = styled.div`
 
     h2 {
         font-size: 1rem;
-    }
-
-    label {
-        font-size: 1.2rem;
-        font-weight: 600;
     }
 
     input,

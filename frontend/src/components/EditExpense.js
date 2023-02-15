@@ -57,7 +57,7 @@ function EditExpense() {
 
     return (
         <Wrapper>
-            <Link to="/expenses" className="back-btn">
+            <Link to="/expenses" className="btn-back">
                 <TfiBackLeft />
             </Link>
             <div className="container">

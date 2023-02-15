@@ -3,13 +3,18 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
+    min-height: 100vh;
 
     table {
         width: 90vw;
+        padding-top: 4rem;
     }
 
-    .title {
+    td:nth-child(2) {
+        text-transform: uppercase;
+    }
+
+    .expenses-title {
         display: grid;
         grid-template-columns: 0.25fr 0.8fr 0.8fr 1fr 0.25fr;
         place-items: center;

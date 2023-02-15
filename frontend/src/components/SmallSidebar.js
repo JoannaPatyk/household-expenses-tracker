@@ -11,13 +11,11 @@ function SmallSidebar() {
     return (
         <Wrapper>
             <div className={`${isSidebarOpen ? 'sidebar-container show-sidebar' : 'sidebar-container'}`}>
-                <div className="content">
-                    <button className="close-btn" onClick={toggleSidebar}>
+                <div className="small-sidebar-content">
+                    <button className="btn-back" onClick={toggleSidebar}>
                         <TfiBackLeft />
                     </button>
-                    <header>
-                        <Logo />
-                    </header>
+                    <Logo />
                     <NavLinks />
                 </div>
             </div>

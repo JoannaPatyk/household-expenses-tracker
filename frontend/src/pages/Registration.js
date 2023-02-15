@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import logo from '../assets/images/logo.png';
+import background from '../assets/images/background.png';
 import Button from '../components/Button';
 import FormRowInput from '../components/FormRowInput';
 import { useUserContext } from '../context/UserContext';
@@ -50,8 +51,8 @@ function Registration() {
 
     return (
         <Wrapper>
-            <form className="registration-form" onSubmit={handleSubmit}>
-                <Link to="/landing" className="back-btn">
+            <form className="form-container" onSubmit={handleSubmit}>
+                <Link to="/landing" className="btn-back">
                     <TfiBackLeft />
                 </Link>
                 <img src={logo} className="logo" alt="logo" />
@@ -75,12 +76,11 @@ function Registration() {
                     placeholder="powtórz hasło"
                     onChange={(event) => handleChangeVerificationPassword(event)}
                 />
-                <div className="btn-container">
-                    <Button type="submit" version="hero">
-                        zarejestruj
-                    </Button>
-                </div>
+                <Button type="submit" version="hero">
+                    zarejestruj
+                </Button>
             </form>
+            <img src={background} alt="background" className="bg" />
         </Wrapper>
     );
 }

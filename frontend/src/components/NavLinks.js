@@ -17,7 +17,7 @@ function NavLinks() {
                         end
                     >
                         <span className="icon">{icon}</span>
-                        {text}
+                        <p>{text}</p>
                     </NavLink>
                 );
             })}

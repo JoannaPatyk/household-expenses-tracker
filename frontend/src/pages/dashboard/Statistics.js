@@ -15,7 +15,7 @@ import {
 import Wrapper from '../../assets/wrappers/Statistic';
 import { useBudgetContext } from '../../context/BudgetContext';
 
-const colors = ['#cfc281', '#ffa1db', '#f54e86', '#f5ad12', '#873a8a', '#2583ff'];
+const colors = ['#ffe0a3', '#f5ad12', '#d385b5', '#af4569', '#98aa32', '#b093d1'];
 
 function Statistics() {
     const { summedByCategory } = useBudgetContext();
@@ -43,12 +43,12 @@ function Statistics() {
                                 nameKey="category"
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={150}
+                                outerRadius={130}
                                 label
                                 labelLine={false}
                             >
                                 {summedByCategory.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={colors[index]} />
+                                    <Cell key={`cell-${index} zł`} fill={colors[index]} />
                                 ))}
                             </Pie>
                             <Tooltip animationEasing="ease-in-out" />
@@ -56,25 +56,12 @@ function Statistics() {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-
-                <div className="chart-container">
-                    <h3>aktualny stan wydatków z podziałem na kategorie</h3>
-                    <ResponsiveContainer width={'100%'} height={300}>
-                        <BarChart data={summedByCategory}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="category" />
-                            <YAxis />
-                            <Tooltip cursor={false} />
-                            <Bar name="kwota" unit=" zł" dataKey="amount" fill="#873a8a" />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-
                 <div className="chart-container">
                     <h3>aktualny stan poniesionych wydatków vs planowane</h3>
                     <ResponsiveContainer width={'100%'} height={300}>
                         <BarChart
                             data={data}
+                            barCategoryGap="15%"
                             margin={{
                                 top: 5,
                                 right: 5,
@@ -85,9 +72,9 @@ function Statistics() {
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="category" />
                             <YAxis />
-                            <Tooltip cursor={false} />
-                            <Bar name="planowane wydatki" unit=" zł" dataKey="plannedAmount" fill="#f54e86" />
-                            <Bar name="aktualne wydatki" unit=" zł" dataKey="actualSummedExpense" fill="#f5ad12" />
+                            <Tooltip cursor={false} itemStyle={{ color: '#322C3B' }} />
+                            <Bar name="planowane wydatki" unit=" zł" dataKey="plannedAmount" fill="#b093d1" />
+                            <Bar name="aktualne wydatki" unit=" zł" dataKey="actualSummedExpense" fill="#af4569" />
                             <Legend iconType="circle" />
                         </BarChart>
                     </ResponsiveContainer>

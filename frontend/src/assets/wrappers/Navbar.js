@@ -21,7 +21,7 @@ const Wrapper = styled.nav`
         justify-content: center;
     }
 
-    .toggle-btn {
+    .btn-toggle {
         position: absolute;
         top: 10%;
         left: -15%;

@@ -63,15 +63,18 @@ function EditCategory() {
 
     return (
         <Wrapper>
-            <Link to="/add" className="back-btn">
+            <Link to="/add" className="btn-back">
                 <TfiBackLeft />
             </Link>
+
             <div className="edit-container">
                 <h2>Dodaj lub edytuj kategorie</h2>
+
                 <form onSubmit={handleSubmit}>
                     <FormRowInput
                         value={categoryName}
                         type="text"
+                        id="form-input"
                         className="form-input"
                         placeholder="Dodaj nową lub edytuj istniejącą kategorie..."
                         onChange={handleNameChange}
@@ -80,20 +83,21 @@ function EditCategory() {
                         zapisz
                     </Button>
                 </form>
-                <div className="categories">
-                    {categories.map((category) => {
-                        return (
-                            <div className="category" key={category.id}>
-                                {category.name}
-                                <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
-                                <IoIosCloseCircleOutline
-                                    className="edit-btn delete"
-                                    onClick={() => deleteCategory(category.id)}
-                                />
-                            </div>
-                        );
-                    })}
-                </div>
+            </div>
+
+            <div className="categories">
+                {categories.map((category) => {
+                    return (
+                        <div className="category" key={category.id}>
+                            <p>{category.name}</p>
+                            <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
+                            <IoIosCloseCircleOutline
+                                className="edit-btn delete"
+                                onClick={() => deleteCategory(category.id)}
+                            />
+                        </div>
+                    );
+                })}
             </div>
         </Wrapper>
     );
