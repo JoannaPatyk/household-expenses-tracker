@@ -3,10 +3,11 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
+    min-height: 100vh;
 
     table {
         width: 90vw;
+        padding-top: 4rem;
     }
 
     .title {
@@ -30,16 +31,16 @@ const Wrapper = styled.div`
     }
 
     #input {
-        width: 5rem;
-        height: 25px;
+        width: 2rem;
         text-align: center;
-        font-family: inherit;
         font-size: inherit;
         color: inherit;
+        border-bottom: 2px solid #ffcc6660;
     }
 
     #input:focus {
-        width: 8rem;
+        width: 6rem;
+        border-bottom-color: #ffcc66ae;
     }
 
     @media (min-width: 540px) {

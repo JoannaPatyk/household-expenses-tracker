@@ -8,7 +8,7 @@ function Navbar({ toggle }) {
     return (
         <Wrapper>
             <div className="nav-center">
-                <button className="toggle-btn" onClick={toggle}>
+                <button className="btn-toggle" onClick={toggle}>
                     <FaAlignLeft />
                 </button>
                 <Logo />

@@ -11,6 +11,11 @@ export const UserProvider = ({ children }) => {
     const [userVerificationPassword, setUserVerificationPassword] = useState('');
     const [isLogged, setIsLogged] = useState(false);
 
+    const removeSessionData = () => {
+        localStorage.removeItem('expirationTime');
+        localStorage.removeItem('token');
+    };
+
     useEffect(() => {
         const hours = 1;
         const now = new Date().getTime();
@@ -25,8 +30,7 @@ export const UserProvider = ({ children }) => {
                 setIsLogged(true);
             }
         } else {
-            localStorage.removeItem('expirationTime');
-            localStorage.removeItem('token');
+            removeSessionData();
             setIsLogged(false);
         }
     }, []);
@@ -87,6 +91,11 @@ export const UserProvider = ({ children }) => {
         }
     };
 
+    const logout = () => {
+        removeSessionData();
+        setIsLogged(false);
+    };
+
     return (
         <UserContext.Provider
             value={{
@@ -98,7 +107,8 @@ export const UserProvider = ({ children }) => {
                 setUserPassword,
                 setUserVerificationPassword,
                 login,
-                register
+                register,
+                logout
             }}
         >
             {children}

@@ -14,9 +14,9 @@ const Wrapper = styled.section`
         margin: 0 auto;
     }
 
-    .toggle-btn {
+    .btn-toggle {
         position: absolute;
-        margin-top: 1%;
+        top: 20px;
         margin-left: 1%;
         background: transparent;
         border-color: transparent;
@@ -26,21 +26,20 @@ const Wrapper = styled.section`
         cursor: pointer;
     }
 
-    .toggle-btn:hover {
+    .btn-toggle:hover {
         transform: rotate(0.2turn);
         color: var(--primary-300);
     }
 
     .bg {
         position: absolute;
-        right: -20%;
-        bottom: -70%;
-        background-image: url('../src/assets/images/background.png');
-        background-size: cover;
-        height: 130%;
-        background-position: center;
-        opacity: 0.3;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         z-index: -100;
+        height: 130%;
+        opacity: 0.2;
+        background-image: url('../src/assets/images/background.png');
     }
 
     @media (min-width: 992px) {

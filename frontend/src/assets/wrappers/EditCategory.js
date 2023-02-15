@@ -5,8 +5,8 @@ const Wrapper = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        text-align: center;
-        margin-top: 6rem;
+        align-items: center;
+        margin: 6rem 6rem 0 6rem;
     }
 
     h2 {
@@ -14,47 +14,54 @@ const Wrapper = styled.div`
         margin: 0;
     }
 
-    .form-input {
-        width: 80vw;
+    form {
+        text-align: center;
     }
 
-    .form-input::placeholder {
+    #form-input {
+        width: 50vw;
+    }
+
+    #form-input::placeholder {
         font-size: 0.8rem;
     }
 
-    .form-input:focus {
-        width: 60vw;
+    #form-input:focus {
+        width: 40vw;
     }
 
     .categories {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 2rem;
+        margin: 2rem 6rem 0 6rem;
     }
 
     .category {
+        display: flex;
+        align-items: center;
         position: relative;
+        width: 80%;
+        min-height: 50px;
+        padding-left: 0.5rem;
+        margin: 0.5rem;
+        color: var(--secondary-900);
         font-size: 0.95rem;
         border-radius: var(--borderRadius);
-        color: var(--secondary-900);
-        background-color: var(--secondary-400);
-        width: 80%;
-        height: 50px;
-        line-height: 50px;
-        margin: 0.5rem;
+        background-color: var(--primary-300);
     }
 
-    .btn {
-        width: 80%;
-        font-size: 1rem;
+    .category p {
+        max-width: 85%;
+        padding: 0.5rem;
+        letter-spacing: var(--letterSpacing);
     }
 
     .edit-btn {
         position: absolute;
         top: 30%;
         font-size: 1.4rem;
-        color: var(--secondary-800);
+        color: var(--secondary-900);
         transition: var(--transition);
         cursor: pointer;
     }
@@ -76,11 +83,14 @@ const Wrapper = styled.div`
             font-size: 1.8rem;
         }
 
-        .form-input {
-            width: 40rem;
+        #form-input {
+            width: 60vw;
         }
 
-        .form-input::placeholder {
+        #form-input:focus {
+            width: 50vw;
+        }
+        #form-input::placeholder {
             font-size: 1rem;
         }
 
@@ -101,6 +111,7 @@ const Wrapper = styled.div`
             font-size: 1.2rem;
         }
     }
+
     @media (min-width: 1420px) {
         .categories {
             grid-template-columns: 1fr 1fr 1fr;

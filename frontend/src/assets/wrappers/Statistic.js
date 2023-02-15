@@ -5,7 +5,6 @@ const Wrapper = styled.div`
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-top: 3rem;
     }
 
     .chart-container {
@@ -14,11 +13,14 @@ const Wrapper = styled.div`
         justify-content: center;
         flex-direction: column;
         width: 80%;
+        padding-top: 3.2rem;
+        color: var(--secondary-500);
     }
 
     .chart-container h3 {
+        font-size: 1.3rem;
         text-transform: uppercase;
-        margin: 2.5rem;
+        letter-spacing: var(--letterSpacing);
     }
 `;
 
