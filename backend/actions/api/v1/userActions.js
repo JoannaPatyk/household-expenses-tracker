@@ -6,6 +6,7 @@ const User = require('../../../database/models/userModel');
 
 class UserActions {
     async signUp(req, res) {
+        const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
 
@@ -22,6 +23,7 @@ class UserActions {
                 } else {
                     try {
                         const user = new User({
+                            name: name,
                             email: email,
                             password: hash
                         });
