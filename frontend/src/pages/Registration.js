@@ -12,10 +12,12 @@ function Registration() {
     const navigate = useNavigate();
     const {
         register,
+        userName,
         userEmail,
         userPassword,
         userVerificationPassword,
         setUserVerificationPassword,
+        setUserName,
         setUserEmail,
         setUserPassword
     } = useUserContext();
@@ -24,11 +26,17 @@ function Registration() {
         event.preventDefault();
 
         if (userPassword === userVerificationPassword) {
-            register(userEmail, userPassword);
+            register(userName, userEmail, userPassword);
             navigate('/landing');
         } else {
             alert('Podane hasło nie jest poprawne. Spróbuj ponownie.');
         }
+    };
+
+    const handleChangeName = (event) => {
+        event.preventDefault();
+        const value = event.target.value;
+        setUserName(value);
     };
 
     const handleChangeEmail = (event) => {
@@ -57,6 +65,12 @@ function Registration() {
                 </Link>
                 <img src={logo} className="logo" alt="logo" />
                 <h2>Podaj dane do rejestracji</h2>
+                <FormRowInput
+                    type="login"
+                    value={userName}
+                    placeholder="login"
+                    onChange={(event) => handleChangeName(event)}
+                />
                 <FormRowInput
                     type="email"
                     value={userEmail}
