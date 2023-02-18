@@ -22,6 +22,8 @@ const ExpenseReducer = (state, action) => {
                 expenses: action.payload.map((item) => {
                     return {
                         id: item._id,
+                        name: item.name,
+                        date: item.date,
                         category: item.category,
                         amount: item.amount,
                         comment: item.comment

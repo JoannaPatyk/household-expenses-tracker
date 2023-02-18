@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
     .expenses-title {
         display: grid;
-        grid-template-columns: 0.25fr 0.8fr 0.8fr 1fr 0.25fr;
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 2fr 2fr 1fr;
         place-items: center;
         box-shadow: var(--shadow-4);
         letter-spacing: var(--letterSpacing);
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
     .expense-container {
         display: grid;
-        grid-template-columns: 0.25fr 0.8fr 0.8fr 1fr 0.25fr;
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 2fr 2fr 1fr;
         place-items: center;
         box-shadow: var(--shadow-4);
     }

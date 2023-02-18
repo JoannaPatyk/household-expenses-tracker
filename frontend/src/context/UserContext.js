@@ -6,6 +6,7 @@ import apiConfig from '../apiConfig';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+    const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [userVerificationPassword, setUserVerificationPassword] = useState('');
@@ -35,7 +36,7 @@ export const UserProvider = ({ children }) => {
         }
     }, []);
 
-    const register = async (email, password) => {
+    const register = async (name, email, password) => {
         try {
             await axios(`${apiConfig.api}/user/sign_up`, {
                 method: 'POST',
@@ -43,15 +44,18 @@ export const UserProvider = ({ children }) => {
                     'Content-Type': 'application/json'
                 },
                 data: {
+                    name: name,
                     email: email,
                     password: password
                 }
             });
 
+            setUserName('');
             setUserEmail('');
             setUserPassword('');
             setUserVerificationPassword('');
         } catch (error) {
+            setUserName('');
             setUserEmail('');
             setUserPassword('');
             setUserVerificationPassword('');
@@ -99,10 +103,12 @@ export const UserProvider = ({ children }) => {
     return (
         <UserContext.Provider
             value={{
+                userName,
                 userEmail,
                 userPassword,
                 userVerificationPassword,
                 isLogged,
+                setUserName,
                 setUserEmail,
                 setUserPassword,
                 setUserVerificationPassword,
