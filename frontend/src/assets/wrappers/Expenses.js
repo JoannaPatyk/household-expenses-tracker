@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 
     table {
         width: 90vw;
-        padding-top: 4rem;
+        padding-top: 5rem;
     }
 
     td:nth-child(2) {
@@ -58,20 +58,38 @@ const Wrapper = styled.div`
         color: var(--primary-800);
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         table {
-            width: 90vw;
+            width: 100vw;
         }
         th {
             font-size: 0.6rem;
-            margin: 0.6rem 0rem;
+            margin: 0.8rem 0rem;
             text-align: center;
         }
 
         td {
-            font-size: 0.7rem;
-            margin: 0.1rem 0;
+            font-size: 0.8rem;
+            margin: 0.3rem;
             text-align: center;
+        }
+
+        th:nth-child(6),
+        td:nth-child(6) {
+            display: none;
+        }
+
+        td:nth-child(3) {
+            font-size: 0.5rem;
+        }
+
+        .expenses-title {
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+        }
+
+        .expense-container {
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
         }
 
         #btn {

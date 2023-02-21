@@ -1,6 +1,6 @@
 import React from 'react';
 import { GiReceiveMoney } from 'react-icons/gi';
-import Wrapper from '../assets/wrappers/Logo';
+import Wrapper from '../assets/wrappers/LogoForSidebar';
 
 function Logo() {
     return (
@@ -10,7 +10,7 @@ function Logo() {
                     <GiReceiveMoney className="logo-icon" />
                 </div>
                 <h4 className="logo-title">
-                    <span>h</span>ousehold <span>e</span>xpenses <span>t</span>racker
+                    <span>h</span>ousehold <span>e</span>xpenses <br /> <span>t</span>racker
                 </h4>
             </div>
         </Wrapper>

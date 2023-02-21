@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { IoIosCloseCircleOutline } from 'react-icons/io';
-import { CiEdit } from 'react-icons/ci';
+import { CiCircleRemove, CiEdit } from 'react-icons/ci';
 import { TfiBackLeft } from 'react-icons/tfi';
+import background from '../assets/images/background.png';
 import Button from './Button';
+import Logo from './Logo';
 import Wrapper from '../assets/wrappers/EditCategory';
 import FormRowInput from '../components/FormRowInput';
 import { useCategoriesContext } from '../context/CategoriesContext';
@@ -66,10 +67,9 @@ function EditCategory() {
             <Link to="/add" className="btn-back">
                 <TfiBackLeft />
             </Link>
-
+            <Logo />
             <div className="edit-container">
                 <h2>Dodaj lub edytuj kategorie</h2>
-
                 <form onSubmit={handleSubmit}>
                     <FormRowInput
                         value={categoryName}
@@ -83,18 +83,15 @@ function EditCategory() {
                         zapisz
                     </Button>
                 </form>
+                <img src={background} alt="background" className="bg" />
             </div>
-
             <div className="categories">
                 {categories.map((category) => {
                     return (
                         <div className="category" key={category.id}>
                             <p>{category.name}</p>
                             <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
-                            <IoIosCloseCircleOutline
-                                className="edit-btn delete"
-                                onClick={() => deleteCategory(category.id)}
-                            />
+                            <CiCircleRemove className="edit-btn delete" onClick={() => deleteCategory(category.id)} />
                         </div>
                     );
                 })}

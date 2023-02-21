@@ -6,7 +6,11 @@ const Wrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 6rem 6rem 0 6rem;
+        margin: 1rem;
+    }
+
+    .logo-container {
+        margin-top: 7rem;
     }
 
     h2 {
@@ -34,7 +38,7 @@ const Wrapper = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 2rem 6rem 0 6rem;
+        justify-content: center;
     }
 
     .category {
@@ -47,7 +51,7 @@ const Wrapper = styled.div`
         margin: 0.5rem;
         color: var(--secondary-900);
         font-size: 0.95rem;
-        border-radius: var(--borderRadius);
+        border-radius: 20px;
         background-color: var(--primary-300);
     }
 
@@ -78,18 +82,19 @@ const Wrapper = styled.div`
         right: 2%;
     }
 
+    .bg {
+        display: none;
+    }
+
     @media (min-width: 820px) {
         h2 {
             font-size: 1.8rem;
         }
 
-        #form-input {
-            width: 60vw;
-        }
-
         #form-input:focus {
             width: 50vw;
         }
+
         #form-input::placeholder {
             font-size: 1rem;
         }
@@ -109,6 +114,18 @@ const Wrapper = styled.div`
         .btn {
             width: 35%;
             font-size: 1.2rem;
+        }
+
+        .bg {
+            display: block;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            z-index: -100;
+            height: 90%;
+            opacity: 0.3;
+            transform: translate(-52%, -50%);
+            background-image: url('../src/assets/images/background.png') center;
         }
     }
 

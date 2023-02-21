@@ -16,7 +16,7 @@ const Wrapper = styled.nav`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border: 2px solid var(--primary-600);
+        border: 2px solid var(--primary-900);
         box-shadow: var(--shadow-4);
         border-radius: 50%;
         background-color: transparent;
@@ -24,6 +24,7 @@ const Wrapper = styled.nav`
 
     .logo-icon {
         font-size: 4rem;
+        color: var(--primary-500);
     }
 
     h1 {
@@ -32,6 +33,7 @@ const Wrapper = styled.nav`
 
     .logo-title {
         letter-spacing: var(--letterSpacing);
+        color: var(--primary-500);
         text-align: center;
     }
 
@@ -44,6 +46,7 @@ const Wrapper = styled.nav`
 
     span {
         font-weight: 900;
+        color: var(--primary-900);
     }
 `;
 

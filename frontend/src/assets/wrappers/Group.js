@@ -6,12 +6,8 @@ const Wrapper = styled.main`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         text-align: center;
-    }
-
-    .group-info-container {
-        margin-top: 4rem;
     }
 
     h3 {
@@ -31,7 +27,7 @@ const Wrapper = styled.main`
         display: flex;
         align-items: center;
         position: relative;
-        width: 70%;
+        width: 24vw;
         min-height: 40px;
         padding-left: 1rem;
         margin: 0.5rem;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
-import logo from '../assets/images/logo.png';
+import Logo from '../components/Logo';
 import background from '../assets/images/background.png';
 import Button from '../components/Button';
 import FormRowInput from '../components/FormRowInput';
@@ -42,7 +42,7 @@ function Login() {
                 <Link to="/landing" className="btn-back">
                     <TfiBackLeft />
                 </Link>
-                <img src={logo} className="logo" alt="logo" />
+                <Logo />
                 <h2>Podaj dane do logowania</h2>
                 <FormRowInput
                     type="email"

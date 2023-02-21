@@ -15,7 +15,7 @@ import {
 import Wrapper from '../../assets/wrappers/Statistic';
 import { useBudgetContext } from '../../context/BudgetContext';
 
-const colors = ['#ffe0a3', '#f5ad12', '#d385b5', '#af4569', '#98aa32', '#b093d1'];
+const colors = ['#dbba79', '#f5ad12', '#d385b5', '#af4569', '#98aa32', '#37750d'];
 
 function Statistics() {
     const { summedByCategory } = useBudgetContext();

@@ -26,8 +26,8 @@ const Wrapper = styled.aside`
         justify-content: center;
         height: 80vh;
         border-radius: 0.5rem;
-        border-top: 10px solid var(--primary-900);
-        border-bottom: 10px solid var(--primary-900);
+        border-top: 10px solid var(--secondary-700);
+        border-bottom: 10px solid var(--secondary-700);
         padding: 4rem 2rem;
         overflow: hidden;
     }
