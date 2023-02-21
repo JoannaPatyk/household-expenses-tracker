@@ -6,18 +6,21 @@ import { CategoriesProvider } from './context/CategoriesContext';
 import { ExpensesProvider } from './context/ExpensesContext';
 import { BudgetProvider } from './context/BudgetContext';
 import { UserProvider } from './context/UserContext';
+import { GroupProvider } from './context/GroupContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
     <UserProvider>
-        <CategoriesProvider>
-            <ExpensesProvider>
-                <BudgetProvider>
-                    <App />
-                </BudgetProvider>
-            </ExpensesProvider>
-        </CategoriesProvider>
+        <GroupProvider>
+            <CategoriesProvider>
+                <ExpensesProvider>
+                    <BudgetProvider>
+                        <App />
+                    </BudgetProvider>
+                </ExpensesProvider>
+            </CategoriesProvider>
+        </GroupProvider>
     </UserProvider>
 );
