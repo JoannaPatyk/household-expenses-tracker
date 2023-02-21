@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { BsMoonStars, BsSun } from 'react-icons/bs';
 import { Landing, Login, Error, SharedLayout, Registration } from './pages';
-import { Budget, Expenses, Statistics, ProtectedRoute } from './pages/dashboard';
+import { Budget, Expenses, Statistics, Group, ProtectedRoute } from './pages/dashboard';
 import ExpensesForm from './components/ExpensesForm';
 import EditCategory from './components/EditCategory';
 import EditExpense from './components/EditExpense';
@@ -48,6 +48,7 @@ function App() {
                         <Route path="expenses" element={<Expenses />} />
                         <Route path="budget" element={<Budget />} />
                         <Route path="statistics" element={<Statistics />} />
+                        <Route path="group" element={<Group />} />
                     </Route>
                     <Route path="landing" element={<Landing />} />
                     <Route path="login" element={<Login />} />

@@ -10,3 +10,7 @@ export const ADD_CATEGORIES = 'ADD_CATEGORIES';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
 export const ADD_BUDGET = 'ADD_BUDGET';
 export const UPDATE_BUDGET = 'UPDATE_BUDGET';
+export const ADD_MEMBER = 'ADD_MEMBER';
+export const UPDATE_GROUP_NAME = 'UPDATE_GROUP_NAME';
+export const DELETE_MEMBER = 'DELETE_MEMBER';
+export const ADD_GROUP = ' ADD_GROUP';
