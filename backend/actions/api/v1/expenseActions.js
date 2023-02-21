@@ -13,10 +13,11 @@ class ExpenseActions {
         const category = req.body.category;
         const amount = req.body.amount;
         const comment = req.body.comment;
+        const groupId = req.userData.groupId;
         let expense;
 
         try {
-            expense = new Expense({ name, date, category, amount, comment });
+            expense = new Expense({ name, date, category, amount, comment, groupId });
             await expense.save();
         } catch (error) {
             return res.status(422).json({ message: error.message });
@@ -26,7 +27,8 @@ class ExpenseActions {
     }
 
     async get(req, res) {
-        const expenses = await Expense.find({});
+        const groupId = req.userData.groupId;
+        const expenses = await Expense.find({ groupId: groupId });
 
         res.status(200).json(expenses);
     }
@@ -53,8 +55,8 @@ class ExpenseActions {
         res.sendStatus(204);
     }
 
-    updateExpenseOnCategoryUpdate = async (oldCategoryName, newCategoryName) => {
-        await Expense.updateMany({ category: oldCategoryName }, { category: newCategoryName });
+    updateExpenseOnCategoryUpdate = async (oldCategoryName, newCategoryName, groupId) => {
+        await Expense.updateMany({ category: oldCategoryName, groupId: groupId }, { category: newCategoryName });
     };
 }
 

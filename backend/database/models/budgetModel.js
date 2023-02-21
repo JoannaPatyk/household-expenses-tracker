@@ -7,6 +7,10 @@ const BudgetSchema = new mongoose.Schema({
     },
     amount: {
         type: Number
+    },
+    groupId: {
+        type: mongoose.Types.ObjectId,
+        required: true
     }
 });
 

@@ -19,6 +19,10 @@ const ExpenseSchema = new mongoose.Schema({
     },
     comment: {
         type: String
+    },
+    groupId: {
+        type: mongoose.Types.ObjectId,
+        required: true
     }
 });
 
