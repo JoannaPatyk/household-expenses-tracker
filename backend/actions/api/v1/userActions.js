@@ -1,9 +1,10 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const groupActions = require('./groupActions');
 
 const User = require('../../../database/models/userModel');
-
+const Group = require('../../../database/models/groupModel');
 class UserActions {
     async signUp(req, res) {
         const name = req.body.name;
@@ -29,6 +30,9 @@ class UserActions {
                         });
 
                         await user.save();
+
+                        groupActions.createNewGroup(email);
+
                         res.status(201).json();
                     } catch (err) {
                         return res.status(422).json({ message: err.message });
@@ -49,16 +53,19 @@ class UserActions {
                 return res.status(401).json();
             }
 
-            bcrypt.compare(password, user.password, (err, result) => {
+            bcrypt.compare(password, user.password, async (err, result) => {
                 if (err || !result) {
                     return res.status(401).json();
                 }
 
                 if (result) {
+                    const group = await Group.findOne({ members: user._id });
+
                     const token = jwt.sign(
                         {
                             email: user.email,
-                            id: user._id
+                            id: user._id,
+                            groupId: group._id
                         },
                         process.env.JWT_SECRET,
                         {

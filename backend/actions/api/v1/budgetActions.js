@@ -2,7 +2,9 @@ const Budget = require('../../../database/models/budgetModel');
 
 class BudgetActions {
     async get(req, res) {
-        const budget = await Budget.find({});
+        // TODO: Zrobić konsekwentnie groupId: groupId
+        const groupId = req.userData.groupId;
+        const budget = await Budget.find({ groupId: groupId });
 
         res.status(200).json(budget);
     }
@@ -18,17 +20,17 @@ class BudgetActions {
         res.status(201).json(budgetEntry);
     }
 
-    updateBudgetOnCategoryAddition = async (categoryName) => {
-        const budgetEntry = new Budget({ categoryName: categoryName, amount: 0 });
+    updateBudgetOnCategoryAddition = async (categoryName, groupId) => {
+        const budgetEntry = new Budget({ categoryName: categoryName, amount: 0, groupId: groupId });
         await budgetEntry.save();
     };
 
-    updateBudgetOnCategoryDelete = async (categoryName) => {
-        await Budget.deleteOne({ categoryName: categoryName });
+    updateBudgetOnCategoryDelete = async (categoryName, groupId) => {
+        await Budget.deleteOne({ categoryName: categoryName, groupId: groupId });
     };
 
-    updateBudgetOnCategoryUpdate = async (oldCategoryName, newCategoryName) => {
-        await Budget.updateOne({ categoryName: oldCategoryName }, { categoryName: newCategoryName });
+    updateBudgetOnCategoryUpdate = async (oldCategoryName, newCategoryName, groupId) => {
+        await Budget.updateOne({ categoryName: oldCategoryName, groupId: groupId }, { categoryName: newCategoryName });
     };
 }
 
