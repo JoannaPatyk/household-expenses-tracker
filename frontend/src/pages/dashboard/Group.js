@@ -37,32 +37,10 @@ function Group() {
     return (
         <Wrapper>
             <div className="group-container">
-                <div className="group-info-container">
-                    <h1>
-                        Aktualna nazwa grupy: <span>{group.groupName}</span>
-                    </h1>
-                    <h3>Członkowie grupy:</h3>
-                    <div className="members">
-                        {group.members.map((item, index) => {
-                            return (
-                                <div className="member" key={index}>
-                                    {index === 0 ? (
-                                        <p>{item.email}</p>
-                                    ) : (
-                                        <>
-                                            <p>{item.email}</p>
-                                            <CiCircleRemove
-                                                className="delete-btn"
-                                                onClick={() => deleteMember(item.email)}
-                                            />
-                                        </>
-                                    )}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
+                <h1>
+                    Aktualna nazwa grupy:
+                    <span>{group.groupName}</span>
+                </h1>
                 <form id="form" className="form-container" onSubmit={handleSubmit}>
                     <h1>Edytuj ustawienia grupy</h1>
                     <div className="edit-group-container">
@@ -77,7 +55,6 @@ function Group() {
                         <Button id="btn-save" type="submit" version="hero" onClick={handleSave}>
                             zapisz
                         </Button>
-
                         <h3>Dodaj nowego członka grupy:</h3>
                         <FormRowInput value={newMember} type="text" placeholder="email" onChange={handleMemberChange} />
                         <div>
@@ -87,6 +64,26 @@ function Group() {
                         </div>
                     </div>
                 </form>
+                <h3>Członkowie grupy:</h3>
+                <div className="members">
+                    {group.members.map((item, index) => {
+                        return (
+                            <div className="member" key={index}>
+                                {index === 0 ? (
+                                    <p>{item.email}</p>
+                                ) : (
+                                    <>
+                                        <p>{item.email}</p>
+                                        <CiCircleRemove
+                                            className="delete-btn"
+                                            onClick={() => deleteMember(item.email)}
+                                        />
+                                    </>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </Wrapper>
     );

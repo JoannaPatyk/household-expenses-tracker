@@ -51,31 +51,27 @@ function ExpensesForm() {
     return (
         <Wrapper>
             <form id="form" className="form-container" onSubmit={handleSubmit}>
-                <div className="categories-container">
-                    <h2>Dodaj nowy wydatek</h2>
-                    <FormRowSelect
-                        firstOption="dostępne kategorie"
-                        id="select"
-                        list={[...categories]}
-                        onChange={handleCategoryChange}
-                    />
-                </div>
-                <div className="expense-container">
-                    <FormRowInput
-                        id="amountInput"
-                        value={newAmount}
-                        type="number"
-                        placeholder="wydana kwota"
-                        onChange={handleAmountChange}
-                    />
-                    <FormRowInput
-                        id="commentInput"
-                        value={newComment}
-                        type="text"
-                        placeholder="komentarz"
-                        onChange={handleCommentChange}
-                    />
-                </div>
+                <h2>Dodaj nowy wydatek</h2>
+                <FormRowSelect
+                    firstOption="dostępne kategorie"
+                    id="categorySelect"
+                    list={[...categories]}
+                    onChange={handleCategoryChange}
+                />
+                <FormRowInput
+                    id="amountInput"
+                    value={newAmount}
+                    type="number"
+                    placeholder="wydana kwota"
+                    onChange={handleAmountChange}
+                />
+                <FormRowInput
+                    id="commentInput"
+                    value={newComment}
+                    type="text"
+                    placeholder="komentarz"
+                    onChange={handleCommentChange}
+                />
                 <Button type="submit" version="hero" isDisabled={buttonDisabled}>
                     dodaj
                 </Button>

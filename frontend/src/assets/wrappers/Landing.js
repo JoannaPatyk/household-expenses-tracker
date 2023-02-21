@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
-    .landing-container {
+    .main-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -10,12 +10,15 @@ const Wrapper = styled.main`
         overflow: hidden;
     }
 
+    .landing-container {
+        position: relative;
+    }
+
     .logo-container {
         margin-top: 3rem;
     }
 
     .landing-text {
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -56,10 +59,10 @@ const Wrapper = styled.main`
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        max-width: 1440px;
     }
 
     .goal {
-        width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -81,18 +84,38 @@ const Wrapper = styled.main`
 
     .bg {
         position: absolute;
-        top: 50%;
+        top: 90%;
         left: 50%;
         z-index: -100;
-        height: 150%;
-        opacity: 0.3;
+        height: 300%;
+        opacity: 0.2;
         transform: translate(-52%, -50%);
         background-image: url('../src/assets/images/background.png') center;
     }
 
     @media (max-width: 640px) {
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            height: 8rem;
+            width: 8rem;
+        }
+
+        .logo-title {
+            font-size: 1.1rem;
+        }
+
+        .goals-container {
+            margin-bottom: 2rem;
+        }
+
         h1 {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         h3 {
@@ -101,6 +124,11 @@ const Wrapper = styled.main`
 
         h5 {
             font-size: 0.7rem;
+        }
+
+        .bg {
+            top: 50%;
+            height: 100%;
         }
     }
 
@@ -119,10 +147,6 @@ const Wrapper = styled.main`
 
         .goal {
             width: 25%;
-        }
-
-        .bg {
-            height: 400%;
         }
     }
 `;

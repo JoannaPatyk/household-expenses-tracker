@@ -53,7 +53,7 @@ html {
     --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 body {
@@ -76,7 +76,7 @@ body.dark .small-sidebar-content {
 }
 
 body.light .bg {
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 h1,
@@ -107,15 +107,16 @@ a {
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--secondary-200);
     text-transform: uppercase;
     transition: var(--transition);
 }
 
 body.light .nav-link {
-    color: var(--secondary-600);
+    color: var(--secondary-400);
+}
+
+body.dark .nav-link {
+    color: var(--secondary-300);
 }
 
 body.light .nav-link:hover {
@@ -126,10 +127,6 @@ body.light .nav-link:hover {
 
 body.light .nav-link:hover .icon {
     color: var(--secondary-900);
-}
-
-body.dark .nav-link {
-    color: var(--secondary-300);
 }
 
 body.dark .nav-link:hover {
@@ -145,7 +142,7 @@ body.dark .nav-link:hover .icon {
 .icon {
     display: grid;
     place-items: center;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     margin-right: 1rem;
     transition: var(--transition);
 }
@@ -369,6 +366,21 @@ body.dark .btn-icone:hover {
     cursor: pointer;
     background-color: transparent;
     transition: var(--transition);
+    outline-style: none;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid var(--primary-300);
+    border-radius: 20px;
+    -webkit-text-fill-color: var(--primary-300);
+    -webkit-box-shadow: 0 0 0px 1000px var(--secondary-800) inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 body.light .form-input,

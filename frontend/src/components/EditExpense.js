@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import { TfiBackLeft } from 'react-icons/tfi';
-import Wrapper from '../assets/wrappers/ExpensesForm';
+import Wrapper from '../assets/wrappers/EditExpenses';
 import FormRowInput from './FormRowInput';
 import FormRowSelect from './FormRowSelect';
+import Logo from './Logo';
+import background from '../assets/images/background.png';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
 
@@ -60,39 +62,34 @@ function EditExpense() {
             <Link to="/expenses" className="btn-back">
                 <TfiBackLeft />
             </Link>
-            <div className="container">
-                <form id="form" className="form-container" onSubmit={handleSubmit}>
-                    <div className="categories-container">
-                        <h2>Edytuj wybrany wydatek</h2>
-                        <FormRowSelect
-                            id="select"
-                            list={[...categories]}
-                            name={expenseForEdit.expense.category}
-                            onChange={handleCategoryChange}
-                        />
-                    </div>
-
-                    <div className="expense-container">
-                        <FormRowInput
-                            id="amount"
-                            value={editAmount}
-                            type="number"
-                            placeholder="wydana kwota"
-                            onChange={handleAmountChange}
-                        />
-                        <FormRowInput
-                            id="comment"
-                            value={editComment}
-                            type="text"
-                            placeholder="komentarz"
-                            onChange={handleCommentChange}
-                        />
-                    </div>
-                    <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                        zapisz
-                    </Button>
-                </form>
-            </div>
+            <Logo />
+            <form id="form" className="form-container" onSubmit={handleSubmit}>
+                <h2>Edytuj wybrany wydatek</h2>
+                <FormRowSelect
+                    id="categorySelect"
+                    list={[...categories]}
+                    name={expenseForEdit.expense.category}
+                    onChange={handleCategoryChange}
+                />
+                <FormRowInput
+                    id="amountInput"
+                    value={editAmount}
+                    type="number"
+                    placeholder="wydana kwota"
+                    onChange={handleAmountChange}
+                />
+                <FormRowInput
+                    id="commentInput"
+                    value={editComment}
+                    type="text"
+                    placeholder="komentarz"
+                    onChange={handleCommentChange}
+                />
+                <Button type="submit" version="hero" isDisabled={buttonDisabled}>
+                    zapisz
+                </Button>
+                <img src={background} alt="background" className="bg" />
+            </form>
         </Wrapper>
     );
 }

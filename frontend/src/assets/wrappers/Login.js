@@ -4,7 +4,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
 
     .form-container {
         display: flex;
@@ -12,28 +12,25 @@ const Wrapper = styled.div`
         align-items: center;
         justify-content: center;
         position: relative;
-        height: 80vh;
-        width: 75vw;
+        height: 85vh;
+        width: 60vw;
         border-radius: 0.5rem;
-        border-top: 10px solid var(--primary-900);
-        border-bottom: 10px solid var(--primary-900);
+        border-top: 10px solid var(--secondary-700);
+        border-bottom: 10px solid var(--secondary-700);
         box-shadow: var(--shadow-4);
-    }
-
-    .logo {
-        width: 8rem;
+        background-color: transparent;
     }
 
     h2 {
         font-size: 1.2rem;
         text-align: center;
         text-transform: uppercase;
-        margin-top: 2rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
     }
 
     .btn {
-        margin-top: 3rem;
+        margin-top: 1rem;
         font-size: 1.2rem;
         width: 60%;
     }
@@ -43,24 +40,48 @@ const Wrapper = styled.div`
         top: 50%;
         left: 50%;
         z-index: -100;
-        height: 150%;
+        height: 100%;
         opacity: 0.2;
         transform: translate(-52%, -50%);
         background-image: url('../src/assets/images/background.png') center;
     }
 
     @media (max-width: 622px) {
+        .form-container {
+            width: 85vw;
+            height: 80vh;
+        }
+
         h2 {
             font-size: 1rem;
             padding: 0 1rem;
         }
+
+        .logo {
+            height: 5rem;
+            width: 5rem;
+        }
+
+        .logo-title {
+            font-size: 0.8rem !important;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+        }
+
         .form-input {
             font-size: 0.8rem;
+            margin: 0.25rem;
         }
 
         .btn {
-            width: 50%;
+            width: 55%;
             font-size: 0.9rem;
+        }
+
+        .bg {
+            display: none;
         }
     }
 

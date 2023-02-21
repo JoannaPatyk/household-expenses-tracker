@@ -5,12 +5,15 @@ const Wrapper = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 100vh;
+        margin: 1rem;
+    }
+
+    .logo-container {
+        margin-top: 7rem;
     }
 
     h2 {
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
 
     #categorySelect,
@@ -42,36 +45,8 @@ const Wrapper = styled.div`
     }
 
     .btn {
-        font-size: 0.9rem;
+        font-size: 1rem;
         width: 15rem;
-    }
-
-    .edit-btn {
-        position: absolute;
-        top: 2%;
-        font-size: 1.4rem;
-        color: var(--secondary-800);
-        transition: var(--transition);
-        cursor: pointer;
-    }
-
-    .edit-btn:hover {
-        color: var(--primary-800);
-    }
-
-    .edit {
-        left: 4%;
-    }
-
-    .delete {
-        right: 2%;
-    }
-
-    .editCategoryBtn-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
     }
 
     .bg {
