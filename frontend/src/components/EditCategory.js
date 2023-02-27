@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CiCircleRemove, CiEdit } from 'react-icons/ci';
-import { TfiBackLeft } from 'react-icons/tfi';
+import { CiCircleRemove, CiEdit, CiUndo } from 'react-icons/ci';
 import background from '../assets/images/background.png';
 import Button from './Button';
 import Logo from './Logo';
@@ -65,7 +64,7 @@ function EditCategory() {
     return (
         <Wrapper>
             <Link to="/add" className="btn-back">
-                <TfiBackLeft />
+                <CiUndo />
             </Link>
             <Logo />
             <div className="edit-container">

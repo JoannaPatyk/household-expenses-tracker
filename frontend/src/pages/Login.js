@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { TfiBackLeft } from 'react-icons/tfi';
+import { CiUndo } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/Login';
 import Logo from '../components/Logo';
 import background from '../assets/images/background.png';
@@ -40,7 +40,7 @@ function Login() {
         <Wrapper>
             <form className="form-container" onSubmit={handleSubmit}>
                 <Link to="/landing" className="btn-back">
-                    <TfiBackLeft />
+                    <CiUndo />
                 </Link>
                 <Logo />
                 <h2>Podaj dane do logowania</h2>

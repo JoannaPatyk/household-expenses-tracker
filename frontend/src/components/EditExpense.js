@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
-import { TfiBackLeft } from 'react-icons/tfi';
+import { CiUndo } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/EditExpenses';
 import FormRowInput from './FormRowInput';
 import FormRowSelect from './FormRowSelect';
@@ -60,7 +60,7 @@ function EditExpense() {
     return (
         <Wrapper>
             <Link to="/expenses" className="btn-back">
-                <TfiBackLeft />
+                <CiUndo />
             </Link>
             <Logo />
             <form id="form" className="form-container" onSubmit={handleSubmit}>
