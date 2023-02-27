@@ -1,30 +1,48 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .error-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+        overflow: hidden;
+    }
 
-    img {
-        display: block;
-        width: 80vw;
-        max-width: 500px;
-        margin-bottom: 2rem;
+    .background-img {
+        position: absolute;
+        top: 45%;
+        left: 49%;
+        z-index: -100;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        opacity: 0.4;
+    }
+
+    .not-found-img {
+        font-size: 6rem;
     }
 
     h3 {
-        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        margin-top: 1rem;
     }
 
     p {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-        color: var(--secondary-500);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        text-align: center;
     }
 
-    a {
-        margin: 0.5rem;
-        text-transform: uppercase;
+    @media (max-width: 620px) {
+        h3 {
+            font-size: 1.5rem;
+        }
+        .background-img {
+            width: 180%;
+        }
     }
 `;
 

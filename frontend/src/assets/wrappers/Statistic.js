@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    .statistics-container {
+    .statistics-container,
+    .chart-container {
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding-top: 4rem;
+        padding-top: 2rem;
+    }
+
+    .statistics-container {
         min-height: 100vh;
     }
 
     .chart-container {
-        display: flex;
-        align-items: center;
         justify-content: center;
-        flex-direction: column;
         width: 90%;
-        padding-top: 3rem;
-        color: var(--secondary-500);
     }
 
     .chart-container h3 {

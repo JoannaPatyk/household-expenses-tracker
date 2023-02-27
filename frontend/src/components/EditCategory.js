@@ -82,7 +82,7 @@ function EditCategory() {
                         zapisz
                     </Button>
                 </form>
-                <img src={background} alt="background" className="bg" />
+                <img src={background} alt="background" className="background-image" />
             </div>
             <div className="categories">
                 {categories.map((category) => {

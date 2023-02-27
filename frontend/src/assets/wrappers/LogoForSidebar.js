@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.nav`
-    .logo-container {
-        width: 100%;
-        margin-top: 1rem;
+    .logo-container,
+    .logo {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
+    .logo-container {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
     .logo {
         height: 6.75rem;
         width: 6.75rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
         border: 2px solid var(--primary-900);
         box-shadow: var(--shadow-4);

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Button, FormRowInput } from '../../components';
 import Wrapper from '../../assets/wrappers/Group';
-import Button from '../../components/Button';
 import { CiCircleRemove, CiCircleCheck, CiFloppyDisk } from 'react-icons/ci';
-import FormRowInput from '../../components/FormRowInput';
 import { useGroupContext } from '../../context/GroupContext';
 
 function Group() {
@@ -66,12 +65,12 @@ function Group() {
                             placeholder="nowa nazwa"
                             onChange={handleNameChange}
                         />
-                        <CiFloppyDisk className="save-btn" onClick={handleSave} />
+                        <CiFloppyDisk className="btn-save" onClick={handleSave} />
                     </div>
                 </div>
                 <div className="status-container">
                     <div className="members">
-                        <h3>Członkowie grupy:</h3>
+                        <h3>Członkowie grupy</h3>
                         {group.members
                             ? group.members.map((item, index) => {
                                   return (
@@ -93,7 +92,7 @@ function Group() {
                             : null}
                     </div>
                     <div className="decline-invitations">
-                        <h3>Wysłane zaproszenia:</h3>
+                        <h3>Wysłane zaproszenia</h3>
                         {group.invitations
                             ? group.invitations.map((item, index) => {
                                   return (
@@ -109,7 +108,7 @@ function Group() {
                             : null}
                     </div>
                     <div className="received-invitations">
-                        <h3>Otrzymane zaproszenia:</h3>
+                        <h3>Otrzymane zaproszenia</h3>
                         {invitations
                             ? invitations.map((item, index) => {
                                   return (

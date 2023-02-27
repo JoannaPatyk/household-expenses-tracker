@@ -26,22 +26,22 @@ function Landing() {
                             Naucz się panować nad swoimi wydatkami <br />
                             oszczędzaj i wydawaj mądrze...
                         </h1>
-                        <img src={background} alt="background" className="bg" />
+                        <img src={background} alt="background" className="background-image" />
                     </div>
                 </div>
                 <div className="goals-container">
                     <div className="goal">
-                        <GiStairsGoal className="goal-icone" />
+                        <GiStairsGoal className="goal-icon" />
                         <h3>wyznacz limity</h3>
                         <h5>określ jaką kwotę chcesz przeznaczyć na poszczególne wydatków</h5>
                     </div>
                     <div className="goal">
-                        <GiCalculator className="goal-icone" />
+                        <GiCalculator className="goal-icon" />
                         <h3>spisuj wydatki</h3>
                         <h5>notuj na bieżąco swoje wydatki według wcześniej określonych kategorii</h5>
                     </div>
                     <div className="goal">
-                        <GiChart className="goal-icone" />
+                        <GiChart className="goal-icon" />
                         <h3>monitoruj sytuację</h3>
                         <h5>przyglądaj się poniesionym kosztom, weryfikuj założenia, wprowadzaj zmiany</h5>
                     </div>

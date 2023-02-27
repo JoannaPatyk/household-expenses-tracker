@@ -2,10 +2,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CiUndo } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/Login';
-import Logo from '../components/Logo';
 import background from '../assets/images/background.png';
-import Button from '../components/Button';
-import FormRowInput from '../components/FormRowInput';
+import { Logo, Button, FormRowInput } from '../components';
 import { useUserContext } from '../context/UserContext';
 
 function Registration() {
@@ -83,7 +81,6 @@ function Registration() {
                     placeholder="wpisz hasło"
                     onChange={(event) => handleChangePassword(event)}
                 />
-
                 <FormRowInput
                     type="password"
                     value={userVerificationPassword}
@@ -94,7 +91,7 @@ function Registration() {
                     zarejestruj
                 </Button>
             </form>
-            <img src={background} alt="background" className="bg" />
+            <img src={background} alt="background" className="background-image" />
         </Wrapper>
     );
 }

@@ -21,17 +21,17 @@ const Wrapper = styled.section`
         background: transparent;
         border-color: transparent;
         font-size: 2rem;
-        color: var(--primary-800);
+        color: var(--primary-300);
         transition: var(--transition);
         cursor: pointer;
     }
 
     .btn-toggle:hover {
-        transform: rotate(0.2turn);
-        color: var(--primary-300);
+        transform: scale(0.97);
+        color: var(--primary-900);
     }
 
-    .bg {
+    .background-image {
         position: absolute;
         left: 20%;
         top: 40%;

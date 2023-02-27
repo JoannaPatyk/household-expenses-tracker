@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Logo, Button, FormRowInput } from '../components';
 import { CiUndo } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/Login';
-import Logo from '../components/Logo';
 import background from '../assets/images/background.png';
-import Button from '../components/Button';
-import FormRowInput from '../components/FormRowInput';
 import { useUserContext } from '../context/UserContext';
 
 function Login() {
@@ -60,7 +58,7 @@ function Login() {
                     zaloguj się
                 </Button>
             </form>
-            <img src={background} alt="background" className="bg" />
+            <img src={background} alt="background" className="background-image" />
         </Wrapper>
     );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import LogoForSidebar from './LogoForSidebar';
-import NavLinks from './NavLinks';
+import { LogoForSidebar, NavLinks } from './';
 import Wrapper from '../assets/wrappers/BigSidebar';
 import { useCategoriesContext } from '../context/CategoriesContext';
 

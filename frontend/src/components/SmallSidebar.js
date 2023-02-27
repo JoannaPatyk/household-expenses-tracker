@@ -1,6 +1,5 @@
 import React from 'react';
-import Logo from './Logo';
-import NavLinks from './NavLinks';
+import { Logo, NavLinks } from './';
 import { CiUndo } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/SmallSidebar';
 import { useCategoriesContext } from '../context/CategoriesContext';
