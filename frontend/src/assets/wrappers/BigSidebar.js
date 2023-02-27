@@ -21,7 +21,7 @@ const Wrapper = styled.div`
             margin-left: 0;
         }
 
-        .logo-container {
+        .logo {
             margin-bottom: 2rem;
         }
     }

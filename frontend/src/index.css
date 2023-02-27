@@ -38,6 +38,8 @@ html {
 
     --black: #222;
     --white: #fff;
+    --red: #d10303;
+    --green: #2e8b57;
 
     /* FONT */
     --fontFamily: 'Quicksand', Sans-Seri;
@@ -256,6 +258,7 @@ body.dark .btn-logout {
     border-radius: 50%;
     border: none;
     padding: 0.5rem;
+    font-family: inherit;
     letter-spacing: var(--letterSpacing);
     box-shadow: var(--shadow-3);
     transition: 0.6s;
@@ -268,15 +271,6 @@ body.light .btn-logout {
     color: var(--primary-900);
 }
 
-.btn-logout p {
-    display: none;
-}
-
-.btn-logout:hover {
-    width: 180px;
-    border-radius: 20px;
-}
-
 .btn-logout span {
     position: absolute;
     top: 50%;
@@ -284,14 +278,42 @@ body.light .btn-logout {
     transform: translate(-50%, -50%);
 }
 
-.btn-logout:hover span {
+.btn-logout p {
+    position: absolute;
+    top: 50%;
+    left: -350%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.turn-off {
     display: none;
 }
 
+.btn-logout:hover {
+    width: 150px;
+    border-radius: 20px;
+}
+
+.btn-logout:hover span {
+    left: 150%;
+}
+
 .btn-logout:hover p {
-    display: block;
+    left: 58%;
     font-size: 1rem;
     text-transform: uppercase;
+}
+
+.btn-logout:hover .turn-off {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    z-index: 100;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    transition: 0.3s;
 }
 
 /* TABLE */
@@ -466,6 +488,7 @@ body.dark ::placeholder {
     top: 20px;
     right: 10px;
     background-color: transparent;
+    z-index: 100;
 }
 
 .switch-wrapper em {

@@ -35,7 +35,6 @@ const Wrapper = styled.section`
         position: absolute;
         left: 20%;
         top: 40%;
-        /* transform: translate(-50%, -50%); */
         z-index: -100;
         height: 130%;
         opacity: 0.2;
