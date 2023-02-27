@@ -14,25 +14,23 @@ const Wrapper = styled.div`
         text-transform: uppercase;
     }
 
-    .expenses-title {
-        display: grid;
-        grid-template-columns: 0.5fr 1fr 1fr 1fr 2fr 2fr 1fr;
-        place-items: center;
-        box-shadow: var(--shadow-4);
-        letter-spacing: var(--letterSpacing);
-        background-color: var(--secondary-800);
-    }
-
+    .expenses-title,
     .expense-container {
         display: grid;
-        grid-template-columns: 0.5fr 1fr 1fr 1fr 2fr 2fr 1fr;
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 2fr 2fr 0.5fr;
         place-items: center;
-        box-shadow: var(--shadow-4);
+        box-shadow: var(--shadow-3);
+    }
+
+    .expenses-title {
+        letter-spacing: var(--letterSpacing);
+        background-color: var(--secondary-800);
     }
 
     .btn-container {
         display: flex;
         flex-direction: column;
+        margin: 0;
     }
 
     #btn {
@@ -45,7 +43,7 @@ const Wrapper = styled.div`
         margin: 0.1rem;
     }
 
-    .btn-icone {
+    .btn-icon {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -54,7 +52,7 @@ const Wrapper = styled.div`
         transition: var(--transition);
     }
 
-    .btn-icone:hover {
+    .btn-icon:hover {
         color: var(--primary-800);
     }
 

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import SmallSidebar from '../components/SmallSidebar';
-import BigSidebar from '../components/BigSidebar';
+import { SmallSidebar, BigSidebar } from '../components';
 import Wrapper from '../assets/wrappers/SharedLayout';
-import { CgMenuGridO } from 'react-icons/cg';
-import { CiPower, CiUser } from 'react-icons/ci';
 import background from '../assets/images/background.png';
+import { CiPower, CiUser, CiBoxList } from 'react-icons/ci';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useUserContext } from '../context/UserContext';
 import { useGroupContext } from '../context/GroupContext';
@@ -22,11 +20,11 @@ function SharedLayout() {
                 <BigSidebar />
                 <div>
                     <button className="btn-toggle" onClick={toggleSidebar}>
-                        <CgMenuGridO />
+                        <CiBoxList />
                     </button>
                     <div className="dashboard-page">
                         <Outlet />
-                        <img src={background} alt="background" className="bg" />
+                        <img src={background} alt="background" className="background-image" />
                     </div>
                 </div>
 

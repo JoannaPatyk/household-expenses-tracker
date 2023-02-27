@@ -46,27 +46,6 @@ const Wrapper = styled.div`
         width: 15rem;
     }
 
-    .edit-btn {
-        position: absolute;
-        top: 2%;
-        font-size: 1.4rem;
-        color: var(--secondary-800);
-        transition: var(--transition);
-        cursor: pointer;
-    }
-
-    .edit-btn:hover {
-        color: var(--primary-800);
-    }
-
-    .edit {
-        left: 4%;
-    }
-
-    .delete {
-        right: 2%;
-    }
-
     .editCategoryBtn-container {
         display: flex;
         justify-content: center;
@@ -74,7 +53,7 @@ const Wrapper = styled.div`
         margin-top: 1rem;
     }
 
-    .bg {
+    .background-image {
         display: none;
     }
 
@@ -100,7 +79,7 @@ const Wrapper = styled.div`
             font-size: 1.2rem;
         }
 
-        .bg {
+        .background-image {
             display: block;
             position: absolute;
             top: 40%;

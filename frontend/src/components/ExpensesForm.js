@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
-import FormRowInput from './FormRowInput';
-import FormRowSelect from './FormRowSelect';
+import { Button, FormRowInput, FormRowSelect } from './';
 import Wrapper from '../assets/wrappers/ExpensesForm';
 import { useExpensesContext } from '../context/ExpensesContext';
 import { useCategoriesContext } from '../context/CategoriesContext';

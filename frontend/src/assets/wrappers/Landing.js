@@ -73,7 +73,7 @@ const Wrapper = styled.main`
         margin: 1rem 2rem -1rem 2rem;
     }
 
-    .goal-icone {
+    .goal-icon {
         font-size: 2.5rem;
         margin: 1rem;
     }
@@ -82,7 +82,7 @@ const Wrapper = styled.main`
         font-size: 1.2rem;
     }
 
-    .bg {
+    .background-image {
         position: absolute;
         top: 90%;
         left: 50%;
@@ -126,7 +126,7 @@ const Wrapper = styled.main`
             font-size: 0.7rem;
         }
 
-        .bg {
+        .background-image {
             top: 50%;
             height: 100%;
         }

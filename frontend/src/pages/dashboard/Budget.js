@@ -1,8 +1,7 @@
 import React from 'react';
+import { FormRowInput, LoadingIndicator } from '../../components';
 import Wrapper from '../../assets/wrappers/Budget';
-import FormRowInput from '../../components/FormRowInput';
 import { useBudgetContext } from '../../context/BudgetContext';
-import LoadingIndicator from '../../components/LoadingIndicator';
 
 function Budget() {
     const { budget, updateBudget, summedByCategory } = useBudgetContext();

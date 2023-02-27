@@ -13,7 +13,7 @@ const Wrapper = styled.div`
             height: 100%;
             width: 350px;
             margin-left: -350px;
-            padding-top: 6rem;
+            padding-top: 5rem;
             transition: var(--transition);
         }
 
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
         }
 
         .logo {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
     }
 `;

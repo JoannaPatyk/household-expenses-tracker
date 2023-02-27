@@ -1,7 +1,6 @@
 import React from 'react';
-import Logo from './Logo';
-import NavLinks from './NavLinks';
-import { TfiBackLeft } from 'react-icons/tfi';
+import { Logo, NavLinks } from './';
+import { CiUndo } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/SmallSidebar';
 import { useCategoriesContext } from '../context/CategoriesContext';
 
@@ -13,7 +12,7 @@ function SmallSidebar() {
             <div className={`${isSidebarOpen ? 'sidebar-container show-sidebar' : 'sidebar-container'}`}>
                 <div className="small-sidebar-content">
                     <button className="btn-back" onClick={toggleSidebar}>
-                        <TfiBackLeft />
+                        <CiUndo />
                     </button>
                     <Logo />
                     <NavLinks />

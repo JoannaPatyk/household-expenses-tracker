@@ -15,7 +15,21 @@ import {
 import Wrapper from '../../assets/wrappers/Statistic';
 import { useBudgetContext } from '../../context/BudgetContext';
 
-const colors = ['#dbba79', '#f5ad12', '#d385b5', '#af4569', '#98aa32', '#37750d'];
+const colors = [
+    '#dbba79',
+    '#f5ad12',
+    '#c08401',
+    '#ff7809',
+    '#815b07',
+    '#cfa2be',
+    '#6d3749',
+    '#af4569',
+    '#ff86af',
+    '#572838',
+    '#310212',
+    '#98aa32',
+    '#37750d'
+];
 
 function Statistics() {
     const { summedByCategory } = useBudgetContext();
@@ -34,8 +48,8 @@ function Statistics() {
         <Wrapper>
             <div className="statistics-container">
                 <div className="chart-container">
-                    <h3>aktualny stan poniesionych wydatków</h3>
-                    <ResponsiveContainer width={'100%'} height={400}>
+                    <h3>stan poniesionych wydatków</h3>
+                    <ResponsiveContainer width={'100%'} height={420}>
                         <PieChart>
                             <Pie
                                 data={summedByCategory}
@@ -43,7 +57,7 @@ function Statistics() {
                                 nameKey="category"
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={130}
+                                outerRadius={135}
                                 label
                                 labelLine={false}
                             >
@@ -57,8 +71,8 @@ function Statistics() {
                     </ResponsiveContainer>
                 </div>
                 <div className="chart-container">
-                    <h3>aktualny stan poniesionych wydatków vs planowane</h3>
-                    <ResponsiveContainer width={'100%'} height={300}>
+                    <h3>aktualne a planowane wydatki</h3>
+                    <ResponsiveContainer width={'100%'} height={320}>
                         <BarChart
                             data={data}
                             barCategoryGap="15%"
@@ -73,8 +87,8 @@ function Statistics() {
                             <XAxis dataKey="category" />
                             <YAxis />
                             <Tooltip cursor={false} itemStyle={{ color: '#322C3B' }} />
-                            <Bar name="planowane wydatki" unit=" zł" dataKey="plannedAmount" fill="#b093d1" />
-                            <Bar name="aktualne wydatki" unit=" zł" dataKey="actualSummedExpense" fill="#af4569" />
+                            <Bar name="planowane wydatki" unit=" zł" dataKey="plannedAmount" fill="#ff7809b9" />
+                            <Bar name="aktualne wydatki" unit=" zł" dataKey="actualSummedExpense" fill="#f5ad12a4" />
                             <Legend iconType="circle" />
                         </BarChart>
                     </ResponsiveContainer>

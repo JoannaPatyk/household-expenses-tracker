@@ -29,25 +29,11 @@ const Wrapper = styled.main`
         align-items: center;
     }
 
-    .save-btn {
-        position: absolute;
-        top: 50%;
-        right: 7%;
-        transform: translateY(-50%);
-        z-index: 100;
-        padding: 0.3rem;
-        font-size: 1.8rem;
-        border: 1px solid var(--primary-300);
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
     #groupNameInput {
         width: 100%;
-        color: var(--primary-900);
+        font-weight: 600;
         text-transform: uppercase;
         text-align: center;
-        border: 1px solid var(--primary-300);
         border-radius: 20px;
         box-shadow: var(--shadow-4);
     }
@@ -111,6 +97,7 @@ const Wrapper = styled.main`
         transform: translateY(-50%);
         font-size: 2rem;
         color: var(--secondary-800);
+        font-weight: 100;
         transition: var(--transition);
         cursor: pointer;
     }
@@ -198,7 +185,7 @@ const Wrapper = styled.main`
         }
     }
 
-    @media (min-width: 1300px) {
+    @media (min-width: 1380px) {
         .group-name-container {
             min-width: 85%;
         }
@@ -210,17 +197,17 @@ const Wrapper = styled.main`
         }
 
         .decline-invitations {
-            border-left: 1px solid var(--primary-300);
-            border-right: 1px solid var(--primary-300);
+            border-left: 1px solid var(--primary-900);
+            border-right: 1px solid var(--primary-900);
         }
 
         .members,
         .decline-invitations,
         .received-invitations {
-            margin: 2rem 0;
+            margin: 3.5rem 0;
         }
 
-        .save-btn {
+        .btn-save {
             right: 12%;
         }
 
@@ -238,6 +225,7 @@ const Wrapper = styled.main`
 
         #groupNameInput {
             width: 80%;
+            font-size: 1.3rem;
         }
 
         .invitation-container {
@@ -250,6 +238,10 @@ const Wrapper = styled.main`
 
         #emailInput:hover {
             width: 47rem;
+        }
+
+        #emailInput::placeholder {
+            font-size: 1.2rem;
         }
 
         #btn-add {

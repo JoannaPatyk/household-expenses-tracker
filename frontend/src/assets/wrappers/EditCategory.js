@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    .edit-container {
+    .edit-container,
+    .categories {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .edit-container {
         margin: 1rem;
     }
 
@@ -32,13 +36,6 @@ const Wrapper = styled.div`
 
     #form-input:focus {
         width: 40vw;
-    }
-
-    .categories {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
 
     .category {
@@ -82,7 +79,7 @@ const Wrapper = styled.div`
         right: 2%;
     }
 
-    .bg {
+    .background-image {
         display: none;
     }
 
@@ -116,7 +113,7 @@ const Wrapper = styled.div`
             font-size: 1.2rem;
         }
 
-        .bg {
+        .background-image {
             display: block;
             position: absolute;
             top: 30%;

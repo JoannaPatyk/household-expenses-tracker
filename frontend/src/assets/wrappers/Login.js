@@ -35,7 +35,7 @@ const Wrapper = styled.div`
         width: 60%;
     }
 
-    .bg {
+    .background-image {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -80,7 +80,7 @@ const Wrapper = styled.div`
             font-size: 0.9rem;
         }
 
-        .bg {
+        .background-image {
             display: none;
         }
     }

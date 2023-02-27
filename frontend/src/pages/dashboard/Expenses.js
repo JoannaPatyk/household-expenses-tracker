@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useExpensesContext } from '../../context/ExpensesContext';
+import { Button, LoadingIndicator } from '../../components';
 import Wrapper from '../../assets/wrappers/Expenses';
-import Button from '../../components/Button';
 import { CiEdit, CiCircleRemove } from 'react-icons/ci';
-import LoadingIndicator from '../../components/LoadingIndicator';
+import { useExpensesContext } from '../../context/ExpensesContext';
 
 function Expenses() {
     const { expenses, saveExpenseForEdit, deleteExpense } = useExpensesContext();
@@ -46,10 +45,10 @@ function Expenses() {
                                         className="btn-hipster"
                                         onClick={() => handleEditButtonClick(expense)}
                                     >
-                                        <CiEdit className="btn-icone" />
+                                        <CiEdit className="btn-icon" />
                                     </Link>
                                     <Button version="hipster" id="btn" onClick={() => deleteExpense(expense.id)}>
-                                        <CiCircleRemove className="btn-icone" />
+                                        <CiCircleRemove className="btn-icon" />
                                     </Button>
                                 </td>
                             </tr>

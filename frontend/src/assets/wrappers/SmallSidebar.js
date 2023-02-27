@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.aside`
-    .sidebar-container {
-        position: fixed;
-        inset: 0;
+    .sidebar-container,
+    .small-sidebar-content {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .sidebar-container {
+        position: fixed;
+        inset: 0;
         z-index: -1;
         opacity: 0;
         background: rgba(0, 0, 0, 0.85);
@@ -20,10 +24,7 @@ const Wrapper = styled.aside`
 
     .small-sidebar-content {
         position: relative;
-        display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         height: 80vh;
         border-radius: 0.5rem;
         border-top: 10px solid var(--secondary-700);

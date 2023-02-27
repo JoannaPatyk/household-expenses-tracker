@@ -8,7 +8,7 @@ import EditCategory from './components/EditCategory';
 import EditExpense from './components/EditExpense';
 
 function App() {
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
     const toggleTheme = () => {
         if (theme === 'light') {

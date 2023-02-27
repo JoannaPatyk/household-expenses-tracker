@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     .spinner-container {
+        display: none; // NOTE: temporary switched off
+        position: relative;
         width: 115%;
         height: 100%;
-        position: relative;
-        display: none; // NOTE: temporary switched off
     }
 
     #spinner {

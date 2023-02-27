@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
 
     table {
@@ -10,20 +11,30 @@ const Wrapper = styled.div`
         padding-top: 4rem;
     }
 
-    .title {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        place-items: center;
-        box-shadow: var(--shadow-4);
-        letter-spacing: var(--letterSpacing);
-        background-color: var(--secondary-800);
+    th {
+        font-size: 0.6rem;
+        margin: 0.6rem 0rem;
+        text-align: center;
     }
 
+    td {
+        font-size: 0.7rem;
+        margin: 0.1rem 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .title,
     .budget-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         place-items: center;
-        box-shadow: var(--shadow-4);
+        box-shadow: var(--shadow-3);
+    }
+
+    .title {
+        letter-spacing: var(--letterSpacing);
+        background-color: var(--secondary-800);
     }
 
     .category {
@@ -31,15 +42,16 @@ const Wrapper = styled.div`
     }
 
     #input {
-        width: 2rem;
+        width: 4rem;
         text-align: center;
         font-size: inherit;
         color: inherit;
-        border-bottom: 2px solid #ffcc6660;
+        margin-right: 0.2rem;
+        border-bottom: 2px solid #fada995f;
     }
 
     #input:focus {
-        width: 6rem;
+        width: 5rem;
         border-bottom-color: #ffcc66ae;
     }
 
@@ -49,25 +61,11 @@ const Wrapper = styled.div`
         }
 
         th {
-            font-size: 0.6rem;
-            margin: 0.6rem 0rem;
-            text-align: center;
+            font-size: 0.9rem;
         }
 
         td {
-            font-size: 0.7rem;
-            margin: 0.1rem 0;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        #input {
-            width: 4rem;
-            margin-right: 5px;
-        }
-
-        #input:focus {
-            width: 5rem;
+            font-size: 1rem;
         }
     }
 
@@ -90,11 +88,11 @@ const Wrapper = styled.div`
         }
 
         #input {
-            width: 8rem;
+            width: 5rem;
         }
 
         #input:focus {
-            width: 13rem;
+            width: 6rem;
         }
     }
 `;
