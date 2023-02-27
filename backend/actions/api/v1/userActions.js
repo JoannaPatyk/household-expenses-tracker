@@ -31,11 +31,16 @@ class UserActions {
 
                         await user.save();
 
-                        groupActions.createNewGroup(email);
+                        if (!(await groupActions.createNewGroup(email))) {
+                            await user.remove();
+                            return res.status(422).json({
+                                message: 'Group creation failed'
+                            });
+                        }
 
                         res.status(201).json();
                     } catch (err) {
-                        return res.status(422).json({ message: err.message });
+                        res.status(422).json({ message: err.message });
                     }
                 }
             });
@@ -59,12 +64,15 @@ class UserActions {
                 }
 
                 if (result) {
-                    const group = await Group.findOne({ members: user._id });
+                    const group = await Group.findOne({ isActive: true, members: user._id });
+                    if (!group) {
+                        return res.status(401).json();
+                    }
 
                     const token = jwt.sign(
                         {
                             email: user.email,
-                            id: user._id,
+                            userId: user._id,
                             groupId: group._id
                         },
                         process.env.JWT_SECRET,
