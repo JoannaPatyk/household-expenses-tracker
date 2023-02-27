@@ -4,10 +4,20 @@ import axios from 'axios';
 import apiConfig from '../apiConfig';
 import reducer from '../reducers/GroupReducer';
 import { useUserContext } from './UserContext';
-import { ADD_GROUP, ADD_MEMBER, UPDATE_GROUP_NAME, DELETE_MEMBER } from '../utils/actions';
+import {
+    ADD_GROUP,
+    UPDATE_GROUP_NAME,
+    INVITE_USER,
+    ADD_INVITATIONS,
+    DECLINE_USER_INVITATION,
+    REMOVE_USER,
+    ACCEPT_INVITATION,
+    DECLINE_INVITATION
+} from '../utils/actions';
 
 const initialState = {
-    group: {}
+    group: {},
+    invitations: []
 };
 
 const GroupContext = createContext();
@@ -39,18 +49,31 @@ export const GroupProvider = ({ children }) => {
         };
     }, [isLogged]);
 
+    useEffect(() => {
+        const fetchInvitations = async () => {
+            try {
+                const response = await axios.get(`${apiConfig.api}/group/invitations`);
+                const data = response.data;
+
+                addInvitations(data);
+            } catch (error) {
+                console.error('error: ', error.response);
+            }
+        };
+
+        const getDataInterval = setInterval(async () => {
+            if (isLogged) {
+                fetchInvitations();
+            }
+        }, 1000);
+
+        return () => {
+            clearInterval(getDataInterval);
+        };
+    }, [isLogged]);
+
     const addGroup = (group) => {
         dispatch({ type: ADD_GROUP, payload: group });
-    };
-
-    const addMember = async (email) => {
-        try {
-            await axios.post(`${apiConfig.api}/group/add_member`, { email });
-
-            dispatch({ type: ADD_MEMBER, payload: { email } });
-        } catch (error) {
-            console.error('error: ', error.response);
-        }
     };
 
     const updateGroupName = async (newName) => {
@@ -68,11 +91,54 @@ export const GroupProvider = ({ children }) => {
         }
     };
 
-    const deleteMember = async (email) => {
+    const inviteUser = async (email) => {
         try {
-            await axios.post(`${apiConfig.api}/group/delete_member`, { email });
+            await axios.post(`${apiConfig.api}/group/invite_user`, { email });
 
-            dispatch({ type: DELETE_MEMBER, payload: email });
+            dispatch({ type: INVITE_USER, payload: { email } });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    };
+
+    const addInvitations = (invitations) => {
+        dispatch({ type: ADD_INVITATIONS, payload: invitations });
+    };
+
+    const declineUserInvitation = async (email) => {
+        try {
+            await axios.post(`${apiConfig.api}/group/decline_user_invitation`, { email });
+            dispatch({ type: DECLINE_USER_INVITATION, payload: email });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    };
+
+    const removeUser = async (email) => {
+        try {
+            await axios.post(`${apiConfig.api}/group/remove_user`, { email });
+
+            dispatch({ type: REMOVE_USER, payload: email });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    };
+
+    const acceptInvitation = async (id) => {
+        try {
+            await axios.post(`${apiConfig.api}/group/accept_invitation`, { groupId: id });
+
+            dispatch({ type: ACCEPT_INVITATION, payload: id });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    };
+
+    const declineInvitation = async (id) => {
+        try {
+            await axios.post(`${apiConfig.api}/group/decline_invitation`, { groupId: id });
+
+            dispatch({ type: DECLINE_INVITATION, payload: id });
         } catch (error) {
             console.error('error: ', error.response);
         }
@@ -82,9 +148,12 @@ export const GroupProvider = ({ children }) => {
         <GroupContext.Provider
             value={{
                 ...state,
-                addMember,
+                inviteUser,
                 updateGroupName,
-                deleteMember
+                declineUserInvitation,
+                removeUser,
+                acceptInvitation,
+                declineInvitation
             }}
         >
             {children}

@@ -1,50 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import Wrapper from '../../assets/wrappers/Group';
 import Button from '../../components/Button';
-import { CiCircleRemove } from 'react-icons/ci';
+import { CiCircleRemove, CiCircleCheck, CiFloppyDisk } from 'react-icons/ci';
 import FormRowInput from '../../components/FormRowInput';
 import { useGroupContext } from '../../context/GroupContext';
 
 function Group() {
     const [newGroupName, setNewGroupName] = useState('Twoja grupa');
     const [newMember, setNewMember] = useState('');
-    const { group, updateGroupName, addMember, deleteMember } = useGroupContext();
+    const {
+        group,
+        invitations,
+        updateGroupName,
+        inviteUser,
+        declineUserInvitation,
+        removeUser,
+        acceptInvitation,
+        declineInvitation
+    } = useGroupContext();
 
     useEffect(() => {
-        setNewGroupName(group.groupName);
-    }, [group.groupName]);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
+        setNewGroupName(group.name);
+    }, [group.name]);
 
     const handleSave = () => {
         updateGroupName(newGroupName);
     };
 
     const handleAdd = () => {
-        addMember(newMember);
+        if (newMember === group.owner.email) {
+            alert('E-mail należy do właściciela grupy! Podaj inny.');
+            setNewMember('');
+            return;
+        }
+
+        inviteUser(newMember);
+        setNewMember('');
     };
 
     const handleNameChange = (event) => {
-        setNewGroupName(event.target.value);
+        const name = event.target.value;
+        setNewGroupName(name);
     };
 
     const handleMemberChange = (event) => {
-        setNewMember(event.target.value);
+        const email = event.target.value;
+        setNewMember(email);
+    };
+
+    const handleAcceptInvitation = (id) => {
+        acceptInvitation(id);
+        alert('Zaloguj się ponownie, żeby zobaczyć aktualną listę członków Twojej grupy.');
     };
 
     return (
         <Wrapper>
             <div className="group-container">
-                <h1>
-                    Aktualna nazwa grupy:
-                    <span>{group.groupName}</span>
-                </h1>
-                <form id="form" className="form-container" onSubmit={handleSubmit}>
-                    <h1>Edytuj ustawienia grupy</h1>
-                    <div className="edit-group-container">
-                        <h3>Zmień nazwę grupy:</h3>
+                <div className="group-name-container">
+                    <h2>Aktualna nazwa grupy:</h2>
+                    <div className="group-name">
                         <FormRowInput
                             id="groupNameInput"
                             value={newGroupName}
@@ -52,37 +66,83 @@ function Group() {
                             placeholder="nowa nazwa"
                             onChange={handleNameChange}
                         />
-                        <Button id="btn-save" type="submit" version="hero" onClick={handleSave}>
-                            zapisz
-                        </Button>
-                        <h3>Dodaj nowego członka grupy:</h3>
-                        <FormRowInput value={newMember} type="text" placeholder="email" onChange={handleMemberChange} />
-                        <div>
-                            <Button id="btn-add" type="submit" version="hero" onClick={handleAdd}>
-                                dodaj
-                            </Button>
-                        </div>
+                        <CiFloppyDisk className="save-btn" onClick={handleSave} />
                     </div>
-                </form>
-                <h3>Członkowie grupy:</h3>
-                <div className="members">
-                    {group.members.map((item, index) => {
-                        return (
-                            <div className="member" key={index}>
-                                {index === 0 ? (
-                                    <p>{item.email}</p>
-                                ) : (
-                                    <>
-                                        <p>{item.email}</p>
-                                        <CiCircleRemove
-                                            className="delete-btn"
-                                            onClick={() => deleteMember(item.email)}
-                                        />
-                                    </>
-                                )}
-                            </div>
-                        );
-                    })}
+                </div>
+                <div className="status-container">
+                    <div className="members">
+                        <h3>Członkowie grupy:</h3>
+                        {group.members
+                            ? group.members.map((item, index) => {
+                                  return (
+                                      <div className="member" key={index}>
+                                          {index === 0 ? (
+                                              <p>{item.email}</p>
+                                          ) : (
+                                              <>
+                                                  <p>{item.email}</p>
+                                                  <CiCircleRemove
+                                                      className="delete-btn"
+                                                      onClick={() => removeUser(item.email)}
+                                                  />
+                                              </>
+                                          )}
+                                      </div>
+                                  );
+                              })
+                            : null}
+                    </div>
+                    <div className="decline-invitations">
+                        <h3>Wysłane zaproszenia:</h3>
+                        {group.invitations
+                            ? group.invitations.map((item, index) => {
+                                  return (
+                                      <div className="member" key={index}>
+                                          <p>{item.email}</p>
+                                          <CiCircleRemove
+                                              className="delete-btn"
+                                              onClick={() => declineUserInvitation(item.email)}
+                                          />
+                                      </div>
+                                  );
+                              })
+                            : null}
+                    </div>
+                    <div className="received-invitations">
+                        <h3>Otrzymane zaproszenia:</h3>
+                        {invitations
+                            ? invitations.map((item, index) => {
+                                  return (
+                                      <div className="member" key={index}>
+                                          <p>{item.owner.email}</p>
+                                          <CiCircleRemove
+                                              className="delete-btn"
+                                              onClick={() => declineInvitation(item.id)}
+                                          />
+                                          <CiCircleCheck
+                                              className="accept-btn"
+                                              onClick={() => handleAcceptInvitation(item.id)}
+                                          />
+                                      </div>
+                                  );
+                              })
+                            : null}
+                    </div>
+                </div>
+                <div className="invitation-container">
+                    <h2>Dodaj nowego członka grupy:</h2>
+                    <FormRowInput
+                        id="emailInput"
+                        value={newMember}
+                        type="text"
+                        placeholder="Podaj email . . ."
+                        onChange={handleMemberChange}
+                    />
+                    <div>
+                        <Button id="btn-add" type="submit" version="hero" onClick={handleAdd}>
+                            wyślij
+                        </Button>
+                    </div>
                 </div>
             </div>
         </Wrapper>

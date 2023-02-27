@@ -1,4 +1,13 @@
-import { ADD_GROUP, ADD_MEMBER, UPDATE_GROUP_NAME, DELETE_MEMBER } from '../utils/actions';
+import {
+    ADD_GROUP,
+    INVITE_USER,
+    ADD_INVITATIONS,
+    UPDATE_GROUP_NAME,
+    DECLINE_USER_INVITATION,
+    REMOVE_USER,
+    ACCEPT_INVITATION,
+    DECLINE_INVITATION
+} from '../utils/actions';
 
 const GroupReducer = (state, action) => {
     switch (action.type) {
@@ -6,8 +15,17 @@ const GroupReducer = (state, action) => {
             return {
                 ...state,
                 group: {
-                    groupName: action.payload.groupName,
+                    name: action.payload.name,
+                    isActive: action.payload.isActive,
+                    owner: action.payload.owner,
                     members: action.payload.members.map((item) => {
+                        return {
+                            id: item._id,
+                            name: item.name,
+                            email: item.email
+                        };
+                    }),
+                    invitations: action.payload.invitations.map((item) => {
                         return {
                             id: item._id,
                             name: item.name,
@@ -17,37 +35,68 @@ const GroupReducer = (state, action) => {
                 }
             };
         }
-        case ADD_MEMBER: {
-            return {
-                ...state,
-                group: {
-                    ...state.group,
-                    members: [
-                        ...state.group.members,
-                        {
-                            id: '',
-                            name: '',
-                            email: action.payload.email
-                        }
-                    ]
-                }
-            };
-        }
         case UPDATE_GROUP_NAME: {
             return {
                 ...state,
                 group: {
                     ...state.group,
-                    groupName: action.payload.newName
+                    name: action.payload.newName
                 }
             };
         }
-        case DELETE_MEMBER: {
+        case INVITE_USER: {
+            return {
+                ...state,
+                group: {
+                    ...state.group,
+                    invitations: [...state.group.invitations, { id: '', name: '', email: action.payload.email }]
+                }
+            };
+        }
+        case ADD_INVITATIONS: {
+            return {
+                ...state,
+                invitations: action.payload.map((item) => {
+                    return {
+                        id: item._id,
+                        name: item.name,
+                        owner: {
+                            id: item.owner._id,
+                            name: item.owner.name,
+                            email: item.owner.email
+                        }
+                    };
+                })
+            };
+        }
+        case DECLINE_USER_INVITATION: {
+            return {
+                ...state,
+                invitations: state.invitations.filter((item) => item.email !== action.payload.email)
+            };
+        }
+        case REMOVE_USER: {
             return {
                 ...state,
                 group: {
                     ...state.group,
                     members: state.group.members.filter((item) => item.email !== action.payload.email)
+                }
+            };
+        }
+        case ACCEPT_INVITATION: {
+            return {
+                ...state,
+                group: {
+                    ...state.group
+                }
+            };
+        }
+        case DECLINE_INVITATION: {
+            return {
+                ...state,
+                group: {
+                    ...state.group
                 }
             };
         }
