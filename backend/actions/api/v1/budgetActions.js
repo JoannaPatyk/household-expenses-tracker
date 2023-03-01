@@ -1,24 +1,31 @@
 const Budget = require('../../../database/models/budgetModel');
 
 class BudgetActions {
-    async get(req, res) {
-        // TODO: Zrobić konsekwentnie groupId: groupId
-        const groupId = req.userData.groupId;
-        const budget = await Budget.find({ groupId: groupId });
+    getBudget = async (req, res) => {
+        try {
+            const groupId = req.userData.groupId;
+            const budget = await Budget.find({ groupId: groupId });
 
-        res.status(200).json(budget);
-    }
+            res.status(200).json(budget);
+        } catch (error) {
+            res.status(422).json({ message: error.message });
+        }
+    };
 
-    async patch(req, res) {
-        const amount = req.body.amount;
-        const id = req.params.id;
+    updateBudget = async (req, res) => {
+        try {
+            const amount = req.body.amount;
+            const id = req.params.id;
 
-        const budgetEntry = await Budget.findOne({ _id: id });
-        budgetEntry.amount = amount;
-        await budgetEntry.save();
+            const budgetEntry = await Budget.findOne({ _id: id });
+            budgetEntry.amount = amount;
+            await budgetEntry.save();
 
-        res.status(201).json(budgetEntry);
-    }
+            res.status(201).json(budgetEntry);
+        } catch (error) {
+            res.status(404).json({ message: error.message });
+        }
+    };
 
     updateBudgetOnCategoryAddition = async (categoryName, groupId) => {
         const budgetEntry = new Budget({ categoryName: categoryName, amount: 0, groupId: groupId });

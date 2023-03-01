@@ -3,56 +3,73 @@ const budgetActions = require('./budgetActions');
 const expenseActions = require('./expenseActions');
 
 class CategoryActions {
-    async save(req, res) {
-        const name = req.body.name;
-        const groupId = req.userData.groupId;
-
-        let category;
-
+    getCategories = async (req, res) => {
         try {
-            category = new Category({ name, groupId });
-            await category.save();
-        } catch (err) {
-            return res.status(422).json({ message: err.message });
+            const groupId = req.userData.groupId;
+            const categories = await Category.find({ groupId: groupId });
+
+            res.status(200).json(categories);
+        } catch (error) {
+            res.status(422).json({ message: error.message });
         }
+    };
 
-        res.status(201).json(category);
-        budgetActions.updateBudgetOnCategoryAddition(name, groupId);
-    }
+    saveCategory = async (req, res) => {
+        try {
+            const groupId = req.userData.groupId;
+            const name = req.body.name;
+            const category = await Category.find({ name: name });
 
-    async get(req, res) {
-        const groupId = req.userData.groupId;
-        const categories = await Category.find({ groupId });
+            if (category) {
+                return res.status(422).json({ message: 'Category already exists' });
+            }
 
-        res.status(200).json(categories);
-    }
+            const newCategory = new Category({ name: name, groupId: groupId });
+            await category.save();
 
-    async update(req, res) {
-        const name = req.body.name;
-        const id = req.params.id;
-        const groupId = req.userData.groupId;
+            await budgetActions.updateBudgetOnCategoryAddition(name, groupId);
 
-        const category = await Category.findOne({ _id: id });
-        const oldName = category.name;
-        category.name = name;
-        await category.save();
+            res.status(201).json(newCategory);
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    };
 
-        res.status(201).json(category);
+    updateCategoryName = async (req, res) => {
+        try {
+            const name = req.body.name;
+            const id = req.params.id;
+            const groupId = req.userData.groupId;
 
-        budgetActions.updateBudgetOnCategoryUpdate(oldName, name, groupId);
-        expenseActions.updateExpenseOnCategoryUpdate(oldName, name, groupId);
-    }
+            const category = await Category.findOne({ _id: id });
+            const oldName = category.name;
+            category.name = name;
+            await category.save();
 
-    async delete(req, res) {
-        const id = req.params.id;
-        const category = await Category.findOne({ _id: id });
-        const groupId = req.userData.groupId;
+            await budgetActions.updateBudgetOnCategoryUpdate(oldName, name, groupId);
+            await expenseActions.updateExpenseOnCategoryUpdate(oldName, name, groupId);
 
-        await Category.deleteOne({ _id: id });
-        res.sendStatus(204);
+            res.status(201).json(category);
+        } catch (error) {
+            return res.status(404).json({ message: error.message });
+        }
+    };
 
-        budgetActions.updateBudgetOnCategoryDelete(category.name, groupId);
-    }
+    deleteCategory = async (req, res) => {
+        try {
+            const id = req.params.id;
+            const groupId = req.userData.groupId;
+
+            const category = await Category.findOne({ _id: id });
+            await Category.deleteOne({ _id: id });
+
+            await budgetActions.updateBudgetOnCategoryDelete(category.name, groupId);
+
+            res.sendStatus(204);
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    };
 }
 
 module.exports = new CategoryActions();
