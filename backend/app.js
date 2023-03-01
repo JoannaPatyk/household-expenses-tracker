@@ -24,7 +24,11 @@ app.use(cors());
 morgan.token('body', (req) => {
     return JSON.stringify(req.body);
 });
-app.use(morgan(':date[iso] :method :status :response-time ms :url - :body'));
+if (process.env.NODE_ENV) {
+    app.use(morgan(':date[iso] :method :status :response-time ms :url - :body'));
+} else {
+    app.use(morgan(':date[iso] :method :status :response-time ms :url'));
+}
 
 // routes
 app.use('/api/v1', categoryRouters);

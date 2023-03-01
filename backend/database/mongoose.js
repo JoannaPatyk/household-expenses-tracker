@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const { env } = require('node:process');
 
 dotenv.config();
 
 mongoose.set('strictQuery', false);
-mongoose.connect(env.DATABASE);
+mongoose.connect(process.env.DATABASE);
 
 const connection = mongoose.connection;
 connection.once('open', () => {
