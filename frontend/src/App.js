@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { BsMoonStars, BsSun } from 'react-icons/bs';
 import { Landing, Login, Error, SharedLayout, Registration } from './pages';
 import { Budget, Expenses, Statistics, Group, ProtectedRoute } from './pages/dashboard';
@@ -34,7 +34,7 @@ function App() {
                     </div>
                 </label>
             </div>
-            <BrowserRouter>
+            <HashRouter>
                 <Routes>
                     <Route
                         path="/"
@@ -57,7 +57,7 @@ function App() {
                     <Route path="edit_expense" element={<EditExpense />} />
                     <Route path="*" element={<Error />}></Route>
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </>
     );
 }
