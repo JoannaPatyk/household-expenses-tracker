@@ -6,23 +6,23 @@ const groupActions = require('./groupActions');
 const User = require('../../../database/models/userModel');
 const Group = require('../../../database/models/groupModel');
 class UserActions {
-    async signUp(req, res) {
-        const name = req.body.name;
-        const email = req.body.email;
-        const password = req.body.password;
+    signUp = async (req, res) => {
+        try {
+            const name = req.body.name;
+            const email = req.body.email;
+            const password = req.body.password;
 
-        const user = await User.findOne({ email });
+            const user = await User.findOne({ email });
 
-        if (user) {
-            return res.status(409).json();
-        } else {
-            bcrypt.hash(password, 12, async (err, hash) => {
-                if (err) {
-                    return res.status(500).json({
-                        error: err
-                    });
-                } else {
-                    try {
+            if (user) {
+                return res.status(409).json();
+            } else {
+                bcrypt.hash(password, 12, async (err, hash) => {
+                    if (err) {
+                        return res.status(500).json({
+                            error: err
+                        });
+                    } else {
                         const user = new User({
                             name: name,
                             email: email,
@@ -39,19 +39,19 @@ class UserActions {
                         }
 
                         res.status(201).json();
-                    } catch (err) {
-                        res.status(422).json({ message: err.message });
                     }
-                }
-            });
+                });
+            }
+        } catch (err) {
+            res.status(422).json({ message: err.message });
         }
-    }
+    };
 
-    async login(req, res) {
-        const email = req.body.email;
-        const password = req.body.password;
-
+    login = async (req, res) => {
         try {
+            const email = req.body.email;
+            const password = req.body.password;
+
             const user = await User.findOne({ email });
 
             if (user === null) {
@@ -90,14 +90,18 @@ class UserActions {
                 error: err
             });
         }
-    }
+    };
 
-    async delete(req, res) {
-        const id = req.params.id;
-        await User.deleteOne({ _id: id });
+    deleteUser = async (req, res) => {
+        try {
+            const id = req.params.id;
+            await User.deleteOne({ _id: id });
 
-        res.status(200).json();
-    }
+            res.status(200).json();
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    };
 }
 
 module.exports = new UserActions();

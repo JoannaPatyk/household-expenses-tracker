@@ -4,7 +4,7 @@ const router = express.Router();
 const groupActions = require('../actions/api/v1/groupActions');
 const checkAuth = require('../middleware/check-auth');
 
-router.get('/group', checkAuth, groupActions.getGroupData);
+router.get('/group', checkAuth, groupActions.getGroup);
 router.patch('/group', checkAuth, groupActions.updateGroupName);
 router.get('/group/invitations', checkAuth, groupActions.getInvitations);
 router.post('/group/invite_user', checkAuth, groupActions.inviteUser);

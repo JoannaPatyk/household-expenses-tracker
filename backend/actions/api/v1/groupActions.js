@@ -2,7 +2,7 @@ const Group = require('../../../database/models/groupModel');
 const User = require('../../../database/models/userModel');
 
 class GroupActions {
-    getGroupData = async (req, res) => {
+    getGroup = async (req, res) => {
         try {
             const groupId = req.userData.groupId;
             const group = await Group.findOne({ _id: groupId })
@@ -28,7 +28,7 @@ class GroupActions {
 
             res.status(200).json();
         } catch (error) {
-            res.status(422).json({ message: error.message });
+            res.status(404).json({ message: error.message });
         }
     };
 

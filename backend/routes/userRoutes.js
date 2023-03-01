@@ -6,6 +6,6 @@ const checkAuth = require('../middleware/check-auth');
 
 router.post('/user/sign_up', userActions.signUp);
 router.post('/user/login', userActions.login);
-router.delete('/user/:id', checkAuth, userActions.delete);
+router.delete('/user/:id', checkAuth, userActions.deleteUser);
 
 module.exports = router;
