@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useContext, useReducer, useState } from 'react';
+import React, { createContext, useEffect, useContext, useReducer, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/actions';
@@ -23,22 +23,22 @@ export const CategoriesProvider = ({ children }) => {
         edit: false
     });
 
+    const fetchCategories = useCallback(async () => {
+        try {
+            const response = await axios.get(`${apiConfig.api}/categories`);
+
+            const data = response.data;
+            addAllCategories(data);
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    }, []);
+
     useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get(`${apiConfig.api}/categories`);
-
-                const data = response.data;
-                addAllCategories(data);
-            } catch (error) {
-                console.error('error: ', error.response);
-            }
-        };
-
         if (isLogged) {
             trackPromise(fetchCategories());
         }
-    }, [isLogged]);
+    }, [isLogged, fetchCategories]);
 
     const toggleSidebar = () => {
         dispatch({ type: TOGGLE_SIDEBAR });
@@ -53,6 +53,8 @@ export const CategoriesProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/categories`, { name });
 
             dispatch({ type: ADD_CATEGORY, payload: name });
+
+            trackPromise(fetchCategories());
         } catch (error) {
             console.error('error: ', error.response);
         }

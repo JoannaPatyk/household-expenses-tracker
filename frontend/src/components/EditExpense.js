@@ -23,7 +23,6 @@ function EditExpense() {
             setEditAmount(expenseForEdit.expense.amount);
             setEditComment(expenseForEdit.expense.comment);
         }
-        // eslint-disable-next-line
     }, [expenseForEdit]);
 
     const handleCategoryChange = (name) => {

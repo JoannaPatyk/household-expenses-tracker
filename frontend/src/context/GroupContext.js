@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import apiConfig from '../apiConfig';
@@ -26,51 +26,49 @@ export const GroupProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { isLogged } = useUserContext();
 
+    const fetchGroup = useCallback(async () => {
+        try {
+            const response = await axios.get(`${apiConfig.api}/group`);
+            const data = response.data;
+
+            addGroup(data);
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    }, []);
+
+    const fetchInvitations = useCallback(async () => {
+        try {
+            const response = await axios.get(`${apiConfig.api}/group/invitations`);
+            const data = response.data;
+
+            addInvitations(data);
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    }, []);
+
     useEffect(() => {
-        const fetchGroup = async () => {
-            try {
-                const response = await axios.get(`${apiConfig.api}/group`);
-                const data = response.data;
+        if (isLogged) {
+            fetchGroup();
+            fetchInvitations();
+        }
+    }, [isLogged, fetchGroup, fetchInvitations]);
 
-                addGroup(data);
-            } catch (error) {
-                console.error('error: ', error.response);
-            }
-        };
-
+    useEffect(() => {
         const getDataInterval = setInterval(async () => {
             if (isLogged) {
-                fetchGroup();
+                if (isLogged) {
+                    fetchGroup();
+                    fetchInvitations();
+                }
             }
-        }, 1000);
+        }, 180000);
 
         return () => {
             clearInterval(getDataInterval);
         };
-    }, [isLogged]);
-
-    useEffect(() => {
-        const fetchInvitations = async () => {
-            try {
-                const response = await axios.get(`${apiConfig.api}/group/invitations`);
-                const data = response.data;
-
-                addInvitations(data);
-            } catch (error) {
-                console.error('error: ', error.response);
-            }
-        };
-
-        const getDataInterval = setInterval(async () => {
-            if (isLogged) {
-                fetchInvitations();
-            }
-        }, 1000);
-
-        return () => {
-            clearInterval(getDataInterval);
-        };
-    }, [isLogged]);
+    }, [isLogged, fetchGroup, fetchInvitations]);
 
     const addGroup = (group) => {
         dispatch({ type: ADD_GROUP, payload: group });

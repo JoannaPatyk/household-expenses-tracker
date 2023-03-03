@@ -5,6 +5,7 @@ import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/actions';
 import reducer from '../reducers/BudgetReducer';
 import apiConfig from '../apiConfig';
 import { useExpensesContext } from './ExpensesContext';
+import { useCategoriesContext } from './CategoriesContext';
 import { useUserContext } from './UserContext';
 import { trackPromise } from 'react-promise-tracker';
 
@@ -18,24 +19,27 @@ export const BudgetProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [summedByCategory, setSummedByCategory] = useState([]);
     const { expenses } = useExpensesContext();
+    const { categories } = useCategoriesContext();
     const { isLogged } = useUserContext();
 
-    const fetchBudget = async () => {
-        try {
-            const response = await axios.get(`${apiConfig.api}/budget`);
-
-            const data = response.data;
-            dispatch({ type: ADD_BUDGET, payload: data });
-        } catch (error) {
-            console.error('error: ', error.response);
-        }
-    };
-
     useEffect(() => {
+        const fetchBudget = async () => {
+            try {
+                const response = await axios.get(`${apiConfig.api}/budget`);
+
+                const data = response.data;
+                dispatch({ type: ADD_BUDGET, payload: data });
+            } catch (error) {
+                console.error('error: ', error.response);
+            }
+        };
+
         if (isLogged) {
             trackPromise(fetchBudget());
         }
-    }, [expenses, isLogged]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [categories]);
 
     useEffect(() => {
         setSummedByCategory(sumBudgetByCategory(expenses, 'category', 'amount'));
