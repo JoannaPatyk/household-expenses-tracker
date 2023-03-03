@@ -31,8 +31,7 @@ function EditCategory() {
             setButtonDisabled(false);
             setCategoryName(currentlyEditedCategory.category.name);
         }
-        // eslint-disable-next-line
-    }, [currentlyEditedCategory]);
+    }, [currentlyEditedCategory, setCategoryName]);
 
     const handleNameChange = (event) => {
         if (event.target.value === '' || categories.find((category) => category.name === event.target.value)) {

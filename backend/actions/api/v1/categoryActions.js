@@ -18,7 +18,7 @@ class CategoryActions {
         try {
             const groupId = req.userData.groupId;
             const name = req.body.name;
-            const category = await Category.findOne({ name: name });
+            const category = await Category.findOne({ groupId: groupId, name: name });
 
             if (category) {
                 return res.status(409).json({ message: 'Category already exists' });

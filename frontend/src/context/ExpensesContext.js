@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect, useContext, useState } from 'react';
+import React, { createContext, useReducer, useEffect, useContext, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ADD_EXPENSE, ADD_EXPENSES, UPDATE_EXPENSE, DELETE_EXPENSE, UPDATE_NAME_CATEGORY } from '../utils/actions';
@@ -23,28 +23,24 @@ export const ExpensesProvider = ({ children }) => {
         edit: false
     });
 
+    const fetchExpenses = useCallback(async () => {
+        try {
+            const response = await axios.get(`${apiConfig.api}/expenses`);
+
+            const data = response.data;
+            addAllExpenses(data);
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    }, []);
+
     useEffect(() => {
-        const fetchExpenses = async () => {
-            try {
-                const response = await axios.get(`${apiConfig.api}/expenses`);
+        if (isLogged) {
+            trackPromise(fetchExpenses());
+        }
 
-                const data = response.data;
-                addAllExpenses(data);
-            } catch (error) {
-                console.error('error: ', error.response);
-            }
-        };
-
-        const getDataInterval = setInterval(async () => {
-            if (isLogged) {
-                trackPromise(fetchExpenses());
-            }
-        }, 1000);
-
-        return () => {
-            clearInterval(getDataInterval);
-        };
-    }, [categories, isLogged]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [categories, fetchExpenses]);
 
     const addAllExpenses = (expenses) => {
         dispatch({ type: ADD_EXPENSES, payload: expenses });
@@ -55,6 +51,8 @@ export const ExpensesProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/expenses`, { category, amount, comment });
 
             dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
+
+            trackPromise(fetchExpenses());
         } catch (error) {
             console.error('error: ', error.response);
         }
