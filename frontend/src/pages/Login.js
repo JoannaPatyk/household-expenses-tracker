@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo, Button, FormRowInput } from '../components';
-import { CiUndo } from 'react-icons/ci';
+import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';
 import { useUserContext } from '../context/UserContext';
@@ -38,7 +38,7 @@ function Login() {
         <Wrapper>
             <form className="form-container" onSubmit={handleSubmit}>
                 <Link to="/landing" className="btn-back">
-                    <CiUndo />
+                    <TfiBackLeft />
                 </Link>
                 <Logo />
                 <h2>Podaj dane do logowania</h2>

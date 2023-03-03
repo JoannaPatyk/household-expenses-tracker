@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, FormRowInput, FormRowSelect, Logo } from './';
-import { CiUndo } from 'react-icons/ci';
+import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/EditExpenses';
 import background from '../assets/images/background.png';
 import { useCategoriesContext } from '../context/CategoriesContext';
@@ -26,8 +26,8 @@ function EditExpense() {
         // eslint-disable-next-line
     }, [expenseForEdit]);
 
-    const handleCategoryChange = (event) => {
-        setEditCategory(event.target.value);
+    const handleCategoryChange = (name) => {
+        setEditCategory(name);
         setButtonDisabled(false);
     };
 
@@ -57,17 +57,12 @@ function EditExpense() {
     return (
         <Wrapper>
             <Link to="/expenses" className="btn-back">
-                <CiUndo />
+                <TfiBackLeft />
             </Link>
             <Logo />
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <h2>Edytuj wybrany wydatek</h2>
-                <FormRowSelect
-                    id="categorySelect"
-                    list={[...categories]}
-                    name={expenseForEdit.expense.category}
-                    onChange={handleCategoryChange}
-                />
+                <FormRowSelect id="categorySelect" list={[...categories]} onClick={handleCategoryChange} />
                 <FormRowInput
                     id="amountInput"
                     value={editAmount}

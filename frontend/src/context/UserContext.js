@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import apiConfig from '../apiConfig';
-
+import { toast } from 'react-toastify';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -60,7 +60,10 @@ export const UserProvider = ({ children }) => {
             setUserPassword('');
             setUserVerificationPassword('');
 
-            alert('Użytkownik już istnieje, podaj inne dane.');
+            toast.warning('Użytkownik o wskazanych danych już istnieje, podaj inne i spróbuj ponownie.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
         }
     };
 
@@ -91,7 +94,10 @@ export const UserProvider = ({ children }) => {
             setUserEmail('');
             setUserPassword('');
 
-            alert('Dane logowania niepoprawne. Spróbuj ponownie.');
+            toast.error('Dane logowania niepoprawne. Spróbuj ponownie.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
         }
     };
 

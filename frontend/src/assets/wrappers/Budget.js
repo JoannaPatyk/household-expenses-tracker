@@ -3,12 +3,11 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
     min-height: 100vh;
 
     table {
         width: 90vw;
-        padding-top: 4rem;
+        padding-top: 5rem;
     }
 
     th {

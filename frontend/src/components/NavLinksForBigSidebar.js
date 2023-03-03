@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import links from '../utils/links';
 
-function NavLinks() {
+function NavLinksForBigSidebar() {
     return (
         <div className="nav-links">
             {links.map((link) => {
@@ -25,4 +25,4 @@ function NavLinks() {
     );
 }
 
-export default NavLinks;
+export default NavLinksForBigSidebar;

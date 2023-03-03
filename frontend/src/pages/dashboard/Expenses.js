@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, LoadingIndicator } from '../../components';
 import Wrapper from '../../assets/wrappers/Expenses';
-import { CiEdit, CiCircleRemove } from 'react-icons/ci';
+import { CiEdit } from 'react-icons/ci';
+import { HiOutlineXMark } from 'react-icons/hi2';
+
 import { useExpensesContext } from '../../context/ExpensesContext';
 
 function Expenses() {
@@ -31,7 +33,7 @@ function Expenses() {
                         const date = new Date(Number(expense.date));
                         const dateString = date.toLocaleString('sv-SE');
                         return (
-                            <tr key={index} className="expense-container">
+                            <tr key={expense.id} className="expense-container">
                                 <td>{index + 1}.</td>
                                 <td>{expense.name}</td>
                                 <td>{dateString}</td>
@@ -48,7 +50,7 @@ function Expenses() {
                                         <CiEdit className="btn-icon" />
                                     </Link>
                                     <Button version="hipster" id="btn" onClick={() => deleteExpense(expense.id)}>
-                                        <CiCircleRemove className="btn-icon" />
+                                        <HiOutlineXMark className="btn-icon" />
                                     </Button>
                                 </td>
                             </tr>

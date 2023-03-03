@@ -45,7 +45,6 @@ const Wrapper = styled.div`
     }
 
     .btn {
-        font-size: 1rem;
         width: 15rem;
     }
 
@@ -68,11 +67,6 @@ const Wrapper = styled.div`
         #amountInput:focus,
         #commentInput:focus {
             width: 24rem;
-        }
-
-        .btn {
-            width: 25rem;
-            font-size: 1.2rem;
         }
 
         .background-image {

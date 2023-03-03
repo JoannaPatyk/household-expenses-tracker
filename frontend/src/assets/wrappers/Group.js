@@ -38,10 +38,6 @@ const Wrapper = styled.main`
         box-shadow: var(--shadow-4);
     }
 
-    #groupNameInput:hover {
-        transform: scale(0.98);
-    }
-
     #emailInput {
         width: 20rem;
         margin: 0.5rem;
@@ -49,6 +45,7 @@ const Wrapper = styled.main`
 
     #emailInput::placeholder {
         font-size: 0.8rem;
+        width: 18rem;
     }
 
     .members,
@@ -67,7 +64,7 @@ const Wrapper = styled.main`
         width: 80vw;
         min-height: 40px;
         padding-left: 1rem;
-        margin: 0.5rem;
+        margin: 1rem;
         color: var(--secondary-900);
         font-size: 1rem;
         border-radius: 20px;
@@ -81,7 +78,7 @@ const Wrapper = styled.main`
 
     h2 {
         margin: 0.5rem 0;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     h3 {
@@ -95,7 +92,7 @@ const Wrapper = styled.main`
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: var(--secondary-800);
         font-weight: 100;
         transition: var(--transition);
@@ -120,10 +117,6 @@ const Wrapper = styled.main`
         transform: translateY(-50%) scale(0.95);
     }
 
-    #btn-add {
-        width: 50vw;
-    }
-
     @media (min-width: 620px) {
         .group-name {
             width: 90%;
@@ -138,7 +131,7 @@ const Wrapper = styled.main`
         }
 
         #emailInput:hover {
-            width: 30rem;
+            width: 26rem;
         }
 
         #emailInput::placeholder {
@@ -151,7 +144,7 @@ const Wrapper = styled.main`
             width: 40rem;
         }
         #emailInput:hover {
-            width: 42rem;
+            width: 38rem;
         }
 
         #emailInput::placeholder {
@@ -169,19 +162,11 @@ const Wrapper = styled.main`
         .member {
             width: 50vw;
         }
-
-        #btn-add {
-            width: 40vw;
-        }
     }
 
     @media (min-width: 1020px) {
         .member {
             width: 40vw;
-        }
-
-        #btn-add {
-            width: 35vw;
         }
     }
 
@@ -197,8 +182,8 @@ const Wrapper = styled.main`
         }
 
         .decline-invitations {
-            border-left: 1px solid var(--primary-900);
-            border-right: 1px solid var(--primary-900);
+            border-left: 1px solid var(--primary-300);
+            border-right: 1px solid var(--primary-300);
         }
 
         .members,
@@ -237,15 +222,11 @@ const Wrapper = styled.main`
         }
 
         #emailInput:hover {
-            width: 47rem;
+            width: 43rem;
         }
 
         #emailInput::placeholder {
             font-size: 1.2rem;
-        }
-
-        #btn-add {
-            width: 20vw;
         }
     }
 `;

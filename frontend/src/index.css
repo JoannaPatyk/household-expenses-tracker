@@ -18,29 +18,30 @@ html {
     /* COLORS */
     --primary-100: #fffaf0;
     --primary-200: #fff5e0;
-    --primary-300: #fff0d1;
-    --primary-400: #ffe6b3;
-    --primary-500: #ffe0a3;
-    --primary-600: #ffdb94;
-    --primary-700: #ffd685;
-    --primary-800: #ffd175;
-    --primary-900: #ffcc66;
+    --primary-300: #f2e1d1;
+    --primary-400: #efdac5;
+    --primary-500: #ecd2b9;
+    --primary-600: #e9cbae;
+    --primary-700: #e5c3a2;
+    --primary-800: #e2bc97;
+    --primary-900: #dfb48b;
 
-    --secondary-100: #ebeaeb;
-    --secondary-200: #d6d5d8;
-    --secondary-300: #c2c0c4;
-    --secondary-400: #99969d;
-    --secondary-500: #848089;
-    --secondary-600: #5b5662;
-    --secondary-700: #47414f;
-    --secondary-800: #201a2b;
-    --secondary-900: #1c1625;
+    --secondary-100: #eaeaec;
+    --secondary-200: #d4d5d9;
+    --secondary-300: #a9abb3;
+    --secondary-400: #9496a0;
+    --secondary-500: #7e818c;
+    --secondary-600: #696c79;
+    --secondary-700: #535766;
+    --secondary-800: #282d40;
+    --secondary-900: #1c1f2d;
 
     --black: #222;
     --white: #fff;
     --red: #d10303;
     --green: #2e8b57;
     --orange: #ff7809;
+    --violet: #8172d3;
 
     /* FONT */
     --fontFamily: 'Quicksand', Sans-Seri;
@@ -70,14 +71,6 @@ body {
     color: var(--primary-300);
 }
 
-body.light .small-sidebar-content {
-    background-color: var(--white);
-}
-
-body.dark .small-sidebar-content {
-    background-color: var(--secondary-800);
-}
-
 body.light .background-image {
     opacity: 0.4;
 }
@@ -99,19 +92,6 @@ h5 {
 a {
     text-decoration: none;
     letter-spacing: var(--letterSpacing);
-}
-
-.nav-links {
-    width: 100%;
-}
-
-.nav-link {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    text-transform: uppercase;
-    transition: var(--transition);
 }
 
 body.light .nav-link {
@@ -142,14 +122,6 @@ body.dark .nav-link:hover .icon {
     color: var(--primary-900);
 }
 
-.icon {
-    display: grid;
-    place-items: center;
-    font-size: 1.7rem;
-    margin-right: 1rem;
-    transition: var(--transition);
-}
-
 body.dark .active,
 body.light .active {
     color: var(--primary-900);
@@ -167,7 +139,7 @@ button:disabled {
     margin: 1rem;
     color: var(--textColor);
     font-family: var(--fontFamily);
-    font-size: 1rem;
+    font-size: 1.2rem;
     text-align: center;
     background: var(--primary-900);
     border: transparent;
@@ -198,55 +170,18 @@ button:disabled {
 }
 
 .btn-hero {
-    font-size: 1.25rem;
     padding: 0.5rem 1.25rem;
-}
-
-.btn-danger {
-    background: var(--red-light);
-    color: var(--red-dark);
-}
-
-.btn-danger:hover {
-    background: var(--red-dark);
-    color: var(--white);
 }
 
 .btn-back {
     position: absolute;
     top: 2%;
     left: 2%;
-    font-size: 1.7rem;
+    font-size: 2rem;
     border: none;
     background-color: transparent;
     transition: var(--transition);
     cursor: pointer;
-}
-
-body.light .btn-back {
-    color: var(--secondary-800);
-}
-
-body.light .btn-back:hover {
-    color: var(--primary-900);
-}
-
-body.dark .btn-back {
-    color: var(--primary-900);
-}
-
-body.dark .btn-back:hover {
-    color: var(--secondary-500);
-}
-
-body.light .btn-logout {
-    color: var(--secondary-800);
-    background-color: var(--primary-800);
-}
-
-body.dark .btn-logout {
-    color: var(--secondary-700);
-    background-color: var(--primary-800);
 }
 
 .btn-logout {
@@ -265,11 +200,6 @@ body.dark .btn-logout {
     transition: 0.6s;
     overflow: hidden;
     cursor: pointer;
-}
-
-body.light .btn-logout {
-    background-color: var(--secondary-700);
-    color: var(--primary-900);
 }
 
 .btn-logout span {
@@ -322,20 +252,81 @@ body.light .btn-logout {
     top: 50%;
     right: 7%;
     transform: translateY(-50%);
-    z-index: 100;
     padding: 0.3rem;
-    font-size: 1.8rem;
-    border-radius: 50%;
+    font-size: 2rem;
     cursor: pointer;
 }
 
+.btn-toggle {
+    position: absolute;
+    top: 20px;
+    margin-left: 1%;
+    z-index: 2;
+    background: transparent;
+    border-color: transparent;
+    font-size: 2rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--transition);
+}
+
+body.light .btn-logout {
+    background-color: var(--secondary-800);
+    color: var(--primary-900);
+}
+
+body.dark .btn-logout {
+    color: var(--secondary-900);
+    background-color: var(--primary-900);
+}
+
+body.light .btn-icon,
+body.light .btn-back,
+body.light .btn-toggle {
+    color: var(--secondary-400);
+}
+
+body.light .btn-icon:hover,
+body.light .btn-back:hover,
+body.light .btn-toggle:hover {
+    color: var(--secondary-900);
+}
+
+body.dark .btn-icon,
+body.dark .btn-back,
+body.dark .btn-toggle {
+    color: var(--primary-300);
+}
+
+body.dark .btn-icon:hover,
+body.dark .btn-back:hover,
+body.dark .btn-toggle:hover {
+    color: var(--primary-900);
+}
+
 body.light .btn-save {
-    border: 1.5px solid var(--secondary-700);
+    color: var(--primary-300);
+}
+
+body.light .btn-save:hover {
+    color: var(--primary-900);
 }
 
 body.dark .btn-save {
-    border: 1.5px solid var(--primary-300);
+    color: var(--secondary-600);
 }
+
+body.dark .btn-save:hover {
+    color: var(--secondary-900);
+}
+
 /* TABLE */
 
 th,
@@ -372,14 +363,6 @@ body.dark td {
     color: var(--primary-100);
 }
 
-body.dark .btn-icon {
-    color: var(--primary-800);
-}
-
-body.dark .btn-icon:hover {
-    color: var(--primary-800);
-}
-
 /* FORM */
 
 .form {
@@ -400,7 +383,7 @@ body.dark .btn-icon:hover {
 .form-input,
 .form-select {
     width: 60%;
-    padding: 0.5rem 0.7rem;
+    padding-left: 0.5rem;
     margin: 1.2rem;
     font-family: inherit;
     font-size: 1.1rem;
@@ -421,7 +404,7 @@ body.light select:-webkit-autofill:focus {
     border: 1px solid var(--secondary-900);
     border-radius: 20px;
     -webkit-text-fill-color: var(--secondary-900);
-    -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -433,8 +416,9 @@ body.dark select:-webkit-autofill:hover,
 body.dark select:-webkit-autofill:focus {
     border: 1px solid var(--primary-300);
     border-radius: 20px;
+    box-sizing: content-box;
     -webkit-text-fill-color: var(--primary-300);
-    -webkit-box-shadow: 0 0 0px 1000px var(--secondary-00) inset;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -446,12 +430,12 @@ body.light .form-input,
 }
 
 body.light .form-input:focus {
-    width: 65%;
+    width: 58%;
     border-color: var(--primary-800);
 }
 
 body.dark .form-input:focus {
-    width: 65%;
+    width: 58%;
     border-color: var(--primary-800);
 }
 
@@ -502,11 +486,26 @@ body.dark ::placeholder {
 }
 
 body.dark #groupNameInput {
-    border: 1px solid var(--primary-300);
+    border: none;
+    color: var(--secondary-800);
+    background-color: var(--primary-800);
 }
 
 body.light #groupNameInput {
-    border: 1px solid var(--secondary-700);
+    border: none;
+    color: var(--primary-800);
+    background-color: var(--secondary-800);
+}
+
+.select-container {
+    width: 400px;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 1015px) {
+    .select-container {
+        width: 250px;
+    }
 }
 
 /*DARK/LIGHT MODE*/
@@ -545,7 +544,7 @@ body.light #groupNameInput {
     top: 0;
     cursor: pointer;
     transition: var(--transition);
-    background-color: var(--primary-800);
+    background-color: var(--primary-900);
 }
 
 .slider:before {
@@ -569,7 +568,7 @@ body.light #groupNameInput {
 }
 
 input:checked + .slider {
-    background-color: var(--secondary-700);
+    background-color: var(--secondary-800);
 }
 
 input:checked + .slider:before {
@@ -603,4 +602,25 @@ body.dark .sun {
 
 body.dark .landing-title h1 {
     color: var(--primary-800);
+}
+
+/*TOAST_MESSAGE*/
+
+.toast-message {
+    background: var(--secondary-800);
+    color: var(--primary-600);
+    font-size: 0.8rem;
+    width: 80vw;
+    padding: 10px 5px;
+    margin: 20px;
+    font-family: inherit;
+    letter-spacing: var(--letterSpacing);
+    border-radius: 20px;
+}
+
+@media (min-width: 1015px) {
+    .toast-message {
+        width: 20vw;
+        font-size: 1rem;
+    }
 }

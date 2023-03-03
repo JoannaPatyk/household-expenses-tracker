@@ -14,23 +14,6 @@ const Wrapper = styled.section`
         margin: 0 auto;
     }
 
-    .btn-toggle {
-        position: absolute;
-        top: 20px;
-        margin-left: 1%;
-        background: transparent;
-        border-color: transparent;
-        font-size: 2rem;
-        color: var(--primary-300);
-        transition: var(--transition);
-        cursor: pointer;
-    }
-
-    .btn-toggle:hover {
-        transform: scale(0.97);
-        color: var(--primary-900);
-    }
-
     .background-image {
         position: absolute;
         left: 20%;
@@ -41,7 +24,7 @@ const Wrapper = styled.section`
         background-image: url('../src/assets/images/background.png');
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: 920px) {
         .dashboard {
             grid-template-columns: auto 1fr;
         }
