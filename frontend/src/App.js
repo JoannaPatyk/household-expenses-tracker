@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { BsMoonStars, BsSun } from 'react-icons/bs';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Landing, Login, Error, SharedLayout, Registration } from './pages';
 import { Budget, Expenses, Statistics, Group, ProtectedRoute } from './pages/dashboard';
 import ExpensesForm from './components/ExpensesForm';
@@ -57,6 +59,7 @@ function App() {
                     <Route path="edit_expense" element={<EditExpense />} />
                     <Route path="*" element={<Error />}></Route>
                 </Routes>
+                <ToastContainer position="top-right" />
             </HashRouter>
         </>
     );

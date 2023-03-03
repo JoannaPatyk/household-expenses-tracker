@@ -23,14 +23,14 @@ function ExpensesForm() {
         setNewAmount(event.target.value);
     };
 
-    const handleCategoryChange = (event) => {
-        if (event.target.value === '' || newAmount === '' || newAmount <= 0) {
+    const handleCategoryChange = (option) => {
+        if (option.value === '' || newAmount === '' || newAmount <= 0) {
             setButtonDisabled(true);
         } else {
             setButtonDisabled(false);
         }
 
-        setNewCategory(event.target.value);
+        setNewCategory(option.value);
     };
 
     const handleCommentChange = (event) => {
@@ -50,12 +50,7 @@ function ExpensesForm() {
         <Wrapper>
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <h2>Dodaj nowy wydatek</h2>
-                <FormRowSelect
-                    firstOption="dostępne kategorie"
-                    id="categorySelect"
-                    list={[...categories]}
-                    onChange={handleCategoryChange}
-                />
+                <FormRowSelect id="categorySelect" list={[...categories]} onChange={handleCategoryChange} />
                 <FormRowInput
                     id="amountInput"
                     value={newAmount}

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Button, FormRowInput } from '../../components';
 import Wrapper from '../../assets/wrappers/Group';
-import { CiCircleRemove, CiCircleCheck, CiFloppyDisk } from 'react-icons/ci';
+import { CiCircleCheck, CiFloppyDisk } from 'react-icons/ci';
+import { HiOutlineXMark } from '../../../node_modules/react-icons/hi2';
 import { useGroupContext } from '../../context/GroupContext';
 
 function Group() {
@@ -27,8 +29,17 @@ function Group() {
     };
 
     const handleAdd = () => {
-        if (newMember === group.owner.email) {
-            alert('E-mail należy do właściciela grupy! Podaj inny.');
+        if (group.invitations.find((member) => member.email === newMember)) {
+            toast.warning('Zaproszenie zostało już wcześniej wysłane. Poczekaj na odpowiedź.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
+            return;
+        } else if (newMember === group.owner.email) {
+            toast.warning('E-mail należy do właściciela grupy! Podaj inny.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
             setNewMember('');
             return;
         }
@@ -49,14 +60,17 @@ function Group() {
 
     const handleAcceptInvitation = (id) => {
         acceptInvitation(id);
-        alert('Zaloguj się ponownie, żeby zobaczyć aktualną listę członków Twojej grupy.');
+        toast.info('Zaloguj się ponownie, żeby zobaczyć aktualną listę członków Twojej grupy.', {
+            position: toast.POSITION.BOTTOM_LEFT,
+            className: 'toast-message'
+        });
     };
 
     return (
         <Wrapper>
             <div className="group-container">
                 <div className="group-name-container">
-                    <h2>Aktualna nazwa grupy:</h2>
+                    <h2>Aktualna nazwa grupy</h2>
                     <div className="group-name">
                         <FormRowInput
                             id="groupNameInput"
@@ -74,13 +88,13 @@ function Group() {
                         {group.members
                             ? group.members.map((item, index) => {
                                   return (
-                                      <div className="member" key={index}>
+                                      <div className="member" key={item.id}>
                                           {index === 0 ? (
                                               <p>{item.email}</p>
                                           ) : (
                                               <>
                                                   <p>{item.email}</p>
-                                                  <CiCircleRemove
+                                                  <HiOutlineXMark
                                                       className="delete-btn"
                                                       onClick={() => removeUser(item.email)}
                                                   />
@@ -94,11 +108,11 @@ function Group() {
                     <div className="decline-invitations">
                         <h3>Wysłane zaproszenia</h3>
                         {group.invitations
-                            ? group.invitations.map((item, index) => {
+                            ? group.invitations.map((item) => {
                                   return (
-                                      <div className="member" key={index}>
+                                      <div className="member" key={item.id}>
                                           <p>{item.email}</p>
-                                          <CiCircleRemove
+                                          <HiOutlineXMark
                                               className="delete-btn"
                                               onClick={() => declineUserInvitation(item.email)}
                                           />
@@ -110,11 +124,11 @@ function Group() {
                     <div className="received-invitations">
                         <h3>Otrzymane zaproszenia</h3>
                         {invitations
-                            ? invitations.map((item, index) => {
+                            ? invitations.map((item) => {
                                   return (
-                                      <div className="member" key={index}>
+                                      <div className="member" key={item.id}>
                                           <p>{item.owner.email}</p>
-                                          <CiCircleRemove
+                                          <HiOutlineXMark
                                               className="delete-btn"
                                               onClick={() => declineInvitation(item.id)}
                                           />
@@ -129,12 +143,12 @@ function Group() {
                     </div>
                 </div>
                 <div className="invitation-container">
-                    <h2>Dodaj nowego członka grupy:</h2>
+                    <h2>Dodaj członka grupy</h2>
                     <FormRowInput
                         id="emailInput"
                         value={newMember}
                         type="text"
-                        placeholder="Podaj email . . ."
+                        placeholder="podaj email"
                         onChange={handleMemberChange}
                     />
                     <div>

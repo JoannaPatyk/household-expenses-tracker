@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CiCircleRemove, CiEdit, CiUndo } from 'react-icons/ci';
+import { TfiBackLeft } from 'react-icons/tfi';
+import { CiEdit } from 'react-icons/ci';
+import { HiOutlineXMark } from 'react-icons/hi2';
 import background from '../assets/images/background.png';
 import Button from './Button';
 import Logo from './Logo';
@@ -64,7 +66,7 @@ function EditCategory() {
     return (
         <Wrapper>
             <Link to="/add" className="btn-back">
-                <CiUndo />
+                <TfiBackLeft />
             </Link>
             <Logo />
             <div className="edit-container">
@@ -75,7 +77,7 @@ function EditCategory() {
                         type="text"
                         id="form-input"
                         className="form-input"
-                        placeholder="Dodaj nową lub edytuj istniejącą kategorie..."
+                        placeholder="kategoria"
                         onChange={handleNameChange}
                     />
                     <Button type="submit" version="hero" isDisabled={buttonDisabled}>
@@ -90,7 +92,7 @@ function EditCategory() {
                         <div className="category" key={category.id}>
                             <p>{category.name}</p>
                             <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
-                            <CiCircleRemove className="edit-btn delete" onClick={() => deleteCategory(category.id)} />
+                            <HiOutlineXMark className="edit-btn delete" onClick={() => deleteCategory(category.id)} />
                         </div>
                     );
                 })}

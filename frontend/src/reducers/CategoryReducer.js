@@ -19,7 +19,7 @@ const CategoryReducer = (state, action) => {
         case ADD_CATEGORY: {
             return {
                 ...state,
-                categories: [...state.categories, { name: action.payload }]
+                categories: [...state.categories, { id: '', name: action.payload }]
             };
         }
         case UPDATE_CATEGORY: {

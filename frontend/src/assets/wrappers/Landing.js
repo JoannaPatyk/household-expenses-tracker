@@ -88,17 +88,18 @@ const Wrapper = styled.main`
         left: 50%;
         z-index: -100;
         height: 300%;
-        opacity: 0.2;
+        opacity: 0.3;
         transform: translate(-52%, -50%);
         background-image: url('../src/assets/images/background.png') center;
     }
 
     @media (max-width: 640px) {
         .landing-container {
-            min-height: 100vh;
+            /* min-height: 100vh; */
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin-top: 4rem;
         }
 
         .logo {
@@ -107,7 +108,7 @@ const Wrapper = styled.main`
         }
 
         .logo-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .goals-container {
@@ -115,7 +116,7 @@ const Wrapper = styled.main`
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
 
         h3 {
@@ -123,12 +124,12 @@ const Wrapper = styled.main`
         }
 
         h5 {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
         }
 
         .background-image {
             top: 50%;
-            height: 100%;
+            height: 130%;
         }
     }
 

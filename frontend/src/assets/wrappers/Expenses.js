@@ -43,19 +43,6 @@ const Wrapper = styled.div`
         margin: 0.1rem;
     }
 
-    .btn-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: var(--secondary-800);
-        transition: var(--transition);
-    }
-
-    .btn-icon:hover {
-        color: var(--primary-800);
-    }
-
     @media (max-width: 600px) {
         table {
             width: 100vw;
@@ -67,8 +54,8 @@ const Wrapper = styled.div`
         }
 
         td {
-            font-size: 0.8rem;
-            margin: 0.3rem;
+            font-size: 0.7rem;
+            margin: 0.7rem 0.3rem;
             text-align: center;
         }
 
@@ -83,11 +70,11 @@ const Wrapper = styled.div`
 
         .expenses-title {
             display: grid;
-            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+            grid-template-columns: 0.4fr 1fr 1fr 1fr 1fr 0.5fr;
         }
 
         .expense-container {
-            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+            grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 0.5fr;
         }
 
         #btn {

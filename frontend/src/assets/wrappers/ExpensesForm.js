@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     }
 
     h2 {
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
 
     #categorySelect,
@@ -42,8 +42,7 @@ const Wrapper = styled.div`
     }
 
     .btn {
-        font-size: 0.9rem;
-        width: 15rem;
+        width: 16rem;
     }
 
     .editCategoryBtn-container {

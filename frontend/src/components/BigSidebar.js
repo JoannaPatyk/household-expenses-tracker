@@ -1,5 +1,5 @@
 import React from 'react';
-import { LogoForSidebar, NavLinks } from './';
+import { LogoForSidebar, NavLinksForBigSidebar } from './';
 import Wrapper from '../assets/wrappers/BigSidebar';
 import { useCategoriesContext } from '../context/CategoriesContext';
 
@@ -9,7 +9,7 @@ function BigSidebar() {
         <Wrapper>
             <div className={`${isSidebarOpen ? 'sidebar-container' : 'sidebar-container show-sidebar'}`}>
                 <LogoForSidebar className="logo" />
-                <NavLinks />
+                <NavLinksForBigSidebar />
             </div>
         </Wrapper>
     );

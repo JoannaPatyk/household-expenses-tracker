@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CiUndo } from 'react-icons/ci';
+import { toast } from 'react-toastify';
+import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';
 import { Logo, Button, FormRowInput } from '../components';
@@ -27,7 +28,10 @@ function Registration() {
             register(userName, userEmail, userPassword);
             navigate('/landing');
         } else {
-            alert('Podane hasło nie jest poprawne. Spróbuj ponownie.');
+            toast.error('Podane hasło nie jest poprawne. Spróbuj ponownie.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
         }
     };
 
@@ -59,7 +63,7 @@ function Registration() {
         <Wrapper>
             <form className="form-container" onSubmit={handleSubmit}>
                 <Link to="/landing" className="btn-back">
-                    <CiUndo />
+                    <TfiBackLeft />
                 </Link>
                 <Logo />
                 <h2>Podaj dane do rejestracji</h2>

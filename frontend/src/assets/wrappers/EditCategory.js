@@ -2,23 +2,20 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     .edit-container,
-    .categories {
+    .categories,
+    #form-input {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    .edit-container {
-        margin: 1rem;
-    }
-
     .logo-container {
-        margin-top: 7rem;
+        margin-top: 5rem;
     }
 
     h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin: 0;
     }
 
@@ -27,15 +24,16 @@ const Wrapper = styled.div`
     }
 
     #form-input {
-        width: 50vw;
+        width: 75vw;
+        margin: 1.5rem 0.8rem;
     }
 
     #form-input::placeholder {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     #form-input:focus {
-        width: 40vw;
+        width: 73vw;
     }
 
     .category {
@@ -80,16 +78,17 @@ const Wrapper = styled.div`
     }
 
     .background-image {
-        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        height: 40%;
+        opacity: 0.3;
     }
 
     @media (min-width: 820px) {
         h2 {
             font-size: 1.8rem;
-        }
-
-        #form-input:focus {
-            width: 50vw;
         }
 
         #form-input::placeholder {
@@ -106,11 +105,6 @@ const Wrapper = styled.div`
             width: 70%;
             margin: 1rem 0;
             font-size: 1.1rem;
-        }
-
-        .btn {
-            width: 35%;
-            font-size: 1.2rem;
         }
 
         .background-image {

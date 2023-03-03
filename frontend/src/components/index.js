@@ -8,7 +8,8 @@ import FormRowSelect from './FormRowSelect';
 import LoadingIndicator from './LoadingIndicator';
 import Logo from './Logo';
 import LogoForSidebar from './LogoForSidebar';
-import NavLinks from './NavLinks';
+import NavLinksForSmallSidebar from './NavLinksForSmallSidebar';
+import NavLinksForBigSidebar from './NavLinksForBigSidebar';
 import SmallSidebar from './SmallSidebar';
 
 export {
@@ -22,6 +23,7 @@ export {
     LoadingIndicator,
     Logo,
     LogoForSidebar,
-    NavLinks,
+    NavLinksForSmallSidebar,
+    NavLinksForBigSidebar,
     SmallSidebar
 };
