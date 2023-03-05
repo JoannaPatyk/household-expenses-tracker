@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Button, FormRowInput, FormRowSelect, Logo } from './';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/EditExpenses';
@@ -7,7 +8,7 @@ import background from '../assets/images/background.png';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
 
-function EditExpense() {
+function EditExpense({ theme }) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [editCategory, setEditCategory] = useState('');
     const [editAmount, setEditAmount] = useState('');
@@ -61,7 +62,12 @@ function EditExpense() {
             <Logo />
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <h2>Edytuj wybrany wydatek</h2>
-                <FormRowSelect id="categorySelect" list={[...categories]} onClick={handleCategoryChange} />
+                <FormRowSelect
+                    id="categorySelect"
+                    list={[...categories]}
+                    theme={theme}
+                    onClick={handleCategoryChange}
+                />
                 <FormRowInput
                     id="amountInput"
                     value={editAmount}
@@ -84,5 +90,9 @@ function EditExpense() {
         </Wrapper>
     );
 }
+
+EditExpense.propTypes = {
+    theme: PropTypes.string
+};
 
 export default EditExpense;

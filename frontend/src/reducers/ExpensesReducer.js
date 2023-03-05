@@ -8,7 +8,6 @@ const ExpenseReducer = (state, action) => {
                 expenses: [
                     ...state.expenses,
                     {
-                        id: action.payload.id,
                         category: action.payload.category,
                         amount: action.payload.amount,
                         comment: action.payload.comment
@@ -37,7 +36,7 @@ const ExpenseReducer = (state, action) => {
                 expenses: state.expenses.map((expense) =>
                     expense.id === action.payload.id
                         ? {
-                              id: action.payload.id,
+                              ...expense,
                               category: action.payload.updateCategory,
                               amount: action.payload.updateAmount,
                               comment: action.payload.updateComment
@@ -52,10 +51,8 @@ const ExpenseReducer = (state, action) => {
                 expenses: state.expenses.map((expense) =>
                     expense.name === action.payload.oldName
                         ? {
-                              id: expense.id,
-                              category: action.payload.updateName,
-                              amount: expense.amount,
-                              comment: expense.comment
+                              ...expense,
+                              category: action.payload.updateName
                           }
                         : expense
                 )

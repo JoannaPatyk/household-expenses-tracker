@@ -46,7 +46,7 @@ function App() {
                             </ProtectedRoute>
                         }
                     >
-                        <Route index path="add" element={<ExpensesForm />} />
+                        <Route index path="add" element={<ExpensesForm theme={theme} />} />
                         <Route path="expenses" element={<Expenses />} />
                         <Route path="budget" element={<Budget />} />
                         <Route path="statistics" element={<Statistics />} />
@@ -56,7 +56,7 @@ function App() {
                     <Route path="login" element={<Login />} />
                     <Route path="registration" element={<Registration />} />
                     <Route path="edit_category" element={<EditCategory />} />
-                    <Route path="edit_expense" element={<EditExpense />} />
+                    <Route path="edit_expense" element={<EditExpense theme={theme} />} />
                     <Route path="*" element={<Error />}></Route>
                 </Routes>
                 <ToastContainer position="top-right" />

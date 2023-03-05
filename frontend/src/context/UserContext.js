@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import apiConfig from '../apiConfig';
 import { toast } from 'react-toastify';
+
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -11,11 +12,29 @@ export const UserProvider = ({ children }) => {
     const [userPassword, setUserPassword] = useState('');
     const [userVerificationPassword, setUserVerificationPassword] = useState('');
     const [isLogged, setIsLogged] = useState(false);
+    const [userData, setUserData] = useState({});
 
     const removeSessionData = () => {
         localStorage.removeItem('expirationTime');
         localStorage.removeItem('token');
     };
+
+    const fetchUser = useCallback(async () => {
+        try {
+            const response = await axios.get(`${apiConfig.api}/user`);
+
+            const data = response.data;
+            setUserData({ name: data.name, email: data.email });
+        } catch (error) {
+            console.error('error: ', error.response);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isLogged) {
+            fetchUser();
+        }
+    }, [isLogged, fetchUser]);
 
     useEffect(() => {
         const hours = 1;
@@ -109,6 +128,7 @@ export const UserProvider = ({ children }) => {
     return (
         <UserContext.Provider
             value={{
+                userData,
                 userName,
                 userEmail,
                 userPassword,

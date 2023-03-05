@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Button, FormRowInput } from '../../components';
 import Wrapper from '../../assets/wrappers/Group';
-import { CiCircleCheck, CiFloppyDisk } from 'react-icons/ci';
-import { HiOutlineXMark } from '../../../node_modules/react-icons/hi2';
+import { CiFloppyDisk } from 'react-icons/ci';
+import { HiOutlineXMark, HiCheck } from '../../../node_modules/react-icons/hi2';
 import { useGroupContext } from '../../context/GroupContext';
+import { useUserContext } from '../../context/UserContext';
 
 function Group() {
     const [newGroupName, setNewGroupName] = useState('Twoja grupa');
     const [newMember, setNewMember] = useState('');
+    const { userData } = useUserContext();
     const {
         group,
         invitations,
@@ -28,23 +30,35 @@ function Group() {
         updateGroupName(newGroupName);
     };
 
-    const handleAdd = () => {
-        if (group.invitations.find((member) => member.email === newMember)) {
-            toast.warning('Zaproszenie zostało już wcześniej wysłane. Poczekaj na odpowiedź.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
-            return;
-        } else if (newMember === group.owner.email) {
-            toast.warning('E-mail należy do właściciela grupy! Podaj inny.', {
+    const handleAdd = async () => {
+        if (newMember === group.owner.email) {
+            toast.warning('Podany e-mail należy do właściciela grupy! Podaj inny.', {
                 position: toast.POSITION.BOTTOM_LEFT,
                 className: 'toast-message'
             });
             setNewMember('');
             return;
+        } else if (group.members.find((member) => member.email === newMember)) {
+            toast.warning('Osoba o podanym adresie e-mail należy już do grupy!', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
+            return;
+        } else if (group.invitations.find((member) => member.email === newMember)) {
+            toast.warning('Zaproszenie zostało już wcześniej wysłane. Poczekaj na odpowiedź.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
+            return;
         }
 
-        inviteUser(newMember);
+        const result = await inviteUser(newMember);
+        if (!result) {
+            toast.warning('Brak użytkownika o podanym adresie e-mail w bazie, podaj inny.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
+        }
         setNewMember('');
     };
 
@@ -60,10 +74,21 @@ function Group() {
 
     const handleAcceptInvitation = (id) => {
         acceptInvitation(id);
-        toast.info('Zaloguj się ponownie, żeby zobaczyć aktualną listę członków Twojej grupy.', {
+        toast.info('Zaloguj się ponownie, żeby zobaczyć zmiany.', {
             position: toast.POSITION.BOTTOM_LEFT,
             className: 'toast-message'
         });
+    };
+
+    const handleRemoveUser = (email) => {
+        removeUser(email);
+
+        if (group.owner.email !== userData.email) {
+            toast.info('Zaloguj się ponownie, żeby zobaczyć zmiany.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
+        }
     };
 
     return (
@@ -96,7 +121,9 @@ function Group() {
                                                   <p>{item.email}</p>
                                                   <HiOutlineXMark
                                                       className="delete-btn"
-                                                      onClick={() => removeUser(item.email)}
+                                                      onClick={() => {
+                                                          handleRemoveUser(item.email);
+                                                      }}
                                                   />
                                               </>
                                           )}
@@ -132,7 +159,7 @@ function Group() {
                                               className="delete-btn"
                                               onClick={() => declineInvitation(item.id)}
                                           />
-                                          <CiCircleCheck
+                                          <HiCheck
                                               className="accept-btn"
                                               onClick={() => handleAcceptInvitation(item.id)}
                                           />
@@ -143,7 +170,7 @@ function Group() {
                     </div>
                 </div>
                 <div className="invitation-container">
-                    <h2>Dodaj członka grupy</h2>
+                    <h2>Wyślij zaproszenie do grupy</h2>
                     <FormRowInput
                         id="emailInput"
                         value={newMember}

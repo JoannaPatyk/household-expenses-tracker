@@ -44,6 +44,19 @@ function Statistics() {
         };
     });
 
+    const RADIAN = Math.PI / 180;
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
+
     return (
         <Wrapper>
             <div className="statistics-container">
@@ -58,11 +71,11 @@ function Statistics() {
                                 cx="50%"
                                 cy="50%"
                                 outerRadius={135}
-                                label
+                                label={renderCustomizedLabel}
                                 labelLine={false}
                             >
                                 {summedByCategory.map((entry, index) => (
-                                    <Cell key={`cell-${index} zł`} fill={colors[index]} />
+                                    <Cell key={`cell-${index}`} fill={colors[index]} />
                                 ))}
                             </Pie>
                             <Tooltip animationEasing="ease-in-out" />
@@ -75,16 +88,16 @@ function Statistics() {
                     <ResponsiveContainer width={'100%'} height={320}>
                         <BarChart
                             data={data}
-                            barCategoryGap="15%"
+                            barCategoryGap="30%"
                             margin={{
                                 top: 5,
-                                right: 5,
-                                left: 5,
+                                right: 0,
+                                left: 0,
                                 bottom: 5
                             }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="category" />
+                            <XAxis />
                             <YAxis />
                             <Tooltip cursor={false} itemStyle={{ color: '#322C3B' }} />
                             <Bar name="planowane wydatki" unit=" zł" dataKey="plannedAmount" fill="#ff7809b9" />

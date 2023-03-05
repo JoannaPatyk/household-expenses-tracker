@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
-const FormRowSelect = ({ list, onChange }) => {
+const FormRowSelect = ({ list, onChange, theme }) => {
     const options = list.map((item) => {
         return {
             value: `${item.name}`,
@@ -10,21 +10,27 @@ const FormRowSelect = ({ list, onChange }) => {
         };
     });
 
+    const light_yellow = '#fff0d1';
+    const dark_yellow = '#ffcc66';
+    const dark_purple = '#231c30';
+
+    const isDark = theme === 'dark';
+
     const styles = {
         option: (defaultStyles, state) => ({
             ...defaultStyles,
             padding: '15px',
             fontWeight: state.isSelected ? 'bold' : 'normal',
             fontSize: state.selectProps.myFontSize,
-            borderBottom: localStorage.getItem('theme') === 'dark' ? '1px dotted #efdac5' : '1px dotted #201a2b',
-            color: localStorage.getItem('theme') === 'dark' ? '#efdac5' : '#282d40',
-            backgroundColor: localStorage.getItem('theme') === 'dark' ? '#282d40' : '#fff',
+            borderBottom: isDark ? `1px dotted ${light_yellow}` : `1px dotted ${dark_purple}`,
+            color: isDark ? light_yellow : dark_purple,
+            backgroundColor: isDark ? dark_purple : '#fff',
             cursor: 'pointer'
         }),
 
         control: (defaultStyles) => ({
             ...defaultStyles,
-            backgroundColor: localStorage.getItem('theme') === 'dark' ? '#dfb48b' : '#282d40',
+            backgroundColor: isDark ? dark_yellow : dark_purple,
             padding: '5px',
             width: '100%',
             border: 0,
@@ -35,22 +41,22 @@ const FormRowSelect = ({ list, onChange }) => {
         singleValue: (defaultStyles) => ({
             ...defaultStyles,
             fontWeight: 'bold',
-            color: localStorage.getItem('theme') === 'dark' ? '#282d40' : '#dfb48b'
+            color: isDark ? dark_purple : dark_yellow
         }),
 
         placeholder: (defaultStyles) => ({
             ...defaultStyles,
-            color: localStorage.getItem('theme') === 'dark' ? '#282d40' : '#dfb48b'
+            color: isDark ? dark_purple : dark_yellow
         }),
 
         dropdownIndicator: (defaultStyles) => ({
             ...defaultStyles,
-            color: localStorage.getItem('theme') === 'dark' ? '#282d40' : '#dfb48b'
+            color: isDark ? dark_purple : dark_yellow
         }),
 
         indicatorSeparator: (defaultStyles) => ({
             ...defaultStyles,
-            backgroundColor: localStorage.getItem('theme') === 'dark' ? '#282d40' : '#dfb48b'
+            backgroundColor: isDark ? dark_purple : dark_yellow
         }),
 
         menuList: (defaultStyles) => ({
@@ -75,7 +81,8 @@ const FormRowSelect = ({ list, onChange }) => {
 FormRowSelect.propTypes = {
     onChange: PropTypes.func,
     list: PropTypes.array,
-    children: PropTypes.string
+    children: PropTypes.string,
+    theme: PropTypes.string
 };
 
 export default FormRowSelect;

@@ -15,7 +15,7 @@ const Wrapper = styled.main`
         justify-content: center;
         min-height: 100vh;
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 4rem;
     }
 
     .group-name {
@@ -39,13 +39,13 @@ const Wrapper = styled.main`
     }
 
     #emailInput {
-        width: 20rem;
+        width: 240px;
         margin: 0.5rem;
+        font-size: 1rem;
     }
 
-    #emailInput::placeholder {
-        font-size: 0.8rem;
-        width: 18rem;
+    #emailInput:hover {
+        width: 220px;
     }
 
     .members,
@@ -127,28 +127,11 @@ const Wrapper = styled.main`
         }
 
         #emailInput {
-            width: 28rem;
+            width: 400px;
         }
 
         #emailInput:hover {
-            width: 26rem;
-        }
-
-        #emailInput::placeholder {
-            font-size: 1rem;
-        }
-    }
-
-    @media (min-width: 820px) {
-        #emailInput {
-            width: 40rem;
-        }
-        #emailInput:hover {
-            width: 38rem;
-        }
-
-        #emailInput::placeholder {
-            font-size: 1rem;
+            width: 380px;
         }
     }
 
@@ -208,25 +191,8 @@ const Wrapper = styled.main`
             font-size: 1.1rem;
         }
 
-        #groupNameInput {
-            width: 80%;
-            font-size: 1.3rem;
-        }
-
         .invitation-container {
             min-width: 85%;
-        }
-
-        #emailInput {
-            width: 45rem;
-        }
-
-        #emailInput:hover {
-            width: 43rem;
-        }
-
-        #emailInput::placeholder {
-            font-size: 1.2rem;
         }
     }
 `;

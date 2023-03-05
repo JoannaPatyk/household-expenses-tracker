@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { TfiBackLeft } from 'react-icons/tfi';
@@ -8,6 +8,7 @@ import { Logo, Button, FormRowInput } from '../components';
 import { useUserContext } from '../context/UserContext';
 
 function Registration() {
+    const [buttonDisabled, setButtonDisabled] = useState(true);
     const navigate = useNavigate();
     const {
         register,
@@ -36,27 +37,28 @@ function Registration() {
     };
 
     const handleChangeName = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-        setUserName(value);
+        const name = event.target.value;
+        if (name === '') {
+            setButtonDisabled(true);
+        } else {
+            setButtonDisabled(false);
+        }
+        setUserName(name);
     };
 
     const handleChangeEmail = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-        setUserEmail(value);
+        const email = event.target.value;
+        setUserEmail(email);
     };
 
     const handleChangePassword = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-        setUserPassword(value);
+        const password = event.target.value;
+        setUserPassword(password);
     };
 
     const handleChangeVerificationPassword = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-        setUserVerificationPassword(value);
+        const verificationPassword = event.target.value;
+        setUserVerificationPassword(verificationPassword);
     };
 
     return (
@@ -91,9 +93,10 @@ function Registration() {
                     placeholder="powtórz hasło"
                     onChange={(event) => handleChangeVerificationPassword(event)}
                 />
-                <Button type="submit" version="hero">
+                <Button type="submit" version="hero" isDisabled={buttonDisabled}>
                     zarejestruj
                 </Button>
+                <p>*Wszystkie pola są wymagane.</p>
             </form>
             <img src={background} alt="background" className="background-image" />
         </Wrapper>

@@ -92,10 +92,16 @@ export const GroupProvider = ({ children }) => {
     const inviteUser = async (email) => {
         try {
             await axios.post(`${apiConfig.api}/group/invite_user`, { email });
-
             dispatch({ type: INVITE_USER, payload: { email } });
+            fetchGroup();
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+
+            if (error.response.status === 404) {
+                return false;
+            }
         }
     };
 
@@ -107,6 +113,7 @@ export const GroupProvider = ({ children }) => {
         try {
             await axios.post(`${apiConfig.api}/group/decline_user_invitation`, { email });
             dispatch({ type: DECLINE_USER_INVITATION, payload: email });
+            fetchGroup();
         } catch (error) {
             console.error('error: ', error.response);
         }
@@ -115,8 +122,8 @@ export const GroupProvider = ({ children }) => {
     const removeUser = async (email) => {
         try {
             await axios.post(`${apiConfig.api}/group/remove_user`, { email });
-
             dispatch({ type: REMOVE_USER, payload: email });
+            fetchGroup();
         } catch (error) {
             console.error('error: ', error.response);
         }
@@ -125,8 +132,8 @@ export const GroupProvider = ({ children }) => {
     const acceptInvitation = async (id) => {
         try {
             await axios.post(`${apiConfig.api}/group/accept_invitation`, { groupId: id });
-
             dispatch({ type: ACCEPT_INVITATION, payload: id });
+            fetchInvitations();
         } catch (error) {
             console.error('error: ', error.response);
         }
@@ -135,8 +142,8 @@ export const GroupProvider = ({ children }) => {
     const declineInvitation = async (id) => {
         try {
             await axios.post(`${apiConfig.api}/group/decline_invitation`, { groupId: id });
-
             dispatch({ type: DECLINE_INVITATION, payload: id });
+            fetchInvitations();
         } catch (error) {
             console.error('error: ', error.response);
         }

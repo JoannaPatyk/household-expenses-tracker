@@ -27,7 +27,7 @@ const CategoryReducer = (state, action) => {
                 ...state,
                 categories: state.categories.map((category) =>
                     category.id === action.payload.id
-                        ? { id: action.payload.id, name: action.payload.updateCategoryName }
+                        ? { ...category, name: action.payload.updateCategoryName }
                         : category
                 )
             };

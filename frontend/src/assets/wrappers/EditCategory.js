@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     .edit-container,
     .categories,
-    #form-input {
+    #form-input,
+    form {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -19,12 +20,8 @@ const Wrapper = styled.div`
         margin: 0;
     }
 
-    form {
-        text-align: center;
-    }
-
     #form-input {
-        width: 75vw;
+        width: 240px;
         margin: 1.5rem 0.8rem;
     }
 
@@ -33,7 +30,7 @@ const Wrapper = styled.div`
     }
 
     #form-input:focus {
-        width: 73vw;
+        width: 220px;
     }
 
     .category {
@@ -91,8 +88,13 @@ const Wrapper = styled.div`
             font-size: 1.8rem;
         }
 
-        #form-input::placeholder {
-            font-size: 1rem;
+        #form-input {
+            width: 400px;
+            margin: 1.5rem 0.8rem;
+        }
+
+        #form-input:focus {
+            width: 380px;
         }
 
         .categories {

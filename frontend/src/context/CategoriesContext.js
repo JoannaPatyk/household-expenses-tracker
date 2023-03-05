@@ -51,9 +51,7 @@ export const CategoriesProvider = ({ children }) => {
     const addCategory = async (name) => {
         try {
             await axios.post(`${apiConfig.api}/categories`, { name });
-
             dispatch({ type: ADD_CATEGORY, payload: name });
-
             trackPromise(fetchCategories());
         } catch (error) {
             console.error('error: ', error.response);
@@ -77,7 +75,6 @@ export const CategoriesProvider = ({ children }) => {
     const deleteCategory = async (id) => {
         try {
             await axios.delete(`${apiConfig.api}/categories/${id}`);
-
             dispatch({ type: DELETE_CATEGORY, payload: id });
         } catch (error) {
             console.error('error: ', error.response);

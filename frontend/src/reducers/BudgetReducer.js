@@ -16,7 +16,7 @@ const BudgetReducer = (state, action) => {
                 budget: state.budget.map((budgetEntry) =>
                     budgetEntry.id === action.payload.id
                         ? {
-                              id: action.payload.id,
+                              ...budgetEntry,
                               categoryName: budgetEntry.categoryName,
                               amount: action.payload.updateBudgetEntryAmount
                           }
