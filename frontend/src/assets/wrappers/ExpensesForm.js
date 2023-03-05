@@ -43,6 +43,7 @@ const Wrapper = styled.div`
 
     .btn {
         width: 16rem;
+        height: 40px;
     }
 
     .editCategoryBtn-container {

@@ -49,9 +49,7 @@ export const ExpensesProvider = ({ children }) => {
     const addExpense = async (category, amount, comment) => {
         try {
             await axios.post(`${apiConfig.api}/expenses`, { category, amount, comment });
-
             dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
-
             trackPromise(fetchExpenses());
         } catch (error) {
             console.error('error: ', error.response);
@@ -82,7 +80,6 @@ export const ExpensesProvider = ({ children }) => {
     const deleteExpense = async (id) => {
         try {
             await axios.delete(`${apiConfig.api}/expenses/${id}`);
-
             dispatch({ type: DELETE_EXPENSE, payload: id });
         } catch (error) {
             console.error('error: ', error.response);

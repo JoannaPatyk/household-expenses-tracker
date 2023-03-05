@@ -29,6 +29,11 @@ const Wrapper = styled.div`
         margin-bottom: 1rem;
     }
 
+    p {
+        font-size: 0.6rem;
+        letter-spacing: var(--letterSpacing);
+    }
+
     .btn {
         margin-top: 1rem;
         font-size: 1.2rem;
@@ -73,11 +78,6 @@ const Wrapper = styled.div`
         .form-input {
             font-size: 0.8rem;
             margin: 0.25rem;
-        }
-
-        .btn {
-            width: 55%;
-            font-size: 0.9rem;
         }
 
         .background-image {

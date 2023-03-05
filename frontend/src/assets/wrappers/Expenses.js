@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     .expenses-title,
     .expense-container {
         display: grid;
-        grid-template-columns: 0.5fr 1fr 1fr 1fr 2fr 2fr 0.5fr;
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 2fr 0.5fr;
         place-items: center;
         box-shadow: var(--shadow-3);
     }
@@ -47,14 +47,15 @@ const Wrapper = styled.div`
         table {
             width: 100vw;
         }
+
         th {
             font-size: 0.6rem;
-            margin: 0.8rem 0rem;
+            margin: 0.8rem 0;
             text-align: center;
         }
 
         td {
-            font-size: 0.7rem;
+            font-size: 0.5rem;
             margin: 0.7rem 0.3rem;
             text-align: center;
         }
@@ -69,12 +70,11 @@ const Wrapper = styled.div`
         }
 
         .expenses-title {
-            display: grid;
-            grid-template-columns: 0.4fr 1fr 1fr 1fr 1fr 0.5fr;
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
         }
 
         .expense-container {
-            grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 0.5fr;
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
         }
 
         #btn {
@@ -85,7 +85,32 @@ const Wrapper = styled.div`
         }
     }
 
-    @media (min-width: 1125px) {
+    @media (max-width: 700px) {
+        th {
+            font-size: 0.8rem;
+        }
+
+        td {
+            font-size: 0.8rem;
+            margin: 0.7rem 0.3rem;
+        }
+
+        th:nth-child(6),
+        td:nth-child(6) {
+            display: none;
+        }
+
+        .expenses-title {
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+        }
+
+        .expense-container {
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+        }
+    }
+
+    @media (min-width: 1280px) {
         table {
             width: 70vw;
         }

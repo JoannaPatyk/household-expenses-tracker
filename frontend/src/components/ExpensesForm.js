@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Button, FormRowInput, FormRowSelect } from './';
 import Wrapper from '../assets/wrappers/ExpensesForm';
 import { useExpensesContext } from '../context/ExpensesContext';
 import { useCategoriesContext } from '../context/CategoriesContext';
 
-function ExpensesForm() {
+function ExpensesForm({ theme }) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [newCategory, setNewCategory] = useState('');
     const [newAmount, setNewAmount] = useState('');
@@ -50,7 +51,12 @@ function ExpensesForm() {
         <Wrapper>
             <form id="form" className="form-container" onSubmit={handleSubmit}>
                 <h2>Dodaj nowy wydatek</h2>
-                <FormRowSelect id="categorySelect" list={[...categories]} onChange={handleCategoryChange} />
+                <FormRowSelect
+                    id="categorySelect"
+                    list={[...categories]}
+                    theme={theme}
+                    onChange={handleCategoryChange}
+                />
                 <FormRowInput
                     id="amountInput"
                     value={newAmount}
@@ -75,5 +81,9 @@ function ExpensesForm() {
         </Wrapper>
     );
 }
+
+ExpensesForm.propTypes = {
+    theme: PropTypes.string
+};
 
 export default ExpensesForm;

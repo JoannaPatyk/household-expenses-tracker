@@ -48,7 +48,6 @@ export const BudgetProvider = ({ children }) => {
     const updateBudget = async (id, updateBudgetEntryAmount) => {
         try {
             await axios.patch(`${apiConfig.api}/budget/${id}`, { amount: updateBudgetEntryAmount });
-
             dispatch({ type: UPDATE_BUDGET, payload: { id, updateBudgetEntryAmount } });
         } catch (error) {
             console.error('error: ', error.response);

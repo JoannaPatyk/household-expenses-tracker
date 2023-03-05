@@ -28,7 +28,7 @@ const Wrapper = styled.main`
     }
 
     h1 {
-        margin: 0 2rem 1rem 2rem;
+        margin: 0 2rem;
         font-weight: 400;
         font-size: 1.5rem;
         text-align: center;
@@ -70,7 +70,7 @@ const Wrapper = styled.main`
         text-align: center;
         letter-spacing: var(--letterSpacing);
         padding: 0.5rem 0 1rem 0;
-        margin: 1rem 2rem -1rem 2rem;
+        margin: 1rem;
     }
 
     .goal-icon {
@@ -95,28 +95,23 @@ const Wrapper = styled.main`
 
     @media (max-width: 640px) {
         .landing-container {
-            /* min-height: 100vh; */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
 
         .logo {
-            height: 8rem;
-            width: 8rem;
+            height: 7rem;
+            width: 7rem;
         }
 
         .logo-title {
             font-size: 1.2rem;
         }
 
-        .goals-container {
-            margin-bottom: 2rem;
-        }
-
         h1 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }
 
         h3 {

@@ -11,11 +11,12 @@ const Wrapper = styled.div`
 
     .statistics-container {
         min-height: 100vh;
+        width: 90vw;
     }
 
     .chart-container {
         justify-content: center;
-        width: 90%;
+        width: 100%;
     }
 
     .chart-container h3 {

@@ -3,15 +3,13 @@ import { Outlet } from 'react-router-dom';
 import { SmallSidebar, BigSidebar } from '../components';
 import Wrapper from '../assets/wrappers/SharedLayout';
 import background from '../assets/images/background.png';
-import { CiPower, CiUser, CiBoxList } from 'react-icons/ci';
+import { CiBoxList, CiLogout, CiUser } from 'react-icons/ci';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useUserContext } from '../context/UserContext';
-import { useGroupContext } from '../context/GroupContext';
 
 function SharedLayout() {
     const { toggleSidebar } = useCategoriesContext();
-    const { logout } = useUserContext();
-    const { group } = useGroupContext();
+    const { userData, logout } = useUserContext();
 
     return (
         <Wrapper>
@@ -28,16 +26,18 @@ function SharedLayout() {
                     </div>
                 </div>
 
-                <button className="btn-logout" onClick={logout}>
+                <button className="big-btn-logout" onClick={logout}>
                     <span>
                         <CiUser />
                     </span>
+                    <div>
+                        <p className="name">{userData.name}</p>
+                        <CiLogout className="turn-off" />
+                    </div>
+                </button>
 
-                    {group.owner ? (
-                        <p>
-                            {group.owner.name} <CiPower className="turn-off" />
-                        </p>
-                    ) : null}
+                <button className="small-btn-logout" onClick={logout}>
+                    <CiLogout className="turn-off" />
                 </button>
             </main>
         </Wrapper>
