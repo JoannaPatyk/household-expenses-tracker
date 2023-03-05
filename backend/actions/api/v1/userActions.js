@@ -92,6 +92,20 @@ class UserActions {
         }
     };
 
+    getUser = async (req, res) => {
+        try {
+            const userId = req.userData.userId;
+            const user = await User.findOne({ _id: userId });
+
+            const name = user.name;
+            const email = user.email;
+
+            res.status(200).json({ name, email });
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    };
+
     deleteUser = async (req, res) => {
         try {
             const id = req.params.id;
