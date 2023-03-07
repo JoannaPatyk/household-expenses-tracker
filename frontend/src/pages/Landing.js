@@ -33,7 +33,7 @@ function Landing() {
                     <div className="goal">
                         <GiStairsGoal className="goal-icon" />
                         <h3>wyznacz limity</h3>
-                        <h5>określ jaką kwotę chcesz przeznaczyć na poszczególne wydatków</h5>
+                        <h5>określ jaką kwotę chcesz przeznaczyć na poszczególne wydatki</h5>
                     </div>
                     <div className="goal">
                         <GiCalculator className="goal-icon" />

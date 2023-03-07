@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
     .statistics-container {
         min-height: 100vh;
-        width: 90vw;
+        width: 100%;
     }
 
     .chart-container {
@@ -22,7 +22,6 @@ const Wrapper = styled.div`
     .chart-container h3 {
         font-size: 1.3rem;
         text-transform: uppercase;
-        font-size: 1.3rem;
         text-align: center;
         letter-spacing: var(--letterSpacing);
     }

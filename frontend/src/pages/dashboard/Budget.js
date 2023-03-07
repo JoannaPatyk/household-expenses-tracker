@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormRowInput, LoadingIndicator } from '../../components';
+import { FormRowInput } from '../../components';
 import Wrapper from '../../assets/wrappers/Budget';
 import { useBudgetContext } from '../../context/BudgetContext';
 
@@ -48,7 +48,6 @@ function Budget() {
                         })}
                     </tbody>
                 </table>
-                <LoadingIndicator />
             </div>
         </Wrapper>
     );

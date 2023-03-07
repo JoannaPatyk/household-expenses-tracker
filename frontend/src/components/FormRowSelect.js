@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
-const FormRowSelect = ({ list, onChange, theme }) => {
+const FormRowSelect = ({ list, onChange, theme, onMenuOpen }) => {
     const options = list.map((item) => {
         return {
             value: `${item.name}`,
@@ -25,6 +25,7 @@ const FormRowSelect = ({ list, onChange, theme }) => {
             borderBottom: isDark ? `1px dotted ${light_yellow}` : `1px dotted ${dark_purple}`,
             color: isDark ? light_yellow : dark_purple,
             backgroundColor: isDark ? dark_purple : '#fff',
+            textTransform: 'lowercase',
             cursor: 'pointer'
         }),
 
@@ -41,6 +42,7 @@ const FormRowSelect = ({ list, onChange, theme }) => {
         singleValue: (defaultStyles) => ({
             ...defaultStyles,
             fontWeight: 'bold',
+            textTransform: 'lowercase',
             color: isDark ? dark_purple : dark_yellow
         }),
 
@@ -71,6 +73,7 @@ const FormRowSelect = ({ list, onChange, theme }) => {
                 myFontSize="16px"
                 styles={styles}
                 onChange={onChange}
+                onMenuOpen={onMenuOpen}
                 options={options}
                 placeholder="wybierz kategorię..."
             />
@@ -80,6 +83,7 @@ const FormRowSelect = ({ list, onChange, theme }) => {
 
 FormRowSelect.propTypes = {
     onChange: PropTypes.func,
+    onMenuOpen: PropTypes.func,
     list: PropTypes.array,
     children: PropTypes.string,
     theme: PropTypes.string

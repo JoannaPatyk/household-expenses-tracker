@@ -79,10 +79,17 @@ export const UserProvider = ({ children }) => {
             setUserPassword('');
             setUserVerificationPassword('');
 
-            toast.warning('Użytkownik o wskazanych danych już istnieje, podaj inne i spróbuj ponownie.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
+            if (error.code === 'ERR_NETWORK') {
+                toast.error('Serwer nie odpowiada. Spróbuj później.', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    className: 'toast-message'
+                });
+            } else {
+                toast.warning('Użytkownik o wskazanych danych już istnieje, podaj inne i spróbuj ponownie.', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    className: 'toast-message'
+                });
+            }
         }
     };
 
@@ -113,10 +120,17 @@ export const UserProvider = ({ children }) => {
             setUserEmail('');
             setUserPassword('');
 
-            toast.error('Dane logowania niepoprawne. Spróbuj ponownie.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
+            if (error.code === 'ERR_NETWORK') {
+                toast.error('Serwer nie odpowiada. Spróbuj później.', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    className: 'toast-message'
+                });
+            } else {
+                toast.error('Dane logowania niepoprawne.', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    className: 'toast-message'
+                });
+            }
         }
     };
 

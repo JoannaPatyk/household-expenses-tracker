@@ -1,4 +1,5 @@
 import React from 'react';
+import packageJson from '../../package.json';
 import { LogoForSidebar, NavLinksForSmallSidebar } from './';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/SmallSidebar';
@@ -16,6 +17,9 @@ function SmallSidebar() {
                     </button>
                     <LogoForSidebar />
                     <NavLinksForSmallSidebar />
+                    <p className="author">
+                        <span>H E T </span>v{packageJson.version} by Joanna Patyk
+                    </p>
                 </div>
             </div>
         </Wrapper>

@@ -44,13 +44,13 @@ const Wrapper = styled.div`
         color: var(--secondary-900);
         font-size: 0.95rem;
         border-radius: 20px;
+        text-transform: lowercase;
         background-color: var(--primary-300);
     }
 
     .category p {
         max-width: 85%;
         padding: 0.5rem;
-        letter-spacing: var(--letterSpacing);
     }
 
     .edit-btn {
@@ -106,7 +106,7 @@ const Wrapper = styled.div`
             place-self: center;
             width: 70%;
             margin: 1rem 0;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .background-image {

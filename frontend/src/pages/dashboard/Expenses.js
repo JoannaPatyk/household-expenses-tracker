@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, LoadingIndicator } from '../../components';
+import { Button } from '../../components';
 import Wrapper from '../../assets/wrappers/Expenses';
 import { CiEdit } from 'react-icons/ci';
 import { HiOutlineXMark } from 'react-icons/hi2';
@@ -58,7 +58,6 @@ function Expenses() {
                     })}
                 </tbody>
             </table>
-            <LoadingIndicator />
         </Wrapper>
     );
 }
