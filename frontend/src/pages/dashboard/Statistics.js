@@ -46,7 +46,7 @@ function Statistics() {
 
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.75;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -78,7 +78,11 @@ function Statistics() {
                                     <Cell key={`cell-${index}`} fill={colors[index]} />
                                 ))}
                             </Pie>
-                            <Tooltip animationEasing="ease-in-out" />
+                            <Tooltip
+                                animationEasing="ease-in-out"
+                                itemStyle={{ fontWeight: '500' }}
+                                labelStyle={{ color: '#322C3B', fontWeight: '500' }}
+                            />
                             <Legend iconType="circle" />
                         </PieChart>
                     </ResponsiveContainer>
@@ -88,20 +92,24 @@ function Statistics() {
                     <ResponsiveContainer width={'100%'} height={320}>
                         <BarChart
                             data={data}
-                            barCategoryGap="30%"
+                            barCategoryGap="15%"
                             margin={{
                                 top: 5,
-                                right: 0,
-                                left: 0,
+                                right: 5,
+                                left: 5,
                                 bottom: 5
                             }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis />
+                            <XAxis dataKey="category" />
                             <YAxis />
-                            <Tooltip cursor={false} itemStyle={{ color: '#322C3B' }} />
-                            <Bar name="planowane wydatki" unit=" zł" dataKey="plannedAmount" fill="#ff7809b9" />
-                            <Bar name="aktualne wydatki" unit=" zł" dataKey="actualSummedExpense" fill="#f5ad12a4" />
+                            <Tooltip
+                                cursor={false}
+                                itemStyle={{ fontWeight: '500' }}
+                                labelStyle={{ color: '#322C3B', fontWeight: '500' }}
+                            />
+                            <Bar name="planowane wydatki" unit=" PLN" dataKey="plannedAmount" fill="#ff7809b9" />
+                            <Bar name="aktualne wydatki" unit=" PLN" dataKey="actualSummedExpense" fill="#f5ad12a4" />
                             <Legend iconType="circle" />
                         </BarChart>
                     </ResponsiveContainer>

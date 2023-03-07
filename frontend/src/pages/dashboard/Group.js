@@ -9,7 +9,7 @@ import { useUserContext } from '../../context/UserContext';
 
 function Group() {
     const [newGroupName, setNewGroupName] = useState('Twoja grupa');
-    const [newMember, setNewMember] = useState('');
+    const [emailNewMember, setEmailNewMember] = useState('');
     const { userData } = useUserContext();
     const {
         group,
@@ -30,21 +30,23 @@ function Group() {
         updateGroupName(newGroupName);
     };
 
-    const handleAdd = async () => {
-        if (newMember === group.owner.email) {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (emailNewMember === group.owner.email) {
             toast.warning('Podany e-mail należy do właściciela grupy! Podaj inny.', {
                 position: toast.POSITION.BOTTOM_LEFT,
                 className: 'toast-message'
             });
-            setNewMember('');
+            setEmailNewMember('');
             return;
-        } else if (group.members.find((member) => member.email === newMember)) {
+        } else if (group.members.find((member) => member.email === emailNewMember)) {
             toast.warning('Osoba o podanym adresie e-mail należy już do grupy!', {
                 position: toast.POSITION.BOTTOM_LEFT,
                 className: 'toast-message'
             });
             return;
-        } else if (group.invitations.find((member) => member.email === newMember)) {
+        } else if (group.invitations.find((member) => member.email === emailNewMember)) {
             toast.warning('Zaproszenie zostało już wcześniej wysłane. Poczekaj na odpowiedź.', {
                 position: toast.POSITION.BOTTOM_LEFT,
                 className: 'toast-message'
@@ -52,24 +54,24 @@ function Group() {
             return;
         }
 
-        const result = await inviteUser(newMember);
+        const result = await inviteUser(emailNewMember);
         if (!result) {
-            toast.warning('Brak użytkownika o podanym adresie e-mail w bazie, podaj inny.', {
+            toast.warning('Brak użytkownika o podanym adresie e-mail w bazie.', {
                 position: toast.POSITION.BOTTOM_LEFT,
                 className: 'toast-message'
             });
         }
-        setNewMember('');
+        setEmailNewMember('');
     };
 
-    const handleNameChange = (event) => {
+    const handleGroupNameChange = (event) => {
         const name = event.target.value;
         setNewGroupName(name);
     };
 
-    const handleMemberChange = (event) => {
+    const handleMemberInvitation = (event) => {
         const email = event.target.value;
-        setNewMember(email);
+        setEmailNewMember(email);
     };
 
     const handleAcceptInvitation = (id) => {
@@ -102,7 +104,7 @@ function Group() {
                             value={newGroupName}
                             type="text"
                             placeholder="nowa nazwa"
-                            onChange={handleNameChange}
+                            onChange={handleGroupNameChange}
                         />
                         <CiFloppyDisk className="btn-save" onClick={handleSave} />
                     </div>
@@ -110,6 +112,12 @@ function Group() {
                 <div className="status-container">
                     <div className="members">
                         <h3>Członkowie grupy</h3>
+                        <div className="description">
+                            <h5>
+                                - osoby, które aktualnie należą do Twojej grupy, jeśli chcesz kogoś dodać, wyślij
+                                zaproszenie
+                            </h5>
+                        </div>
                         {group.members
                             ? group.members.map((item, index) => {
                                   return (
@@ -134,6 +142,9 @@ function Group() {
                     </div>
                     <div className="decline-invitations">
                         <h3>Wysłane zaproszenia</h3>
+                        <div className="description">
+                            <h5>- osoby, do których wysłałeś/aś zaproszenie, oczekuj na odpowiedź</h5>
+                        </div>
                         {group.invitations
                             ? group.invitations.map((item) => {
                                   return (
@@ -150,6 +161,12 @@ function Group() {
                     </div>
                     <div className="received-invitations">
                         <h3>Otrzymane zaproszenia</h3>
+                        <div className="description">
+                            <h5>
+                                - zaakceptuj zaproszenie i dołącz do nowej grupy opuszczając przy tym swoją lub odrzuć
+                                zaproszenie
+                            </h5>
+                        </div>
                         {invitations
                             ? invitations.map((item) => {
                                   return (
@@ -171,18 +188,23 @@ function Group() {
                 </div>
                 <div className="invitation-container">
                     <h2>Wyślij zaproszenie do grupy</h2>
-                    <FormRowInput
-                        id="emailInput"
-                        value={newMember}
-                        type="text"
-                        placeholder="podaj email"
-                        onChange={handleMemberChange}
-                    />
-                    <div>
-                        <Button id="btn-add" type="submit" version="hero" onClick={handleAdd}>
-                            wyślij
-                        </Button>
+                    <div className="description">
+                        <h5>- jeśli chcesz wysłać komuś zaproszenie do swojej grupy, wpisz poniżej email tej osoby</h5>
                     </div>
+                    <form onSubmit={handleSubmit}>
+                        <FormRowInput
+                            id="emailInput"
+                            value={emailNewMember}
+                            type="email"
+                            placeholder="podaj email"
+                            onChange={handleMemberInvitation}
+                        />
+                        <div>
+                            <Button id="btn-add" type="submit" version="hero">
+                                wyślij
+                            </Button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </Wrapper>

@@ -1,21 +1,37 @@
 import React from 'react';
 import { usePromiseTracker } from 'react-promise-tracker';
 import * as Loader from 'react-loader-spinner';
-import Wrapper from '../assets/wrappers/Loading';
+import PropTypes from 'prop-types';
 
-function LoadingIndicator() {
-    const { promiseInProgress } = usePromiseTracker();
+function LoadingIndicator(props) {
+    const { promiseInProgress } = usePromiseTracker({ area: props.area });
+    const style = { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+
     return (
         promiseInProgress && (
-            <Wrapper>
-                <div className="spinner-container">
-                    <div id="spinner">
-                        <Loader.InfinitySpin color="#ffc125" height="100" width="400" />
-                    </div>
-                </div>
-            </Wrapper>
+            <div style={style}>
+                <Loader.Triangle color="#ffc125" height="80" width="80" />
+                <p
+                    style={{
+                        position: 'fixed',
+                        top: '110%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '300px',
+                        textAlign: 'center',
+                        fontSize: '.8rem',
+                        color: '#ffc125'
+                    }}
+                >
+                    oczekiwanie na server...
+                </p>
+            </div>
         )
     );
 }
+
+LoadingIndicator.propTypes = {
+    area: PropTypes.string
+};
 
 export default LoadingIndicator;

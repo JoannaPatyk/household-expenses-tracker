@@ -14,8 +14,8 @@ const Wrapper = styled.main`
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        padding-top: 4rem;
         text-align: center;
-        margin-top: 4rem;
     }
 
     .group-name {
@@ -57,11 +57,15 @@ const Wrapper = styled.main`
         padding: 1rem 0;
     }
 
+    .decline-invitations {
+        min-width: 30%;
+    }
+
     .member {
         position: relative;
         display: flex;
         align-items: center;
-        width: 80vw;
+        width: 85%;
         min-height: 40px;
         padding-left: 1rem;
         margin: 1rem;
@@ -85,6 +89,22 @@ const Wrapper = styled.main`
         margin: 0.5rem 0;
         font-size: 1rem;
         text-transform: uppercase;
+    }
+
+    .description {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 80%;
+        margin-top: 0.5rem;
+    }
+
+    h5 {
+        font-size: 0.75rem;
+        font-weight: 100;
+        letter-spacing: 0;
+        opacity: 0.8;
     }
 
     .delete-btn,
@@ -122,10 +142,6 @@ const Wrapper = styled.main`
             width: 90%;
         }
 
-        .member {
-            width: 70vw;
-        }
-
         #emailInput {
             width: 400px;
         }
@@ -135,27 +151,9 @@ const Wrapper = styled.main`
         }
     }
 
-    @media (min-width: 820px) {
-        .member {
-            width: 60vw;
-        }
-    }
-
-    @media (min-width: 1020px) {
-        .member {
-            width: 50vw;
-        }
-    }
-
-    @media (min-width: 1020px) {
-        .member {
-            width: 40vw;
-        }
-    }
-
     @media (min-width: 1380px) {
         .group-name-container {
-            min-width: 85%;
+            min-width: 70%;
         }
 
         .status-container {
@@ -176,11 +174,7 @@ const Wrapper = styled.main`
         }
 
         .btn-save {
-            right: 12%;
-        }
-
-        .member {
-            width: 22rem;
+            right: 5%;
         }
 
         h2 {

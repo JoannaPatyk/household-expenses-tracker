@@ -11,10 +11,12 @@ import LogoForSidebar from './LogoForSidebar';
 import NavLinksForSmallSidebar from './NavLinksForSmallSidebar';
 import NavLinksForBigSidebar from './NavLinksForBigSidebar';
 import SmallSidebar from './SmallSidebar';
+import OpacityBackground from './OpacityBackground';
 
 export {
     BigSidebar,
     Button,
+    OpacityBackground,
     EditCategory,
     EditExpense,
     ExpensesForm,

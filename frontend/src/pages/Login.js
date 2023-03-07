@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Logo, Button, FormRowInput } from '../components';
+import { Logo, Button, FormRowInput, LoadingIndicator, OpacityBackground } from '../components';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';
 import { useUserContext } from '../context/UserContext';
+import { trackPromise } from 'react-promise-tracker';
 
 function Login() {
     const navigate = useNavigate();
@@ -12,8 +13,7 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        login(userEmail, userPassword);
+        trackPromise(login(userEmail, userPassword), 'login-registration');
     };
 
     useEffect(() => {
@@ -23,13 +23,11 @@ function Login() {
     }, [isLogged, navigate]);
 
     const handleChangeEmail = (event) => {
-        event.preventDefault();
         const value = event.target.value;
         setUserEmail(value);
     };
 
     const handleChangePassword = (event) => {
-        event.preventDefault();
         const value = event.target.value;
         setUserPassword(value);
     };
@@ -58,6 +56,8 @@ function Login() {
                     zaloguj się
                 </Button>
             </form>
+            <OpacityBackground area="login-registration" />
+            <LoadingIndicator area="login-registration" />
             <img src={background} alt="background" className="background-image" />
         </Wrapper>
     );

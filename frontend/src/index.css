@@ -636,7 +636,7 @@ body.dark .landing-title h1 {
 
 .toast-message {
     background: var(--secondary-800);
-    color: var(--primary-600);
+    color: var(--primary-900);
     font-size: 0.8rem;
     width: 80vw;
     padding: 10px 5px;
@@ -644,6 +644,10 @@ body.dark .landing-title h1 {
     font-family: inherit;
     letter-spacing: var(--letterSpacing);
     border-radius: 20px;
+}
+
+.toast-message path {
+    color: var(--primary-900);
 }
 
 @media (min-width: 1015px) {

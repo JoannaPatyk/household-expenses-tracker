@@ -9,6 +9,7 @@ const Wrapper = styled.div`
         box-shadow: var(--shadow-4);
 
         .sidebar-container {
+            position: relative;
             min-height: 100vh;
             height: 100%;
             width: 350px;
@@ -48,6 +49,20 @@ const Wrapper = styled.div`
 
         .logo {
             margin-bottom: 1rem;
+        }
+
+        .author {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary-300);
+            font-size: 0.6rem;
+        }
+
+        .author span {
+            font-weight: 800;
+            color: var(--primary-900);
         }
     }
 `;

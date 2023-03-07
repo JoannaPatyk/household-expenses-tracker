@@ -76,6 +76,19 @@ const Wrapper = styled.aside`
         color: var(--primary-900);
     }
 
+    .author {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.6rem;
+    }
+
+    .author span {
+        font-weight: 800;
+        color: var(--primary-900);
+    }
+
     @media (max-width: 450px) {
         .small-sidebar-content {
             height: 80vh;

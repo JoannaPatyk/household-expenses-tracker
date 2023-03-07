@@ -4,8 +4,9 @@ import { toast } from 'react-toastify';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';
-import { Logo, Button, FormRowInput } from '../components';
+import { Logo, Button, FormRowInput, LoadingIndicator, OpacityBackground } from '../components';
 import { useUserContext } from '../context/UserContext';
+import { trackPromise } from 'react-promise-tracker';
 
 function Registration() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -22,14 +23,28 @@ function Registration() {
         setUserPassword
     } = useUserContext();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (userPassword === userVerificationPassword) {
-            register(userName, userEmail, userPassword);
+            if (userPassword === '') {
+                toast.error('Proszę podać hasło!', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    className: 'toast-message'
+                });
+                return;
+            } else if (userPassword.length < 8) {
+                toast.info('Hasło powinno mieć minimum 8 znaków, wpisz nowe.', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    className: 'toast-message'
+                });
+                return;
+            }
+
+            await trackPromise(register(userName, userEmail, userPassword), 'login-registration');
             navigate('/landing');
         } else {
-            toast.error('Podane hasło nie jest poprawne. Spróbuj ponownie.', {
+            toast.error('Podane hasła nie zgadzają się.', {
                 position: toast.POSITION.BOTTOM_LEFT,
                 className: 'toast-message'
             });
@@ -99,6 +114,8 @@ function Registration() {
                 <p>*Wszystkie pola są wymagane.</p>
             </form>
             <img src={background} alt="background" className="background-image" />
+            <OpacityBackground area="login-registration" />
+            <LoadingIndicator area="login-registration" />
         </Wrapper>
     );
 }

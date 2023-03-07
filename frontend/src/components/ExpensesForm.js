@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { Button, FormRowInput, FormRowSelect } from './';
 import Wrapper from '../assets/wrappers/ExpensesForm';
 import { useExpensesContext } from '../context/ExpensesContext';
@@ -38,6 +39,15 @@ function ExpensesForm({ theme }) {
         setNewComment(event.target.value);
     };
 
+    const handleMenuOpen = () => {
+        if (categories.length === 0) {
+            toast.info('Lista jest pusta, dodaj kategorie.', {
+                position: toast.POSITION.BOTTOM_LEFT,
+                className: 'toast-message'
+            });
+        }
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -56,6 +66,7 @@ function ExpensesForm({ theme }) {
                     list={[...categories]}
                     theme={theme}
                     onChange={handleCategoryChange}
+                    onMenuOpen={handleMenuOpen}
                 />
                 <FormRowInput
                     id="amountInput"
