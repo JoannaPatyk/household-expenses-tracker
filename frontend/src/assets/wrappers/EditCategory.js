@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+    padding-top: 6rem;
+    min-height: 100vh;
+
     .edit-container,
     .categories,
     #form-input,
@@ -11,8 +14,9 @@ const Wrapper = styled.div`
         align-items: center;
     }
 
-    .logo-container {
-        margin-top: 5rem;
+    .categories-container h2 {
+        padding: 1rem 0;
+        text-align: center;
     }
 
     h2 {
@@ -44,7 +48,6 @@ const Wrapper = styled.div`
         color: var(--secondary-900);
         font-size: 0.95rem;
         border-radius: 20px;
-        text-transform: lowercase;
         background-color: var(--primary-300);
     }
 

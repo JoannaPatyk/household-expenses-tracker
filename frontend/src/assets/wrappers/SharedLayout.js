@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
     .dashboard {
+        position: relative;
         display: grid;
         grid-template-columns: 1fr;
         overflow: hidden;

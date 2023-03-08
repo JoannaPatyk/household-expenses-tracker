@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormRowInput } from '../../components';
+import { toast } from 'react-toastify';
+import notification, { ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Budget';
 import { useBudgetContext } from '../../context/BudgetContext';
 
@@ -11,9 +13,40 @@ function Budget() {
         return summedExpense === undefined ? 0 : summedExpense.amount;
     };
 
-    const onChangeAmount = (event, id) => {
-        const { value } = event.target;
-        updateBudget(id, value);
+    const toastId = useRef(null);
+
+    const notify = (message) => {
+        toastId.current = toast.success(message, {
+            position: toast.POSITION.BOTTOM_LEFT,
+            className: 'toast-message'
+        });
+    };
+
+    const update = (message) => {
+        toast.update(toastId.current, {
+            render: message,
+            position: toast.POSITION.BOTTOM_LEFT,
+            className: 'toast-message'
+        });
+    };
+
+    const onChangeAmount = async (event, budgetEntry) => {
+        const value = event.target.value;
+        const result = await updateBudget(budgetEntry.id, value);
+
+        if (result) {
+            if (toast.isActive(toastId.current)) {
+                update(
+                    `Zaktualizowano planowane wydatki dla kategorii ${budgetEntry.categoryName} - ${budgetEntry.amount} PLN → ${value} PLN`
+                );
+            } else {
+                notify(
+                    `Zaktualizowano planowane wydatki dla kategorii ${budgetEntry.categoryName} - ${budgetEntry.amount} PLN → ${value} PLN`
+                );
+            }
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
     };
 
     return (
@@ -22,9 +55,9 @@ function Budget() {
                 <table>
                     <thead>
                         <tr className="title">
-                            <th>kategoria</th>
-                            <th>planowana kwota</th>
-                            <th>aktualna kwota</th>
+                            <th>dostępne kategorie</th>
+                            <th>planowane wydatki</th>
+                            <th>suma wydatków</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,7 +71,7 @@ function Budget() {
                                             type="text"
                                             value={amount || ''}
                                             placeholder="0"
-                                            onChange={(event) => onChangeAmount(event, id)}
+                                            onChange={(event) => onChangeAmount(event, { id, categoryName, amount })}
                                         />
                                         PLN
                                     </td>

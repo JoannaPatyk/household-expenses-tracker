@@ -14,7 +14,7 @@ const Wrapper = styled.div`
             height: 100%;
             width: 350px;
             margin-left: -350px;
-            padding-top: 5rem;
+            padding-top: 6rem;
             transition: var(--transition);
         }
 
@@ -51,6 +51,18 @@ const Wrapper = styled.div`
             margin-bottom: 1rem;
         }
 
+        .btn-close {
+            position: absolute;
+            top: 10px;
+            left: 300px;
+        }
+
+        .btn-open {
+            position: absolute;
+            top: 10px;
+            left: 380px;
+        }
+
         .author {
             position: absolute;
             bottom: 5px;
@@ -58,6 +70,7 @@ const Wrapper = styled.div`
             transform: translateX(-50%);
             color: var(--primary-300);
             font-size: 0.6rem;
+            opacity: 0.7;
         }
 
         .author span {

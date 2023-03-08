@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
 import { Button, FormRowInput, FormRowSelect } from './';
 import Wrapper from '../assets/wrappers/ExpensesForm';
 import { useExpensesContext } from '../context/ExpensesContext';
 import { useCategoriesContext } from '../context/CategoriesContext';
+import notification, { SUCCESS, INFO, ERROR } from '../utils/Notification';
 
 function ExpensesForm({ theme }) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -41,20 +41,23 @@ function ExpensesForm({ theme }) {
 
     const handleMenuOpen = () => {
         if (categories.length === 0) {
-            toast.info('Lista jest pusta, dodaj kategorie.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
+            notification(INFO, 'Lista jest pusta, dodaj kategorie');
         }
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        addExpense(newCategory, newAmount, newComment);
-        setNewAmount('');
-        setNewComment('');
-        setButtonDisabled(true);
+        const result = await addExpense(newCategory, newAmount, newComment);
+        if (result) {
+            notification(SUCCESS, `Dodano wydatek: ${newCategory} - ${newAmount} PLN`);
+
+            setNewAmount('');
+            setNewComment('');
+            setButtonDisabled(true);
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
     };
 
     return (
@@ -63,8 +66,16 @@ function ExpensesForm({ theme }) {
                 <h2>Dodaj nowy wydatek</h2>
                 <FormRowSelect
                     id="categorySelect"
-                    list={[...categories]}
+                    options={categories.map((item) => {
+                        return {
+                            value: item.name,
+                            label: item.name
+                        };
+                    })}
+                    defaultValue={{ value: categories[0], label: categories[0] }}
                     theme={theme}
+                    placeholder="wyszukaj lub wybierz kategorię"
+                    noOptionsMessage={() => 'brak kategorii'}
                     onChange={handleCategoryChange}
                     onMenuOpen={handleMenuOpen}
                 />
@@ -83,10 +94,10 @@ function ExpensesForm({ theme }) {
                     onChange={handleCommentChange}
                 />
                 <Button type="submit" version="hero" isDisabled={buttonDisabled}>
-                    dodaj
+                    dodaj wydatek
                 </Button>
-                <Link to="/edit_category" className="btn btn-hipster">
-                    edytuj kategorie
+                <Link to="/categories" className="btn btn-edit btn-hipster">
+                    dodaj lub edytuj kategorie
                 </Link>
             </form>
         </Wrapper>

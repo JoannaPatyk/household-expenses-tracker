@@ -2,7 +2,7 @@ import React, { createContext, useContext, useCallback, useEffect, useState } fr
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import apiConfig from '../apiConfig';
-import { toast } from 'react-toastify';
+import notification, { SUCCESS, WARNING, ERROR } from '../utils/Notification';
 
 const UserContext = createContext();
 
@@ -68,6 +68,7 @@ export const UserProvider = ({ children }) => {
                     password: password
                 }
             });
+            notification(SUCCESS, 'Konto zostało utworzone, możesz się teraz zalogować');
 
             setUserName('');
             setUserEmail('');
@@ -80,15 +81,9 @@ export const UserProvider = ({ children }) => {
             setUserVerificationPassword('');
 
             if (error.code === 'ERR_NETWORK') {
-                toast.error('Serwer nie odpowiada. Spróbuj później.', {
-                    position: toast.POSITION.BOTTOM_LEFT,
-                    className: 'toast-message'
-                });
+                notification(ERROR, 'Serwer nie odpowiada. Spróbuj później');
             } else {
-                toast.warning('Użytkownik o wskazanych danych już istnieje, podaj inne i spróbuj ponownie.', {
-                    position: toast.POSITION.BOTTOM_LEFT,
-                    className: 'toast-message'
-                });
+                notification(WARNING, 'Użytkownik o wskazanych danych już istnieje, podaj inne i spróbuj ponownie');
             }
         }
     };
@@ -121,15 +116,9 @@ export const UserProvider = ({ children }) => {
             setUserPassword('');
 
             if (error.code === 'ERR_NETWORK') {
-                toast.error('Serwer nie odpowiada. Spróbuj później.', {
-                    position: toast.POSITION.BOTTOM_LEFT,
-                    className: 'toast-message'
-                });
+                notification(ERROR, 'Serwer nie odpowiada. Spróbuj później');
             } else {
-                toast.error('Dane logowania niepoprawne.', {
-                    position: toast.POSITION.BOTTOM_LEFT,
-                    className: 'toast-message'
-                });
+                notification(ERROR, 'Dane logowania niepoprawne');
             }
         }
     };

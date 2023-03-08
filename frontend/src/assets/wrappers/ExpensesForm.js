@@ -46,6 +46,10 @@ const Wrapper = styled.div`
         height: 40px;
     }
 
+    .btn-edit {
+        height: 55px;
+    }
+
     .editCategoryBtn-container {
         display: flex;
         justify-content: center;
@@ -77,6 +81,13 @@ const Wrapper = styled.div`
         .btn {
             width: 25rem;
             font-size: 1.2rem;
+        }
+
+        .btn-edit {
+            height: 40px;
+        }
+        #wrapper img {
+            width: 20%;
         }
 
         .background-image {

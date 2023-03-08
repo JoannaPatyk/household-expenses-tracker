@@ -7,13 +7,14 @@ import Wrapper from '../assets/wrappers/EditExpenses';
 import background from '../assets/images/background.png';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
+import notification, { SUCCESS, ERROR } from '../utils/Notification';
 
 function EditExpense({ theme }) {
+    const navigate = useNavigate();
     const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [editCategory, setEditCategory] = useState('');
+    const [editCategory, setEditCategory] = useState(null);
     const [editAmount, setEditAmount] = useState('');
     const [editComment, setEditComment] = useState('');
-    const navigate = useNavigate();
     const { categories } = useCategoriesContext();
     const { expenseForEdit, updateExpense } = useExpensesContext();
 
@@ -26,8 +27,8 @@ function EditExpense({ theme }) {
         }
     }, [expenseForEdit]);
 
-    const handleCategoryChange = (name) => {
-        setEditCategory(name);
+    const handleCategoryChange = (selected) => {
+        setEditCategory(selected.value);
         setButtonDisabled(false);
     };
 
@@ -45,12 +46,20 @@ function EditExpense({ theme }) {
         setButtonDisabled(false);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (expenseForEdit.edit === true) {
-            updateExpense(expenseForEdit.expense.id, editCategory, editAmount, editComment);
-            navigate('/expenses');
+            const result = await updateExpense(expenseForEdit.expense.id, editCategory, editAmount, editComment);
+            if (result) {
+                navigate('/expenses');
+                notification(
+                    SUCCESS,
+                    `Edytowano wydatek: ${expenseForEdit.expense.category} - ${expenseForEdit.expense.amount} PLN → ${editCategory} ${editAmount} PLN`
+                );
+            } else {
+                notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+            }
         }
     };
 
@@ -64,9 +73,19 @@ function EditExpense({ theme }) {
                 <h2>Edytuj wybrany wydatek</h2>
                 <FormRowSelect
                     id="categorySelect"
-                    list={[...categories]}
+                    options={categories.map((item) => {
+                        return {
+                            value: item.name,
+                            label: item.name
+                        };
+                    })}
                     theme={theme}
-                    onClick={handleCategoryChange}
+                    value={{
+                        value: editCategory,
+                        label: editCategory
+                    }}
+                    placeholder="wyszukaj lub wybierz kategorię"
+                    onChange={handleCategoryChange}
                 />
                 <FormRowInput
                     id="amountInput"

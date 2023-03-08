@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import notification, { INFO, ERROR } from '../utils/Notification';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';
@@ -28,26 +28,17 @@ function Registration() {
 
         if (userPassword === userVerificationPassword) {
             if (userPassword === '') {
-                toast.error('Proszę podać hasło!', {
-                    position: toast.POSITION.BOTTOM_LEFT,
-                    className: 'toast-message'
-                });
+                notification(ERROR, 'Proszę podać hasło!');
                 return;
             } else if (userPassword.length < 8) {
-                toast.info('Hasło powinno mieć minimum 8 znaków, wpisz nowe.', {
-                    position: toast.POSITION.BOTTOM_LEFT,
-                    className: 'toast-message'
-                });
+                notification(INFO, 'Hasło powinno mieć minimum 8 znaków, wpisz nowe');
                 return;
             }
 
             await trackPromise(register(userName, userEmail, userPassword), 'login-registration');
             navigate('/landing');
         } else {
-            toast.error('Podane hasła nie zgadzają się.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
+            notification(ERROR, 'Podane hasła nie zgadzają się');
         }
     };
 

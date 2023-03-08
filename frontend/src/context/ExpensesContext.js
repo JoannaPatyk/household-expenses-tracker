@@ -1,12 +1,12 @@
 import React, { createContext, useReducer, useEffect, useContext, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { ADD_EXPENSE, ADD_EXPENSES, UPDATE_EXPENSE, DELETE_EXPENSE, UPDATE_NAME_CATEGORY } from '../utils/actions';
-import reducer from '../reducers/ExpensesReducer';
+import { ADD_EXPENSE, ADD_EXPENSES, UPDATE_EXPENSE, DELETE_EXPENSE, UPDATE_NAME_CATEGORY } from '../utils/Actions';
 import apiConfig from '../apiConfig';
+import { trackPromise } from 'react-promise-tracker';
+import reducer from '../reducers/ExpensesReducer';
 import { useCategoriesContext } from './CategoriesContext';
 import { useUserContext } from './UserContext';
-import { trackPromise } from 'react-promise-tracker';
 
 const initialState = {
     expenses: []
@@ -51,8 +51,10 @@ export const ExpensesProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/expenses`, { category, amount, comment });
             dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
             trackPromise(fetchExpenses());
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -72,8 +74,11 @@ export const ExpensesProvider = ({ children }) => {
                 expense: {},
                 edit: false
             });
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -81,8 +86,11 @@ export const ExpensesProvider = ({ children }) => {
         try {
             await axios.delete(`${apiConfig.api}/expenses/${id}`);
             dispatch({ type: DELETE_EXPENSE, payload: id });
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 

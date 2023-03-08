@@ -6,8 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Landing, Login, Error, SharedLayout, Registration } from './pages';
 import { Budget, Expenses, Statistics, Group, ProtectedRoute } from './pages/dashboard';
 import ExpensesForm from './components/ExpensesForm';
-import EditCategory from './components/EditCategory';
 import EditExpense from './components/EditExpense';
+import { EditCategory } from './components';
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
@@ -46,6 +46,7 @@ function App() {
                             </ProtectedRoute>
                         }
                     >
+                        <Route path="categories" element={<EditCategory />} />
                         <Route index path="add" element={<ExpensesForm theme={theme} />} />
                         <Route path="expenses" element={<Expenses />} />
                         <Route path="budget" element={<Budget />} />
@@ -55,7 +56,6 @@ function App() {
                     <Route path="landing" element={<Landing />} />
                     <Route path="login" element={<Login />} />
                     <Route path="registration" element={<Registration />} />
-                    <Route path="edit_category" element={<EditCategory />} />
                     <Route path="edit_expense" element={<EditExpense theme={theme} />} />
                     <Route path="*" element={<Error />}></Route>
                 </Routes>

@@ -7,7 +7,7 @@ import {
     REMOVE_USER,
     ACCEPT_INVITATION,
     DECLINE_INVITATION
-} from '../utils/actions';
+} from '../utils/Actions';
 
 const GroupReducer = (state, action) => {
     switch (action.type) {
