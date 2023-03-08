@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components';
+import notification, { INFO, ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Expenses';
 import { CiEdit } from 'react-icons/ci';
 import { HiOutlineXMark } from 'react-icons/hi2';
-
 import { useExpensesContext } from '../../context/ExpensesContext';
 
 function Expenses() {
@@ -12,6 +12,16 @@ function Expenses() {
 
     const handleEditButtonClick = (expense) => {
         saveExpenseForEdit(expense);
+    };
+
+    const handleDeleteExpenseClick = async (expense) => {
+        const result = await deleteExpense(expense.id);
+
+        if (result) {
+            notification(INFO, `Usunięto wydatek: ${expense.category} - ${expense.amount} PLN`);
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
     };
 
     return (
@@ -49,7 +59,11 @@ function Expenses() {
                                     >
                                         <CiEdit className="btn-icon" />
                                     </Link>
-                                    <Button version="hipster" id="btn" onClick={() => deleteExpense(expense.id)}>
+                                    <Button
+                                        version="hipster"
+                                        id="btn"
+                                        onClick={() => handleDeleteExpenseClick(expense)}
+                                    >
                                         <HiOutlineXMark className="btn-icon" />
                                     </Button>
                                 </td>

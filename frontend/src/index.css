@@ -58,6 +58,7 @@ html {
     --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-5: 0 10px 10px 0 rgba(119, 114, 114, 0.171), 0 1px 2px 0 rgba(128, 124, 124, 0.507);
 }
 
 body {
@@ -94,17 +95,19 @@ a {
     letter-spacing: var(--letterSpacing);
 }
 
-body.light .nav-link {
+body.light .nav-link,
+body.dark .nav-link {
     color: var(--secondary-400);
 }
 
-body.dark .nav-link {
-    color: var(--secondary-300);
+body.light .nav-link:hover,
+body.dark .nav-link:hover {
+    padding-left: 3rem;
+    font-weight: 500;
 }
 
 body.light .nav-link:hover {
-    padding-left: 3rem;
-    background: var(--primary-400);
+    background: var(--primary-300);
     color: var(--secondary-900);
 }
 
@@ -113,8 +116,7 @@ body.light .nav-link:hover .icon {
 }
 
 body.dark .nav-link:hover {
-    padding-left: 3rem;
-    background: var(--secondary-400);
+    background: var(--secondary-600);
     color: var(--primary-900);
 }
 
@@ -125,6 +127,7 @@ body.dark .nav-link:hover .icon {
 body.dark .active,
 body.light .active {
     color: var(--primary-900);
+    font-weight: 500;
 }
 
 /* BUTTONS */
@@ -139,32 +142,44 @@ button:disabled {
     justify-content: center;
     width: 18rem;
     margin: 1rem;
+    padding: 0.4rem 0.8rem;
     color: var(--textColor);
     font-family: var(--fontFamily);
     font-size: 1.2rem;
     text-align: center;
-    background: var(--primary-900);
     border: transparent;
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 20px;
     letter-spacing: var(--letterSpacing);
-    padding: 0.4rem 0.8rem;
     box-shadow: var(--shadow-2);
     transition: var(--transition);
     cursor: pointer;
 }
 
 .btn:hover {
-    color: var(--primary-600);
-    background: var(--secondary-600);
     box-shadow: var(--shadow-4);
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 
-.btn-hipster {
+body.light .btn-hero {
+    color: var(--primary-900);
+    background: var(--secondary-600);
+}
+
+body.light .btn-hero:hover {
+    color: var(--primary-800);
+    background: var(--secondary-800);
+}
+
+body.dark .btn-hero {
+    color: var(--secondary-900);
+    background: var(--primary-900);
+}
+
+body.dark .btn-hero:hover {
     color: var(--secondary-800);
-    background: var(--primary-200);
+    background: var(--primary-300);
 }
 
 .btn-block {
@@ -210,11 +225,11 @@ button:disabled {
 }
 
 .big-btn-logout span {
-    position: absolute;
-    top: 55%;
-    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.2rem;
-    transform: translate(-50%, -50%);
+    transform: rotate(180deg);
 }
 
 .big-btn-logout p {
@@ -230,29 +245,18 @@ button:disabled {
 }
 
 .big-btn-logout:hover {
-    width: 250px;
+    width: 150px;
     border-radius: 20px;
 }
 
 .big-btn-logout:hover span {
-    left: 150%;
+    display: none;
 }
 
 .big-btn-logout:hover p {
-    left: 48%;
+    left: 50%;
     font-size: 1rem;
     text-transform: uppercase;
-}
-
-.big-btn-logout:hover .turn-off {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 15%;
-    z-index: 100;
-    transform: translateY(-50%) rotate(180deg);
-    font-size: 1.3rem;
-    transition: 0.3s;
 }
 
 @media (max-width: 620px) {
@@ -285,13 +289,12 @@ button:disabled {
 
 .btn-toggle {
     position: absolute;
-    top: 20px;
-    margin-left: 1%;
+    top: 10px;
     z-index: 2;
+    font-size: 1.8rem;
+    transition: var(--transition);
     background: transparent;
     border-color: transparent;
-    font-size: 2rem;
-    transition: var(--transition);
     cursor: pointer;
 }
 
@@ -301,6 +304,26 @@ button:disabled {
     left: 50%;
     transform: translate(-50%, -50%);
     transition: var(--transition);
+}
+
+body.dark .btn-hipster {
+    color: var(--secondary-800);
+    background: var(--primary-300);
+}
+
+body.light .btn-hipster {
+    color: var(--primary-800);
+    background: var(--secondary-800);
+}
+
+body.dark .btn-hipster:hover {
+    color: var(--secondary-800);
+    background: var(--primary-900);
+}
+
+body.light .btn-hipster:hover {
+    color: var(--primary-900);
+    background: var(--secondary-600);
 }
 
 body.light .small-btn-logout,
@@ -316,29 +339,44 @@ body.dark .big-btn-logout {
 }
 
 body.light .btn-icon,
-body.light .btn-back,
-body.light .btn-toggle {
+body.light .btn-back {
     color: var(--secondary-400);
 }
 
 body.light .btn-icon:hover,
-body.light .btn-back:hover,
-body.light .btn-toggle:hover {
+body.light .btn-back:hover {
     color: var(--secondary-900);
 }
 
-body.dark .btn-icon,
-body.dark .btn-back,
-body.dark .btn-toggle {
-    color: var(--primary-300);
+body.light .btn-open {
+    color: var(--secondary-600);
 }
 
-body.dark .btn-icon:hover,
-body.dark .btn-back:hover,
-body.dark .btn-toggle:hover {
+body.light .btn-open:hover {
+    color: var(--secondary-900);
+}
+
+body.dark .btn-open,
+body.dark .btn-close,
+body.light .btn-close {
+    color: var(--primary-600);
+}
+
+body.dark .btn-open:hover,
+body.dark .btn-close:hover,
+body.light .btn-close:hover {
     color: var(--primary-900);
 }
 
+body.dark .btn-icon,
+body.dark .btn-back {
+    color: var(--primary-900);
+}
+
+body.dark .btn-icon:hover,
+body.dark .btn-back:hover {
+    color: var(--primary-900);
+}
 body.light .btn-save {
     color: var(--primary-300);
 }

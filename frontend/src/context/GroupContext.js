@@ -13,7 +13,7 @@ import {
     REMOVE_USER,
     ACCEPT_INVITATION,
     DECLINE_INVITATION
-} from '../utils/actions';
+} from '../utils/Actions';
 
 const initialState = {
     group: {},
@@ -84,8 +84,11 @@ export const GroupProvider = ({ children }) => {
                 type: UPDATE_GROUP_NAME,
                 payload: { newName }
             });
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -114,8 +117,11 @@ export const GroupProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/group/decline_user_invitation`, { email });
             dispatch({ type: DECLINE_USER_INVITATION, payload: email });
             fetchGroup();
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -124,8 +130,11 @@ export const GroupProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/group/remove_user`, { email });
             dispatch({ type: REMOVE_USER, payload: email });
             fetchGroup();
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -134,8 +143,11 @@ export const GroupProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/group/accept_invitation`, { groupId: id });
             dispatch({ type: ACCEPT_INVITATION, payload: id });
             fetchInvitations();
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -144,8 +156,11 @@ export const GroupProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/group/decline_invitation`, { groupId: id });
             dispatch({ type: DECLINE_INVITATION, payload: id });
             fetchInvitations();
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 

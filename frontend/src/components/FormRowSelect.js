@@ -2,18 +2,10 @@ import React from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
-const FormRowSelect = ({ list, onChange, theme, onMenuOpen }) => {
-    const options = list.map((item) => {
-        return {
-            value: `${item.name}`,
-            label: `${item.name}`
-        };
-    });
-
+const FormRowSelect = ({ theme, value, options, placeholder, onChange, onMenuOpen, noOptionsMessage }) => {
     const light_yellow = '#fff0d1';
     const dark_yellow = '#ffcc66';
     const dark_purple = '#231c30';
-
     const isDark = theme === 'dark';
 
     const styles = {
@@ -25,7 +17,6 @@ const FormRowSelect = ({ list, onChange, theme, onMenuOpen }) => {
             borderBottom: isDark ? `1px dotted ${light_yellow}` : `1px dotted ${dark_purple}`,
             color: isDark ? light_yellow : dark_purple,
             backgroundColor: isDark ? dark_purple : '#fff',
-            textTransform: 'lowercase',
             cursor: 'pointer'
         }),
 
@@ -42,7 +33,6 @@ const FormRowSelect = ({ list, onChange, theme, onMenuOpen }) => {
         singleValue: (defaultStyles) => ({
             ...defaultStyles,
             fontWeight: 'bold',
-            textTransform: 'lowercase',
             color: isDark ? dark_purple : dark_yellow
         }),
 
@@ -71,11 +61,13 @@ const FormRowSelect = ({ list, onChange, theme, onMenuOpen }) => {
         <div className="select-container">
             <Select
                 myFontSize="16px"
-                styles={styles}
                 onChange={onChange}
                 onMenuOpen={onMenuOpen}
+                noOptionsMessage={noOptionsMessage}
                 options={options}
-                placeholder="wybierz kategorię..."
+                placeholder={placeholder}
+                styles={styles}
+                value={value}
             />
         </div>
     );
@@ -84,9 +76,11 @@ const FormRowSelect = ({ list, onChange, theme, onMenuOpen }) => {
 FormRowSelect.propTypes = {
     onChange: PropTypes.func,
     onMenuOpen: PropTypes.func,
-    list: PropTypes.array,
-    children: PropTypes.string,
-    theme: PropTypes.string
+    noOptionsMessage: PropTypes.func,
+    options: PropTypes.array,
+    placeholder: PropTypes.string,
+    theme: PropTypes.string,
+    value: PropTypes.object
 };
 
 export default FormRowSelect;

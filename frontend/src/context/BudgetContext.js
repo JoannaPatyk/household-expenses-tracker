@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/actions';
+import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/Actions';
 import reducer from '../reducers/BudgetReducer';
 import apiConfig from '../apiConfig';
 import { useExpensesContext } from './ExpensesContext';
@@ -49,8 +49,11 @@ export const BudgetProvider = ({ children }) => {
         try {
             await axios.patch(`${apiConfig.api}/budget/${id}`, { amount: updateBudgetEntryAmount });
             dispatch({ type: UPDATE_BUDGET, payload: { id, updateBudgetEntryAmount } });
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 

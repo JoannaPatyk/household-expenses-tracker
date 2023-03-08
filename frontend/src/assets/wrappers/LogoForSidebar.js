@@ -14,11 +14,11 @@ const Wrapper = styled.nav`
     }
 
     .logo {
-        height: 6.75rem;
-        width: 6.75rem;
+        height: 6.5rem;
+        width: 6.5rem;
         justify-content: center;
-        border: 2px solid var(--primary-900);
-        box-shadow: var(--shadow-4);
+        border: 2px solid var(--primary-700);
+        box-shadow: var(--shadow-5);
         border-radius: 50%;
         background-color: transparent;
     }

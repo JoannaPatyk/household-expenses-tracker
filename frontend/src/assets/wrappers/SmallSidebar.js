@@ -61,11 +61,20 @@ const Wrapper = styled.aside`
     }
 
     .logo-container {
-        margin-bottom: 1rem;
+        margin: 0;
     }
 
     .logo {
-        font-size: 2rem;
+        height: 5.5rem;
+        width: 5.5rem;
+    }
+
+    .logo-icon {
+        font-size: 3.5rem;
+    }
+
+    .logo-title {
+        font-size: 0.8rem;
     }
 
     #btn-back {
@@ -76,23 +85,15 @@ const Wrapper = styled.aside`
         color: var(--primary-900);
     }
 
-    .author {
+    .btn-open {
         position: absolute;
-        bottom: 5px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: var(--primary-300);
-        font-size: 0.6rem;
-    }
-
-    .author span {
-        font-weight: 800;
-        color: var(--primary-900);
+        top: 10px;
+        left: 10px;
     }
 
     @media (max-width: 450px) {
         .small-sidebar-content {
-            height: 80vh;
+            height: 85vh;
         }
 
         .nav-link {

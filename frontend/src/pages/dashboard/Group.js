@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { Button, FormRowInput } from '../../components';
+import notification, { SUCCESS, WARNING, INFO, ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Group';
 import { CiFloppyDisk } from 'react-icons/ci';
 import { HiOutlineXMark, HiCheck } from '../../../node_modules/react-icons/hi2';
@@ -8,7 +8,8 @@ import { useGroupContext } from '../../context/GroupContext';
 import { useUserContext } from '../../context/UserContext';
 
 function Group() {
-    const [newGroupName, setNewGroupName] = useState('Twoja grupa');
+    const [newGroupName, setNewGroupName] = useState('');
+    const [oldGroupName, setOldGroupName] = useState('');
     const [emailNewMember, setEmailNewMember] = useState('');
     const { userData } = useUserContext();
     const {
@@ -24,45 +25,8 @@ function Group() {
 
     useEffect(() => {
         setNewGroupName(group.name);
+        setOldGroupName(group.name);
     }, [group.name]);
-
-    const handleSave = () => {
-        updateGroupName(newGroupName);
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        if (emailNewMember === group.owner.email) {
-            toast.warning('Podany e-mail należy do właściciela grupy! Podaj inny.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
-            setEmailNewMember('');
-            return;
-        } else if (group.members.find((member) => member.email === emailNewMember)) {
-            toast.warning('Osoba o podanym adresie e-mail należy już do grupy!', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
-            return;
-        } else if (group.invitations.find((member) => member.email === emailNewMember)) {
-            toast.warning('Zaproszenie zostało już wcześniej wysłane. Poczekaj na odpowiedź.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
-            return;
-        }
-
-        const result = await inviteUser(emailNewMember);
-        if (!result) {
-            toast.warning('Brak użytkownika o podanym adresie e-mail w bazie.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
-        }
-        setEmailNewMember('');
-    };
 
     const handleGroupNameChange = (event) => {
         const name = event.target.value;
@@ -74,22 +38,88 @@ function Group() {
         setEmailNewMember(email);
     };
 
-    const handleAcceptInvitation = (id) => {
-        acceptInvitation(id);
-        toast.info('Zaloguj się ponownie, żeby zobaczyć zmiany.', {
-            position: toast.POSITION.BOTTOM_LEFT,
-            className: 'toast-message'
-        });
+    const handleSave = async () => {
+        if (newGroupName === oldGroupName) {
+            return;
+        }
+
+        const result = await updateGroupName(newGroupName);
+
+        if (result) {
+            notification(SUCCESS, 'Nazwa grupy została pomyślnie zaktualizowana', true);
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
     };
 
-    const handleRemoveUser = (email) => {
-        removeUser(email);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-        if (group.owner.email !== userData.email) {
-            toast.info('Zaloguj się ponownie, żeby zobaczyć zmiany.', {
-                position: toast.POSITION.BOTTOM_LEFT,
-                className: 'toast-message'
-            });
+        if (emailNewMember === '') {
+            return;
+        } else if (emailNewMember === group.owner.email) {
+            notification(WARNING, 'Podany e-mail należy do właściciela grupy, podaj inny');
+            setEmailNewMember('');
+            return;
+        } else if (group.members.find((member) => member.email === emailNewMember)) {
+            notification(WARNING, 'Osoba o podanym adresie e-mail należy już do grupy');
+            return;
+        } else if (group.invitations.find((member) => member.email === emailNewMember)) {
+            notification(WARNING, 'Zaproszenie zostało już wcześniej wysłane, poczekaj na odpowiedź');
+            return;
+        }
+
+        const result = await inviteUser(emailNewMember);
+        if (!result) {
+            notification(WARNING, 'Brak użytkownika o podanym adresie e-mail w bazie');
+        }
+        setEmailNewMember('');
+    };
+
+    const handleAcceptInvitation = async (item) => {
+        const result = await acceptInvitation(item.id);
+
+        if (result) {
+            notification(
+                INFO,
+                `Zaproszenie od grupy '${item.name}' zaakceptowane, zaloguj się ponownie, żeby zobaczyć zmiany`
+            );
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
+    };
+
+    const handleDeclineInvitation = async (item) => {
+        const result = await declineInvitation(item.id);
+
+        if (result) {
+            notification(INFO, `Zaproszenie od grupy '${item.name}' zostało odrzucone`);
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
+    };
+
+    const handleRemoveUser = async (email) => {
+        const result = await removeUser(email);
+
+        if (result) {
+            if (group.owner.email !== userData.email) {
+                notification(INFO, 'Grupa została opuszczona');
+            } else if (group.owner.email === userData.email) {
+                notification(INFO, `Użytkownik ${email} został usunięty z grupy`);
+            }
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
+    };
+
+    const handleDeclineUserInvitation = async (email) => {
+        const result = await declineUserInvitation(email);
+
+        if (result) {
+            notification(INFO, `Zaproszenie wysłane do ${email} zostało anulowane`);
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
         }
     };
 
@@ -143,7 +173,7 @@ function Group() {
                     <div className="decline-invitations">
                         <h3>Wysłane zaproszenia</h3>
                         <div className="description">
-                            <h5>- osoby, do których wysłałeś/aś zaproszenie, oczekuj na odpowiedź</h5>
+                            <h5>- osoby, do których wysłałeś/aś zaproszenie, oczekuj na odpowiedź z ich strony</h5>
                         </div>
                         {group.invitations
                             ? group.invitations.map((item) => {
@@ -152,7 +182,7 @@ function Group() {
                                           <p>{item.email}</p>
                                           <HiOutlineXMark
                                               className="delete-btn"
-                                              onClick={() => declineUserInvitation(item.email)}
+                                              onClick={() => handleDeclineUserInvitation(item.email)}
                                           />
                                       </div>
                                   );
@@ -174,11 +204,11 @@ function Group() {
                                           <p>{item.owner.email}</p>
                                           <HiOutlineXMark
                                               className="delete-btn"
-                                              onClick={() => declineInvitation(item.id)}
+                                              onClick={() => handleDeclineInvitation(item)}
                                           />
                                           <HiCheck
                                               className="accept-btn"
-                                              onClick={() => handleAcceptInvitation(item.id)}
+                                              onClick={() => handleAcceptInvitation(item)}
                                           />
                                       </div>
                                   );
@@ -187,7 +217,7 @@ function Group() {
                     </div>
                 </div>
                 <div className="invitation-container">
-                    <h2>Wyślij zaproszenie do grupy</h2>
+                    <h2>Wyślij zaproszenie</h2>
                     <div className="description">
                         <h5>- jeśli chcesz wysłać komuś zaproszenie do swojej grupy, wpisz poniżej email tej osoby</h5>
                     </div>

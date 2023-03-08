@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useContext, useReducer, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/actions';
+import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/Actions';
 import reducer from '../reducers/CategoryReducer';
 import apiConfig from '../apiConfig';
 import { useUserContext } from './UserContext';
@@ -53,8 +53,11 @@ export const CategoriesProvider = ({ children }) => {
             await axios.post(`${apiConfig.api}/categories`, { name });
             dispatch({ type: ADD_CATEGORY, payload: name });
             trackPromise(fetchCategories());
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -67,8 +70,11 @@ export const CategoriesProvider = ({ children }) => {
                 category: {},
                 edit: false
             });
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 
@@ -76,8 +82,11 @@ export const CategoriesProvider = ({ children }) => {
         try {
             await axios.delete(`${apiConfig.api}/categories/${id}`);
             dispatch({ type: DELETE_CATEGORY, payload: id });
+
+            return true;
         } catch (error) {
             console.error('error: ', error.response);
+            return false;
         }
     };
 

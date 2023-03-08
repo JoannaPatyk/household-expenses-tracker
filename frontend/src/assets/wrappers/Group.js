@@ -68,12 +68,19 @@ const Wrapper = styled.main`
         width: 85%;
         min-height: 40px;
         padding-left: 1rem;
-        margin: 1rem;
+        margin: 0.5rem;
         color: var(--secondary-900);
         font-size: 1rem;
         border-radius: 20px;
         background-color: var(--primary-300);
         box-shadow: var(--shadow-4);
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 
     .invitation-container {
@@ -86,7 +93,7 @@ const Wrapper = styled.main`
     }
 
     h3 {
-        margin: 0.5rem 0;
+        margin: 0.8rem 0;
         font-size: 1rem;
         text-transform: uppercase;
     }
@@ -96,7 +103,7 @@ const Wrapper = styled.main`
         align-items: center;
         justify-content: center;
         height: 40px;
-        width: 80%;
+        width: 90%;
         margin-top: 0.5rem;
     }
 

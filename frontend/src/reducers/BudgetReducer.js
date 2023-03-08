@@ -1,4 +1,4 @@
-import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/actions';
+import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/Actions';
 
 const BudgetReducer = (state, action) => {
     switch (action.type) {

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { TfiBackLeft } from 'react-icons/tfi';
+import PropTypes from 'prop-types';
 import { CiEdit } from 'react-icons/ci';
 import { HiOutlineXMark } from 'react-icons/hi2';
-import background from '../assets/images/background.png';
 import Button from './Button';
-import Logo from './Logo';
 import Wrapper from '../assets/wrappers/EditCategory';
 import FormRowInput from '../components/FormRowInput';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
+import notification, { SUCCESS, INFO, ERROR } from '../utils/Notification';
 
 function EditCategory() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -46,16 +44,39 @@ function EditCategory() {
     const handleEdit = (category) => {
         saveCategoryForEdit(category);
         setOldName(category.name);
+        setCategoryName('');
     };
 
-    const handleSubmit = (event) => {
+    const handleDelete = async (category) => {
+        const result = await deleteCategory(category.id);
+        if (result) {
+            notification(INFO, `Usunięto kategorię: ${category.name}`);
+        } else {
+            notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+        }
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (currentlyEditedCategory.edit === true) {
-            updateCategory(currentlyEditedCategory.category.id, categoryName);
-            updateNameCategory(oldName, categoryName);
+            const result = await updateCategory(currentlyEditedCategory.category.id, categoryName);
+            if (result) {
+                updateNameCategory(oldName, categoryName);
+                notification(
+                    SUCCESS,
+                    `Edytowano kategorię: ${currentlyEditedCategory.category.name} → ${categoryName}`
+                );
+            } else {
+                notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+            }
         } else {
-            addCategory(categoryName);
+            const result = await addCategory(categoryName);
+            if (result) {
+                notification(SUCCESS, `Dodano kategorię: ${categoryName}`);
+            } else {
+                notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');
+            }
         }
 
         setButtonDisabled(true);
@@ -64,10 +85,6 @@ function EditCategory() {
 
     return (
         <Wrapper>
-            <Link to="/add" className="btn-back">
-                <TfiBackLeft />
-            </Link>
-            <Logo />
             <div className="edit-container">
                 <h2>Dodaj lub edytuj kategorie</h2>
                 <form onSubmit={handleSubmit}>
@@ -83,21 +100,27 @@ function EditCategory() {
                         zapisz
                     </Button>
                 </form>
-                <img src={background} alt="background" className="background-image" />
             </div>
-            <div className="categories">
-                {categories.map((category) => {
-                    return (
-                        <div className="category" key={category.id}>
-                            <p>{category.name}</p>
-                            <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
-                            <HiOutlineXMark className="edit-btn delete" onClick={() => deleteCategory(category.id)} />
-                        </div>
-                    );
-                })}
+            <div className="categories-container">
+                <h2>Dostępne kategorie</h2>
+                <div className="categories">
+                    {categories.map((category) => {
+                        return (
+                            <div className="category" key={category.id}>
+                                <p>{category.name}</p>
+                                <CiEdit className="edit-btn edit" onClick={() => handleEdit(category)} />
+                                <HiOutlineXMark className="edit-btn delete" onClick={() => handleDelete(category)} />
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </Wrapper>
     );
 }
+
+EditCategory.propTypes = {
+    closeModal: PropTypes.func
+};
 
 export default EditCategory;

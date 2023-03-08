@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { usePromiseTracker } from 'react-promise-tracker';
 import * as Loader from 'react-loader-spinner';
-import PropTypes from 'prop-types';
 
 function LoadingIndicator(props) {
     const { promiseInProgress } = usePromiseTracker({ area: props.area });
