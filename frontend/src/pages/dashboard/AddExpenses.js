@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, FormRowInput, FormRowSelect } from './';
-import Wrapper from '../assets/wrappers/ExpensesForm';
-import { useExpensesContext } from '../context/ExpensesContext';
-import { useCategoriesContext } from '../context/CategoriesContext';
-import notification, { SUCCESS, INFO, ERROR } from '../utils/Notification';
+import { Button, FormRowInput, FormRowSelect } from '../../components';
+import Wrapper from '../../assets/wrappers/AddExpenses';
+import { useExpensesContext } from '../../context/ExpensesContext';
+import { useCategoriesContext } from '../../context/CategoriesContext';
+import notification, { SUCCESS, INFO, ERROR } from '../../utils/Notification';
 
-function ExpensesForm({ theme }) {
+function AddExpenses({ theme }) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [newCategory, setNewCategory] = useState('');
     const [newAmount, setNewAmount] = useState('');
@@ -74,7 +74,7 @@ function ExpensesForm({ theme }) {
                     })}
                     defaultValue={{ value: categories[0], label: categories[0] }}
                     theme={theme}
-                    placeholder="wyszukaj lub wybierz kategorię"
+                    placeholder="wybierz kategorię"
                     noOptionsMessage={() => 'brak kategorii'}
                     onChange={handleCategoryChange}
                     onMenuOpen={handleMenuOpen}
@@ -104,8 +104,8 @@ function ExpensesForm({ theme }) {
     );
 }
 
-ExpensesForm.propTypes = {
+AddExpenses.propTypes = {
     theme: PropTypes.string
 };
 
-export default ExpensesForm;
+export default AddExpenses;

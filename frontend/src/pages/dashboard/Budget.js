@@ -36,13 +36,9 @@ function Budget() {
 
         if (result) {
             if (toast.isActive(toastId.current)) {
-                update(
-                    `Zaktualizowano planowane wydatki dla kategorii ${budgetEntry.categoryName} - ${budgetEntry.amount} PLN → ${value} PLN`
-                );
+                update(`Zaktualizowano planowane wydatki dla kategorii ${budgetEntry.categoryName} → ${value} PLN`);
             } else {
-                notify(
-                    `Zaktualizowano planowane wydatki dla kategorii ${budgetEntry.categoryName} - ${budgetEntry.amount} PLN → ${value} PLN`
-                );
+                notify(`Zaktualizowano planowane wydatki dla kategorii ${budgetEntry.categoryName} → ${value} PLN`);
             }
         } else {
             notification(ERROR, 'Coś poszło nie tak, spróbuj ponownie');

@@ -14,7 +14,7 @@ const Wrapper = styled.main`
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        padding-top: 4rem;
+        padding-top: 5rem;
         text-align: center;
     }
 
@@ -54,7 +54,7 @@ const Wrapper = styled.main`
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
+        padding: 0.8rem 0;
     }
 
     .decline-invitations {
@@ -84,6 +84,7 @@ const Wrapper = styled.main`
     }
 
     .invitation-container {
+        padding: 1rem 0;
         align-items: center;
     }
 
@@ -108,7 +109,7 @@ const Wrapper = styled.main`
     }
 
     h5 {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         font-weight: 100;
         letter-spacing: 0;
         opacity: 0.8;

@@ -577,9 +577,9 @@ body.light #groupNameInput {
 /*DARK/LIGHT MODE*/
 
 .switch {
+    position: relative;
     display: flex;
     height: 34px;
-    position: relative;
     width: 60px;
 }
 
@@ -588,13 +588,13 @@ body.light #groupNameInput {
 }
 
 .switch-wrapper {
-    display: flex;
-    flex-direction: column;
     position: absolute;
     top: 20px;
     right: 10px;
-    background-color: transparent;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
 }
 
 .switch-wrapper em {
@@ -614,19 +614,19 @@ body.light #groupNameInput {
 }
 
 .slider:before {
-    background-color: var(--white);
-    bottom: 4px;
     content: '';
-    height: 26px;
-    left: 4px;
     position: absolute;
-    transition: 0.4s;
+    left: 4px;
+    bottom: 4px;
+    height: 26px;
     width: 26px;
+    transition: 0.4s;
+    background-color: var(--white);
 }
 
 .slider.round {
-    border-radius: 34px;
     position: absolute;
+    border-radius: 34px;
 }
 
 .slider.round:before {
@@ -646,16 +646,15 @@ input:checked + .slider:before {
     top: 50%;
     transform: translateY(-50%);
     font-size: 1rem;
+    color: var(--black);
 }
 
-.moon {
+body.dark .moon {
     left: 14%;
-    color: var(--secondary-900);
 }
 
-.sun {
-    left: 58%;
-    color: var(--primary-900);
+body.light .sun {
+    left: 59%;
 }
 
 body.light .moon {
@@ -670,18 +669,18 @@ body.dark .landing-title h1 {
     color: var(--primary-800);
 }
 
-/*TOAST_MESSAGE*/
+/*TOAST MESSAGE*/
 
 .toast-message {
-    background: var(--secondary-800);
-    color: var(--primary-900);
-    font-size: 0.8rem;
     width: 80vw;
     padding: 10px 5px;
     margin: 20px;
     font-family: inherit;
+    font-size: 0.8rem;
+    color: var(--primary-900);
     letter-spacing: var(--letterSpacing);
     border-radius: 20px;
+    background: var(--secondary-800);
 }
 
 .toast-message path {

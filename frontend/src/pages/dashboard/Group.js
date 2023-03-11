@@ -193,8 +193,7 @@ function Group() {
                         <h3>Otrzymane zaproszenia</h3>
                         <div className="description">
                             <h5>
-                                - zaakceptuj zaproszenie i dołącz do nowej grupy opuszczając przy tym swoją lub odrzuć
-                                zaproszenie
+                                - zaakceptuj zaproszenie i dołącz do nowej grupy (opuścisz swoją) lub odrzuć zaproszenie
                             </h5>
                         </div>
                         {invitations
