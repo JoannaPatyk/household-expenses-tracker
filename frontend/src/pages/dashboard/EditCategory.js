@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CiEdit } from 'react-icons/ci';
 import { HiOutlineXMark } from 'react-icons/hi2';
-import Button from './Button';
-import Wrapper from '../assets/wrappers/EditCategory';
-import FormRowInput from '../components/FormRowInput';
-import { useCategoriesContext } from '../context/CategoriesContext';
-import { useExpensesContext } from '../context/ExpensesContext';
-import notification, { SUCCESS, INFO, ERROR } from '../utils/Notification';
+import Button from '../../components/Button';
+import Wrapper from '../../assets/wrappers/EditCategory';
+import FormRowInput from '../../components/FormRowInput';
+import { useCategoriesContext } from '../../context/CategoriesContext';
+import { useExpensesContext } from '../../context/ExpensesContext';
+import notification, { SUCCESS, INFO, ERROR } from '../../utils/Notification';
 
 function EditCategory() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -102,7 +102,7 @@ function EditCategory() {
                 </form>
             </div>
             <div className="categories-container">
-                <h2>Dostępne kategorie</h2>
+                {categories.length ? <h2>Dostępne kategorie</h2> : ''}
                 <div className="categories">
                     {categories.map((category) => {
                         return (

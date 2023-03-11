@@ -1,8 +1,7 @@
 import BigSidebar from './BigSidebar';
 import Button from './Button';
-import EditCategory from './EditCategory';
 import EditExpense from './EditExpense';
-import ExpensesForm from './ExpensesForm';
+import AddExpenses from '../pages/dashboard/AddExpenses.js';
 import FormRowInput from './FormRowInput';
 import FormRowSelect from './FormRowSelect';
 import LoadingIndicator from './LoadingIndicator';
@@ -17,9 +16,8 @@ export {
     BigSidebar,
     Button,
     OpacityBackground,
-    EditCategory,
     EditExpense,
-    ExpensesForm,
+    AddExpenses,
     FormRowInput,
     FormRowSelect,
     LoadingIndicator,

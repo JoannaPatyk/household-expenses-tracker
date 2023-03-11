@@ -4,10 +4,8 @@ import { BsMoonStars, BsSun } from 'react-icons/bs';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Landing, Login, Error, SharedLayout, Registration } from './pages';
-import { Budget, Expenses, Statistics, Group, ProtectedRoute } from './pages/dashboard';
-import ExpensesForm from './components/ExpensesForm';
-import EditExpense from './components/EditExpense';
-import { EditCategory } from './components';
+import { Budget, Expenses, Statistics, Group, ProtectedRoute, AddExpenses, EditCategory } from './pages/dashboard';
+import { EditExpense } from './components';
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
@@ -47,7 +45,7 @@ function App() {
                         }
                     >
                         <Route path="categories" element={<EditCategory />} />
-                        <Route index path="add" element={<ExpensesForm theme={theme} />} />
+                        <Route index path="add" element={<AddExpenses theme={theme} />} />
                         <Route path="expenses" element={<Expenses />} />
                         <Route path="budget" element={<Budget />} />
                         <Route path="statistics" element={<Statistics />} />
