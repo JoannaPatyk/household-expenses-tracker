@@ -1,21 +1,24 @@
-import React from 'react';
-import { LogoForSidebar, NavLinksForSmallSidebar } from './';
+import React, { useState } from 'react';
+import { LogoForSidebar, NavLinksForSmallSidebar } from './IndexComponents';
 import { TfiBackLeft } from 'react-icons/tfi';
 import { CiBoxList } from 'react-icons/ci';
 import Wrapper from '../assets/wrappers/SmallSidebar';
-import { useCategoriesContext } from '../context/CategoriesContext';
 
 function SmallSidebar() {
-    const { toggleSidebar, isSidebarOpen } = useCategoriesContext();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
         <Wrapper>
-            <button className="btn-toggle" onClick={toggleSidebar}>
+            <button className="btn-toggle" onClick={handleToggle}>
                 <CiBoxList className="btn-open" />
             </button>
-            <div className={`${isSidebarOpen ? 'sidebar-container show-sidebar' : 'sidebar-container'}`}>
+            <div className={`${isOpen ? 'sidebar-container show-sidebar' : 'sidebar-container'}`}>
                 <div className="small-sidebar-content">
-                    <button id="btn-back" className="btn-back" onClick={toggleSidebar}>
+                    <button id="btn-back" className="btn-back" onClick={handleToggle}>
                         <TfiBackLeft />
                     </button>
                     <LogoForSidebar />

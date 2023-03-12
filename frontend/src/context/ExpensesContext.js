@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ADD_EXPENSE, ADD_EXPENSES, UPDATE_EXPENSE, DELETE_EXPENSE, UPDATE_NAME_CATEGORY } from '../utils/Actions';
 import apiConfig from '../apiConfig';
-import { trackPromise } from 'react-promise-tracker';
 import reducer from '../reducers/ExpensesReducer';
 import { useCategoriesContext } from './CategoriesContext';
 import { useUserContext } from './UserContext';
+import handleError from '../utils/ErrorHandling';
 
 const initialState = {
     expenses: []
@@ -30,13 +30,13 @@ export const ExpensesProvider = ({ children }) => {
             const data = response.data;
             addAllExpenses(data);
         } catch (error) {
-            console.error('error: ', error.response);
+            handleError(error);
         }
     }, []);
 
     useEffect(() => {
         if (isLogged) {
-            trackPromise(fetchExpenses());
+            fetchExpenses();
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,10 +50,9 @@ export const ExpensesProvider = ({ children }) => {
         try {
             await axios.post(`${apiConfig.api}/expenses`, { category, amount, comment });
             dispatch({ type: ADD_EXPENSE, payload: { category, amount, comment } });
-            trackPromise(fetchExpenses());
+            fetchExpenses();
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -77,7 +76,6 @@ export const ExpensesProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -89,7 +87,6 @@ export const ExpensesProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };

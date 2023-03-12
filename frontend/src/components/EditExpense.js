@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Button, FormRowInput, FormRowSelect, Logo } from './';
+import { Button, FormRowInput, FormRowSelect, Logo } from './IndexComponents';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/EditExpenses';
 import background from '../assets/images/background.png';
 import { useCategoriesContext } from '../context/CategoriesContext';
 import { useExpensesContext } from '../context/ExpensesContext';
 import notification, { SUCCESS, ERROR } from '../utils/Notification';
+import { useThemeContext } from '../context/ThemeContext';
 
-function EditExpense({ theme }) {
+function EditExpense() {
     const navigate = useNavigate();
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [editCategory, setEditCategory] = useState(null);
@@ -17,6 +17,7 @@ function EditExpense({ theme }) {
     const [editComment, setEditComment] = useState('');
     const { categories } = useCategoriesContext();
     const { expenseForEdit, updateExpense } = useExpensesContext();
+    const { theme } = useThemeContext();
 
     useEffect(() => {
         if (expenseForEdit.edit === true) {
@@ -109,9 +110,5 @@ function EditExpense({ theme }) {
         </Wrapper>
     );
 }
-
-EditExpense.propTypes = {
-    theme: PropTypes.string
-};
 
 export default EditExpense;

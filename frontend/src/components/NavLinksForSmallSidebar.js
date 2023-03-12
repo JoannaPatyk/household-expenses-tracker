@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import links from '../utils/Links';
-import { useCategoriesContext } from '../context/CategoriesContext';
 
 function NavLinksForSmallSidebar() {
-    const { toggleSidebar } = useCategoriesContext();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <div className="nav-links">
             {links.map((link) => {
@@ -15,7 +19,7 @@ function NavLinksForSmallSidebar() {
                         className={({ isActive }) => {
                             return isActive ? 'nav-link active' : 'nav-link';
                         }}
-                        onClick={toggleSidebar}
+                        onClick={handleToggle}
                         key={id}
                         end
                     >

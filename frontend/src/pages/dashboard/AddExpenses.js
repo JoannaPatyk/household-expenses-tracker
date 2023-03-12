@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Button, FormRowInput, FormRowSelect } from '../../components';
+import { Button, FormRowInput, FormRowSelect } from '../../components/IndexComponents';
 import Wrapper from '../../assets/wrappers/AddExpenses';
 import { useExpensesContext } from '../../context/ExpensesContext';
 import { useCategoriesContext } from '../../context/CategoriesContext';
 import notification, { SUCCESS, INFO, ERROR } from '../../utils/Notification';
+import { useThemeContext } from '../../context/ThemeContext';
 
-function AddExpenses({ theme }) {
+function AddExpenses() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [newCategory, setNewCategory] = useState('');
     const [newAmount, setNewAmount] = useState('');
     const [newComment, setNewComment] = useState('');
     const { categories } = useCategoriesContext();
     const { addExpense } = useExpensesContext();
+    const { theme } = useThemeContext();
 
     const handleAmountChange = (event) => {
         if (event.target.value === '' || event.target.value <= 0 || newCategory === '') {
@@ -103,9 +104,5 @@ function AddExpenses({ theme }) {
         </Wrapper>
     );
 }
-
-AddExpenses.propTypes = {
-    theme: PropTypes.string
-};
 
 export default AddExpenses;

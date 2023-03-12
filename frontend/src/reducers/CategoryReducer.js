@@ -1,13 +1,7 @@
-import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/Actions';
+import { ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/Actions';
 
 const CategoryReducer = (state, action) => {
     switch (action.type) {
-        case TOGGLE_SIDEBAR: {
-            return {
-                ...state,
-                isSidebarOpen: !state.isSidebarOpen
-            };
-        }
         case ADD_CATEGORIES: {
             return {
                 ...state,

@@ -100,8 +100,8 @@ function Statistics() {
                                 bottom: 5
                             }}
                         >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis />
+                            <CartesianGrid strokeDasharray="1 1" />
+                            <XAxis dataKey="category" />
                             <YAxis />
                             <Tooltip
                                 cursor={false}

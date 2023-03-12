@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, FormRowInput } from '../../components';
+import { Button, FormRowInput } from '../../components/IndexComponents';
 import notification, { SUCCESS, WARNING, INFO, ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Group';
 import { CiFloppyDisk } from 'react-icons/ci';

@@ -11,6 +11,7 @@ import NavLinksForSmallSidebar from './NavLinksForSmallSidebar';
 import NavLinksForBigSidebar from './NavLinksForBigSidebar';
 import SmallSidebar from './SmallSidebar';
 import OpacityBackground from './OpacityBackground';
+import ThemeSwitch from './ThemeSwitch';
 
 export {
     BigSidebar,
@@ -25,5 +26,6 @@ export {
     LogoForSidebar,
     NavLinksForSmallSidebar,
     NavLinksForBigSidebar,
-    SmallSidebar
+    SmallSidebar,
+    ThemeSwitch
 };
