@@ -4,7 +4,7 @@ import notification, { INFO, ERROR } from '../utils/Notification';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';
-import { Logo, Button, FormRowInput, LoadingIndicator, OpacityBackground } from '../components';
+import { Logo, Button, FormRowInput, LoadingIndicator, OpacityBackground } from '../components/IndexComponents';
 import { useUserContext } from '../context/UserContext';
 import { trackPromise } from 'react-promise-tracker';
 

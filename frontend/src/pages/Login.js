@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Logo, Button, FormRowInput, LoadingIndicator, OpacityBackground } from '../components';
+import { Logo, Button, FormRowInput, LoadingIndicator, OpacityBackground } from '../components/IndexComponents';
 import { TfiBackLeft } from 'react-icons/tfi';
 import Wrapper from '../assets/wrappers/Login';
 import background from '../assets/images/background.png';

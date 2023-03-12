@@ -1,26 +1,22 @@
 import packageJson from '../../package.json';
 import React, { useState } from 'react';
-import { LogoForSidebar, NavLinksForBigSidebar } from './';
+import { LogoForSidebar, NavLinksForBigSidebar } from './IndexComponents';
 import Wrapper from '../assets/wrappers/BigSidebar';
-import { useCategoriesContext } from '../context/CategoriesContext';
 import { CiBoxList } from 'react-icons/ci';
 import { VscChevronLeft } from 'react-icons/vsc';
 
 function BigSidebar() {
-    const [isOpen, setIsOpen] = useState(true);
-    const { isSidebarOpen } = useCategoriesContext();
-    const { toggleSidebar } = useCategoriesContext();
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleToggle = () => {
-        toggleSidebar();
         setIsOpen(!isOpen);
     };
 
     return (
         <Wrapper>
-            <div className={`${isSidebarOpen ? 'sidebar-container' : 'sidebar-container show-sidebar'}`}>
+            <div className={`${isOpen ? 'sidebar-container' : 'sidebar-container show-sidebar'}`}>
                 <button className="btn-toggle" onClick={handleToggle}>
-                    {isOpen ? <VscChevronLeft className="btn-close" /> : <CiBoxList className="btn-open" />}
+                    {isOpen ? <CiBoxList className="btn-open" /> : <VscChevronLeft className="btn-close" />}
                 </button>
                 <LogoForSidebar className="logo" />
                 <NavLinksForBigSidebar />

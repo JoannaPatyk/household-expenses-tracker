@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../components';
+import { Button } from '../../components/IndexComponents';
 import notification, { INFO, ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Expenses';
 import { CiEdit } from 'react-icons/ci';

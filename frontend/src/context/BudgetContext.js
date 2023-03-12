@@ -4,10 +4,10 @@ import axios from 'axios';
 import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/Actions';
 import reducer from '../reducers/BudgetReducer';
 import apiConfig from '../apiConfig';
+import handleError from '../utils/ErrorHandling';
 import { useExpensesContext } from './ExpensesContext';
 import { useCategoriesContext } from './CategoriesContext';
 import { useUserContext } from './UserContext';
-import { trackPromise } from 'react-promise-tracker';
 
 const initialState = {
     budget: []
@@ -26,18 +26,16 @@ export const BudgetProvider = ({ children }) => {
         const fetchBudget = async () => {
             try {
                 const response = await axios.get(`${apiConfig.api}/budget`);
-
                 const data = response.data;
                 dispatch({ type: ADD_BUDGET, payload: data });
             } catch (error) {
-                console.error('error: ', error.response);
+                handleError(error);
             }
         };
 
         if (isLogged) {
-            trackPromise(fetchBudget());
+            fetchBudget();
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categories]);
 
@@ -52,7 +50,6 @@ export const BudgetProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };

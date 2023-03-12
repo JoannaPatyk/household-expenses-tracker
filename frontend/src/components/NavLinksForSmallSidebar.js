@@ -1,10 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import links from '../utils/Links';
-import { useCategoriesContext } from '../context/CategoriesContext';
 
-function NavLinksForSmallSidebar() {
-    const { toggleSidebar } = useCategoriesContext();
+function NavLinksForSmallSidebar({ handleToggle }) {
     return (
         <div className="nav-links">
             {links.map((link) => {
@@ -15,7 +14,7 @@ function NavLinksForSmallSidebar() {
                         className={({ isActive }) => {
                             return isActive ? 'nav-link active' : 'nav-link';
                         }}
-                        onClick={toggleSidebar}
+                        onClick={handleToggle}
                         key={id}
                         end
                     >
@@ -27,5 +26,9 @@ function NavLinksForSmallSidebar() {
         </div>
     );
 }
+
+NavLinksForSmallSidebar.propTypes = {
+    handleToggle: PropTypes.any.isRequired
+};
 
 export default NavLinksForSmallSidebar;
