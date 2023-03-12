@@ -1,14 +1,13 @@
 import React, { createContext, useEffect, useContext, useReducer, useState, useCallback } from 'react';
+import { ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/Actions';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { TOGGLE_SIDEBAR, ADD_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../utils/Actions';
-import reducer from '../reducers/CategoryReducer';
 import apiConfig from '../apiConfig';
+import handleError from '../utils/ErrorHandling';
 import { useUserContext } from './UserContext';
-import { trackPromise } from 'react-promise-tracker';
+import reducer from '../reducers/CategoryReducer';
 
 const initialState = {
-    isSidebarOpen: false,
     categories: []
 };
 
@@ -26,23 +25,18 @@ export const CategoriesProvider = ({ children }) => {
     const fetchCategories = useCallback(async () => {
         try {
             const response = await axios.get(`${apiConfig.api}/categories`);
-
             const data = response.data;
             addAllCategories(data);
         } catch (error) {
-            console.error('error: ', error.response);
+            handleError(error);
         }
     }, []);
 
     useEffect(() => {
         if (isLogged) {
-            trackPromise(fetchCategories());
+            fetchCategories();
         }
     }, [isLogged, fetchCategories]);
-
-    const toggleSidebar = () => {
-        dispatch({ type: TOGGLE_SIDEBAR });
-    };
 
     const addAllCategories = (categories) => {
         dispatch({ type: ADD_CATEGORIES, payload: categories });
@@ -52,11 +46,10 @@ export const CategoriesProvider = ({ children }) => {
         try {
             await axios.post(`${apiConfig.api}/categories`, { name });
             dispatch({ type: ADD_CATEGORY, payload: name });
-            trackPromise(fetchCategories());
+            fetchCategories();
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -73,7 +66,6 @@ export const CategoriesProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -85,7 +77,6 @@ export const CategoriesProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -104,7 +95,6 @@ export const CategoriesProvider = ({ children }) => {
                 categoryName,
                 currentlyEditedCategory,
                 setCategoryName,
-                toggleSidebar,
                 addCategory,
                 saveCategoryForEdit,
                 updateCategory,

@@ -5,11 +5,12 @@ import * as Loader from 'react-loader-spinner';
 
 function LoadingIndicator(props) {
     const { promiseInProgress } = usePromiseTracker({ area: props.area });
-    const style = { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+
+    const containerStyle = { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
 
     return (
         promiseInProgress && (
-            <div style={style}>
+            <div style={containerStyle}>
                 <Loader.Triangle color="#ffc125" height="80" width="80" />
                 <p
                     style={{
@@ -23,7 +24,7 @@ function LoadingIndicator(props) {
                         color: '#ffc125'
                     }}
                 >
-                    oczekiwanie na serwer...
+                    oczekiwanie na serwer <br /> może trochę potrwać (~30sek)...
                 </p>
             </div>
         )

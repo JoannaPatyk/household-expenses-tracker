@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useReducer } 
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import apiConfig from '../apiConfig';
+import handleError from '../utils/ErrorHandling';
 import reducer from '../reducers/GroupReducer';
 import { useUserContext } from './UserContext';
 import {
@@ -30,10 +31,9 @@ export const GroupProvider = ({ children }) => {
         try {
             const response = await axios.get(`${apiConfig.api}/group`);
             const data = response.data;
-
             addGroup(data);
         } catch (error) {
-            console.error('error: ', error.response);
+            handleError(error);
         }
     }, []);
 
@@ -41,10 +41,9 @@ export const GroupProvider = ({ children }) => {
         try {
             const response = await axios.get(`${apiConfig.api}/group/invitations`);
             const data = response.data;
-
             addInvitations(data);
         } catch (error) {
-            console.error('error: ', error.response);
+            handleError(error);
         }
     }, []);
 
@@ -87,7 +86,6 @@ export const GroupProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -100,8 +98,6 @@ export const GroupProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
-
             if (error.response.status === 404) {
                 return false;
             }
@@ -120,7 +116,6 @@ export const GroupProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -133,7 +128,6 @@ export const GroupProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -146,7 +140,6 @@ export const GroupProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };
@@ -159,7 +152,6 @@ export const GroupProvider = ({ children }) => {
 
             return true;
         } catch (error) {
-            console.error('error: ', error.response);
             return false;
         }
     };

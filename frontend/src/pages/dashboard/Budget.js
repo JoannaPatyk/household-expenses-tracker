@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { FormRowInput } from '../../components';
+import { FormRowInput } from '../../components/IndexComponents';
 import { toast } from 'react-toastify';
 import notification, { ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Budget';

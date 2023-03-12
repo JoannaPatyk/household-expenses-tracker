@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { SmallSidebar, BigSidebar } from '../components';
+import { SmallSidebar, BigSidebar } from '../components/IndexComponents';
 import Wrapper from '../assets/wrappers/SharedLayout';
 import { CiLogout } from 'react-icons/ci';
 import background from '../assets/images/background.png';

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useCallback, useEffect, useState } fr
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import apiConfig from '../apiConfig';
+import handleError from '../utils/ErrorHandling';
 import notification, { SUCCESS, WARNING, ERROR } from '../utils/Notification';
 
 const UserContext = createContext();
@@ -22,11 +23,10 @@ export const UserProvider = ({ children }) => {
     const fetchUser = useCallback(async () => {
         try {
             const response = await axios.get(`${apiConfig.api}/user`);
-
             const data = response.data;
             setUserData({ name: data.name, email: data.email });
         } catch (error) {
-            console.error('error: ', error.response);
+            handleError(error);
         }
     }, []);
 
