@@ -77,3 +77,7 @@ Now you can use above links to `run application` in your browser.
 ### Local MongoDB
 
 Guide on how to setup local MongoDB server: [link](https://zellwk.com/blog/local-mongodb/).
+
+## API documentation
+
+Full `REST API documentation` for backend service can be found in this [API documentation](docs/API.md).
