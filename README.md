@@ -3,7 +3,11 @@
 Household Expenses Tracker (HET) is an application for tracking expenses and monitor your or your family's financial situation. It allows you to save expenses at any time, plan what amounts you want to spend on particular categories of expenses, track whether a specific goal has been exceeded. The application also provide simple statistics in form of charts that visually represent the state of incurred expenses.
 
 <p align="center">
-  <img src="logo.png" width="400" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="docs/logo-light.png">
+    <img alt="logo" src="docs/logo-dark.png width="450">
+</picture>
 </p>
 
 ## Quick setup and start
