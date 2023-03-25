@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/Actions';
+import { ADD_BUDGET, UPDATE_BUDGET, CLEAR_BUDGET } from '../utils/Actions';
 import reducer from '../reducers/BudgetReducer';
 import apiConfig from '../apiConfig';
 import handleError from '../utils/ErrorHandling';
@@ -54,6 +54,17 @@ export const BudgetProvider = ({ children }) => {
         }
     };
 
+    const deleteBudget = async () => {
+        try {
+            await axios.patch(`${apiConfig.api}/budget`);
+            dispatch({ type: CLEAR_BUDGET });
+
+            return true;
+        } catch (error) {
+            return false;
+        }
+    };
+
     const sumBudgetByCategory = (expenses, key, value) => {
         const map = new Map();
         for (const expense of expenses) {
@@ -70,6 +81,7 @@ export const BudgetProvider = ({ children }) => {
                 ...state,
                 summedByCategory,
                 updateBudget,
+                deleteBudget,
                 sumBudgetByCategory
             }}
         >

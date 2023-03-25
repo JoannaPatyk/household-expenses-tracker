@@ -27,6 +27,17 @@ class BudgetActions {
         }
     };
 
+    clearBudget = async (req, res) => {
+        try {
+            const groupId = req.userData.groupId;
+            await Budget.updateMany({ groupId: groupId }, { amount: 0 });
+
+            res.sendStatus(204);
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    };
+
     updateBudgetOnCategoryAddition = async (categoryName, groupId) => {
         const budgetEntry = new Budget({ categoryName: categoryName, amount: 0, groupId: groupId });
         await budgetEntry.save();

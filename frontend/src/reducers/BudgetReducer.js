@@ -1,4 +1,4 @@
-import { ADD_BUDGET, UPDATE_BUDGET } from '../utils/Actions';
+import { ADD_BUDGET, CLEAR_BUDGET, UPDATE_BUDGET } from '../utils/Actions';
 
 const BudgetReducer = (state, action) => {
     switch (action.type) {
@@ -22,6 +22,14 @@ const BudgetReducer = (state, action) => {
                           }
                         : budgetEntry
                 )
+            };
+        }
+        case CLEAR_BUDGET: {
+            return {
+                ...state,
+                budget: state.budget.map((budgetEntry) => {
+                    return { ...budgetEntry, amount: 0 };
+                })
             };
         }
         default:
