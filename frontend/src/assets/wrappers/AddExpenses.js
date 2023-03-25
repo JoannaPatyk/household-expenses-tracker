@@ -44,6 +44,7 @@ const Wrapper = styled.div`
     .btn {
         width: 16rem;
         height: 40px;
+        margin: 1.2rem;
     }
 
     .btn-edit {
@@ -86,6 +87,7 @@ const Wrapper = styled.div`
         .btn-edit {
             height: 40px;
         }
+
         #wrapper img {
             width: 20%;
         }

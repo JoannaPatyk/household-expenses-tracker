@@ -12,6 +12,7 @@ import NavLinksForBigSidebar from './NavLinksForBigSidebar';
 import SmallSidebar from './SmallSidebar';
 import OpacityBackground from './OpacityBackground';
 import ThemeSwitch from './ThemeSwitch';
+import ProgressBar from './ProgressBar';
 
 export {
     BigSidebar,
@@ -27,5 +28,6 @@ export {
     NavLinksForSmallSidebar,
     NavLinksForBigSidebar,
     SmallSidebar,
-    ThemeSwitch
+    ThemeSwitch,
+    ProgressBar
 };

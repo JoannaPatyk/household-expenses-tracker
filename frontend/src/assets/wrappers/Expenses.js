@@ -132,8 +132,8 @@ const Wrapper = styled.div`
         }
 
         .btn {
-            margin: 0.5rem;
-            font-size: 0.8rem;
+            margin: 1rem;
+            font-size: 1.2rem;
         }
     }
 `;
