@@ -51,7 +51,7 @@ function Statistics() {
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
         return (
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            <text x={x + 10} y={y + 10} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
                 {`${(percent * 100).toFixed(0)}%`}
             </text>
         );
@@ -70,7 +70,7 @@ function Statistics() {
                                 nameKey="category"
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={135}
+                                outerRadius={130}
                                 label={renderCustomizedLabel}
                                 labelLine={false}
                             >

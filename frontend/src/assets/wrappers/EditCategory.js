@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     }
 
     #form-input {
-        width: 240px;
+        width: 16rem;
         margin: 1.5rem 0.8rem;
     }
 
@@ -77,6 +77,12 @@ const Wrapper = styled.div`
         right: 2%;
     }
 
+    .btn {
+        width: 16rem;
+        height: 40px;
+        margin: 1.2rem;
+    }
+
     .background-image {
         position: absolute;
         top: 0;
@@ -92,12 +98,12 @@ const Wrapper = styled.div`
         }
 
         #form-input {
-            width: 400px;
+            width: 25rem;
             margin: 1.5rem 0.8rem;
         }
 
         #form-input:focus {
-            width: 380px;
+            width: 24rem;
         }
 
         .categories {
@@ -110,6 +116,11 @@ const Wrapper = styled.div`
             width: 70%;
             margin: 1rem 0;
             font-size: 1rem;
+        }
+
+        .btn {
+            width: 25rem;
+            font-size: 1.2rem;
         }
 
         .background-image {
