@@ -76,6 +76,8 @@ const Wrapper = styled.div`
     }
 
     #btn-clean {
+        width: 16rem;
+        height: 40px;
         margin: 2rem;
     }
 
@@ -117,6 +119,11 @@ const Wrapper = styled.div`
 
         #input:focus {
             width: 4.5rem;
+        }
+
+        #btn-clean {
+            width: 25rem;
+            font-size: 1.2rem;
         }
     }
 `;

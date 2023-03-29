@@ -43,56 +43,14 @@ const Wrapper = styled.div`
         margin: 0.1rem;
     }
 
-    @media (max-width: 600px) {
-        table {
-            width: 100vw;
-        }
-
-        th {
-            font-size: 0.6rem;
-            margin: 0.8rem 0;
-            text-align: center;
-        }
-
-        td {
-            font-size: 0.5rem;
-            margin: 0.7rem 0.3rem;
-            text-align: center;
-        }
-
-        th:nth-child(6),
-        td:nth-child(6) {
-            display: none;
-        }
-
-        td:nth-child(3) {
-            font-size: 0.5rem;
-        }
-
-        .expenses-title {
-            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
-        }
-
-        .expense-container {
-            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
-        }
-
-        #btn {
-            font-size: 1rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            margin: 0;
-        }
-    }
-
     @media (max-width: 700px) {
         th {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
         }
 
         td {
-            font-size: 0.8rem;
-            margin: 0.7rem 0.3rem;
+            font-size: 0.6rem;
+            margin: 0.7rem 0;
         }
 
         th:nth-child(6),
@@ -102,11 +60,18 @@ const Wrapper = styled.div`
 
         .expenses-title {
             display: grid;
-            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+            grid-template-columns: 0.5fr 1fr 1fr 2fr 1fr 0.5fr;
         }
 
         .expense-container {
-            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+            grid-template-columns: 0.5fr 1fr 1fr 2fr 1fr 0.5fr;
+        }
+
+        #btn {
+            font-size: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0;
         }
     }
 

@@ -39,13 +39,13 @@ const Wrapper = styled.main`
     }
 
     #emailInput {
-        width: 240px;
+        width: 16rem;
         margin: 0.5rem;
         font-size: 1rem;
     }
 
     #emailInput:hover {
-        width: 220px;
+        width: 15rem;
     }
 
     .members,
@@ -115,6 +115,12 @@ const Wrapper = styled.main`
         opacity: 0.8;
     }
 
+    .btn {
+        width: 16rem;
+        height: 40px;
+        margin: 1.2rem;
+    }
+
     .delete-btn,
     .accept-btn {
         position: absolute;
@@ -151,11 +157,16 @@ const Wrapper = styled.main`
         }
 
         #emailInput {
-            width: 400px;
+            width: 25rem;
         }
 
         #emailInput:hover {
-            width: 380px;
+            width: 24rem;
+        }
+
+        .btn {
+            width: 25rem;
+            font-size: 1.2rem;
         }
     }
 
