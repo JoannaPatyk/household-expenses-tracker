@@ -17,12 +17,18 @@ const BudgetContext = createContext();
 
 export const BudgetProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [summedByCategory, setSummedByCategory] = useState([]);
+
+    const [summedExpensesByCategory, setSummedExpensesByCategory] = useState([]);
+    const [summedPlanned, setSummedPlanned] = useState(0);
+    const [summedSpent, setSummedSpent] = useState(0);
+
     const { expenses } = useExpensesContext();
     const { categories } = useCategoriesContext();
     const { isLogged } = useUserContext();
 
     useEffect(() => {
+        let source = axios.CancelToken.source();
+
         const fetchBudget = async () => {
             try {
                 const response = await axios.get(`${apiConfig.api}/budget`);
@@ -36,12 +42,29 @@ export const BudgetProvider = ({ children }) => {
         if (isLogged) {
             fetchBudget();
         }
+
+        return () => source.cancel();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categories]);
 
     useEffect(() => {
-        setSummedByCategory(sumBudgetByCategory(expenses, 'category', 'amount'));
-    }, [expenses]);
+        const sumAllBudget = () => {
+            const budget = state.budget;
+
+            if (budget.length === 0) {
+                return 0;
+            }
+
+            const sum = budget.map((item) => parseInt(item.amount)).reduce((acc, curr) => acc + curr, 0);
+            setSummedPlanned(sum);
+
+            return sum;
+        };
+
+        setSummedExpensesByCategory(sumExpensesInBudgetByCategory(expenses, 'category', 'amount'));
+        sumAllBudget();
+    }, [expenses, state.budget]);
 
     const updateBudget = async (id, updateBudgetEntryAmount) => {
         try {
@@ -65,24 +88,38 @@ export const BudgetProvider = ({ children }) => {
         }
     };
 
-    const sumBudgetByCategory = (expenses, key, value) => {
+    const sumExpensesInBudgetByCategory = (expenses, key, value) => {
         const map = new Map();
         for (const expense of expenses) {
             const sum = map.get(expense[key]) || 0;
             map.set(expense[key], sum + expense[value]);
         }
 
-        return Array.from(map, ([k, v]) => ({ [key]: k, [value]: Math.round(v * 100) / 100 }));
+        let arrayOfSumExpensesInBudgetByCategory = Array.from(map, ([k, v]) => ({
+            [key]: k,
+            [value]: Math.round(v * 100) / 100
+        }));
+
+        let arrayOfAmountFromSummedExpensesInBudgetByCategory = arrayOfSumExpensesInBudgetByCategory.map(
+            (item) => item.amount
+        );
+
+        const sumAllAmount = arrayOfAmountFromSummedExpensesInBudgetByCategory.reduce((a, b) => a + b, 0);
+        setSummedSpent(sumAllAmount);
+
+        return arrayOfSumExpensesInBudgetByCategory;
     };
 
     return (
         <BudgetContext.Provider
             value={{
                 ...state,
-                summedByCategory,
+                summedExpensesByCategory,
                 updateBudget,
                 deleteBudget,
-                sumBudgetByCategory
+                sumExpensesInBudgetByCategory,
+                summedSpent,
+                summedPlanned
             }}
         >
             {children}

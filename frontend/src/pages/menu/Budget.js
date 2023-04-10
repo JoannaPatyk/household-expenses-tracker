@@ -7,7 +7,7 @@ import { useBudgetContext } from '../../context/BudgetContext';
 
 function Budget() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const { budget, updateBudget, summedByCategory, deleteBudget } = useBudgetContext();
+    const { budget, updateBudget, summedExpensesByCategory, deleteBudget } = useBudgetContext();
 
     useEffect(() => {
         function handleResize() {
@@ -18,7 +18,7 @@ function Budget() {
     }, []);
 
     const handleSummedExpensesByCategory = (categoryName) => {
-        const summedExpense = summedByCategory.find((item) => item.category === categoryName);
+        const summedExpense = summedExpensesByCategory.find((item) => item.category === categoryName);
         return summedExpense === undefined ? 0 : summedExpense.amount;
     };
 

@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import links from '../utils/Links';
 
 function NavLinksForSmallSidebar({ handleToggle }) {
+    const handleClick = useCallback(() => {
+        handleToggle();
+    }, [handleToggle]);
+
     return (
         <div className="nav-links">
-            {links.map((link) => {
-                const { text, path, id, icon } = link;
+            {links.map(({ text, path, id, icon }) => {
                 return (
                     <NavLink
                         to={path}
-                        className={({ isActive }) => {
-                            return isActive ? 'nav-link active' : 'nav-link';
-                        }}
-                        onClick={handleToggle}
+                        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                        onClick={handleClick}
                         key={id}
                         end
                     >
@@ -26,9 +27,8 @@ function NavLinksForSmallSidebar({ handleToggle }) {
         </div>
     );
 }
-
 NavLinksForSmallSidebar.propTypes = {
-    handleToggle: PropTypes.any.isRequired
+    handleToggle: PropTypes.func.isRequired
 };
 
 export default NavLinksForSmallSidebar;

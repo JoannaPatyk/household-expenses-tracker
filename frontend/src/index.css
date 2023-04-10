@@ -7,7 +7,7 @@
 }
 
 /* FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Rubik+Gemstones&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
 
 html {
     font-family: var(--fontFamily);
@@ -675,6 +675,24 @@ body.dark .sun {
 
 body.dark .landing-title h1 {
     color: var(--primary-800);
+}
+
+/* DASHBOARD - light mode */
+
+body.light .dashboard-container .group-container,
+body.light .dashboard-container .main-container h1,
+body.light .info-box,
+body.light .statistics-container {
+    border: 2px solid var(--secondary-900);
+}
+
+body.light .info-box p {
+    color: var(--secondary-800);
+}
+
+body.light .btn-toggle-chart {
+    color: var(--primary-900);
+    background-color: var(--secondary-900);
 }
 
 /*TOAST MESSAGE*/

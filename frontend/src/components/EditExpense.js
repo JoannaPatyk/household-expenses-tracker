@@ -93,6 +93,7 @@ function EditExpense() {
                     value={editAmount}
                     type="number"
                     placeholder="wydana kwota"
+                    min={0}
                     onChange={handleAmountChange}
                 />
                 <FormRowInput

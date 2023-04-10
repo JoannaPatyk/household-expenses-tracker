@@ -12,7 +12,7 @@ function Landing() {
 
     useEffect(() => {
         if (isLogged) {
-            navigate('/add');
+            navigate('/dashboard');
         }
     }, [isLogged, navigate]);
 

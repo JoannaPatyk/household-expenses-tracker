@@ -6,12 +6,12 @@ import { Landing, Login, Error, SharedLayout, Registration } from './pages/Index
 import {
     Budget,
     Expenses,
-    Statistics,
     Group,
     ProtectedRoute,
     AddExpenses,
-    EditCategory
-} from './pages/dashboard/IndexDashboard';
+    EditCategory,
+    Dashboard
+} from './pages/menu/IndexDashboard';
 import { EditExpense, ThemeSwitch } from './components/IndexComponents';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
             <ThemeSwitch />
             <Routes>
                 <Route
+                    exact
                     path="/"
                     element={
                         <ProtectedRoute>
@@ -27,11 +28,11 @@ function App() {
                         </ProtectedRoute>
                     }
                 >
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="add" element={<AddExpenses />} />
                     <Route path="categories" element={<EditCategory />} />
-                    <Route index path="add" element={<AddExpenses />} />
                     <Route path="expenses" element={<Expenses />} />
                     <Route path="budget" element={<Budget />} />
-                    <Route path="statistics" element={<Statistics />} />
                     <Route path="group" element={<Group />} />
                 </Route>
                 <Route path="landing" element={<Landing />} />

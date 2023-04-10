@@ -1,7 +1,7 @@
 import BigSidebar from './BigSidebar';
 import Button from './Button';
 import EditExpense from './EditExpense';
-import AddExpenses from '../pages/dashboard/AddExpenses.js';
+import AddExpenses from '../pages/menu/AddExpenses.js';
 import FormRowInput from './FormRowInput';
 import FormRowSelect from './FormRowSelect';
 import LoadingIndicator from './LoadingIndicator';
@@ -13,6 +13,7 @@ import SmallSidebar from './SmallSidebar';
 import OpacityBackground from './OpacityBackground';
 import ThemeSwitch from './ThemeSwitch';
 import ProgressBar from './ProgressBar';
+import InformationPanel from './InformationPanel';
 
 export {
     BigSidebar,
@@ -29,5 +30,6 @@ export {
     NavLinksForBigSidebar,
     SmallSidebar,
     ThemeSwitch,
-    ProgressBar
+    ProgressBar,
+    InformationPanel
 };
