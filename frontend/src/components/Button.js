@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ id, children, version, onClick, type, isDisabled }) {
+function Button({ id, children, version = 'primary', onClick, type = 'button', isDisabled = false }) {
     return (
         <button id={id} type={type} onClick={onClick} disabled={isDisabled} className={`btn btn-${version}`}>
             {children}
@@ -9,15 +9,9 @@ function Button({ id, children, version, onClick, type, isDisabled }) {
     );
 }
 
-Button.defaultProps = {
-    version: 'primary',
-    type: 'button',
-    isDisabled: false
-};
-
 Button.propTypes = {
-    version: PropTypes.string,
-    type: PropTypes.string,
+    version: PropTypes.oneOf(['primary', 'hero', 'hipster']),
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
     id: PropTypes.string,
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func,

@@ -64,9 +64,7 @@ export const GroupProvider = ({ children }) => {
             }
         }, 180000);
 
-        return () => {
-            clearInterval(getDataInterval);
-        };
+        return () => clearInterval(getDataInterval);
     }, [isLogged, fetchGroup, fetchInvitations]);
 
     const addGroup = (group) => {

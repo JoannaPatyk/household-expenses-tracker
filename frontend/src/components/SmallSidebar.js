@@ -6,10 +6,7 @@ import Wrapper from '../assets/wrappers/SmallSidebar';
 
 function SmallSidebar() {
     const [isOpen, setIsOpen] = useState(false);
-
-    const handleToggle = () => {
-        setIsOpen(!isOpen);
-    };
+    const handleToggle = () => setIsOpen(!isOpen);
 
     return (
         <Wrapper>

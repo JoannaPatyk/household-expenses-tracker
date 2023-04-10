@@ -5,14 +5,11 @@ import links from '../utils/Links';
 function NavLinksForBigSidebar() {
     return (
         <div className="nav-links">
-            {links.map((link) => {
-                const { text, path, id, icon } = link;
+            {links.map(({ text, path, id, icon }) => {
                 return (
                     <NavLink
                         to={path}
-                        className={({ isActive }) => {
-                            return isActive ? 'nav-link active' : 'nav-link';
-                        }}
+                        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                         key={id}
                         end
                     >
