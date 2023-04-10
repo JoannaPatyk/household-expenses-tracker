@@ -2,31 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { usePromiseTracker } from 'react-promise-tracker';
 import * as Loader from 'react-loader-spinner';
+import Wrapper from '../assets/wrappers/LoadingIndicator';
 
 function LoadingIndicator(props) {
     const { promiseInProgress } = usePromiseTracker({ area: props.area });
 
-    const containerStyle = { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
-
     return (
         promiseInProgress && (
-            <div style={containerStyle}>
-                <Loader.Triangle color="#ffc125" height="80" width="80" />
-                <p
-                    style={{
-                        position: 'fixed',
-                        top: '110%',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: '300px',
-                        textAlign: 'center',
-                        fontSize: '.8rem',
-                        color: '#ffc125'
-                    }}
-                >
-                    oczekiwanie na serwer <br /> może trochę potrwać (~30sek)...
-                </p>
-            </div>
+            <Wrapper>
+                <div className="loading-indicator-container">
+                    <Loader.Triangle color="#ffc125" height="80" width="80" />
+                    <p className="loading-indicator-text">
+                        oczekiwanie na serwer <br /> może trochę potrwać (~30sek)...
+                    </p>
+                </div>
+            </Wrapper>
         )
     );
 }

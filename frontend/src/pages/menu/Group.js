@@ -3,7 +3,7 @@ import { Button, FormRowInput } from '../../components/IndexComponents';
 import notification, { SUCCESS, WARNING, INFO, ERROR } from '../../utils/Notification';
 import Wrapper from '../../assets/wrappers/Group';
 import { CiFloppyDisk } from 'react-icons/ci';
-import { HiOutlineXMark, HiCheck } from '../../../node_modules/react-icons/hi2';
+import { HiOutlineXMark, HiCheck } from 'react-icons/hi2';
 import { useGroupContext } from '../../context/GroupContext';
 import { useUserContext } from '../../context/UserContext';
 
