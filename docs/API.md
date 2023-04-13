@@ -59,7 +59,7 @@
 
 ### Endpoint `/expenses`
 
-- `GET /expenses` | Get all expenses | Responses:
+- `GET /expenses` | Get expenses from range | Expects query params as object with `from` and `to` fields (as UNIX timestamps) | Responses:
 
   - **200** - Successful operation. Returns array of expenses objects.
   - **401** - Auth failed. Returns object with error message.

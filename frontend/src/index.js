@@ -8,6 +8,7 @@ import { BudgetProvider } from './context/BudgetContext';
 import { UserProvider } from './context/UserContext';
 import { GroupProvider } from './context/GroupContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { DateProvider } from './context/DateContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -17,11 +18,13 @@ root.render(
         <UserProvider>
             <GroupProvider>
                 <CategoriesProvider>
-                    <ExpensesProvider>
-                        <BudgetProvider>
-                            <App />
-                        </BudgetProvider>
-                    </ExpensesProvider>
+                    <DateProvider>
+                        <ExpensesProvider>
+                            <BudgetProvider>
+                                <App />
+                            </BudgetProvider>
+                        </ExpensesProvider>
+                    </DateProvider>
                 </CategoriesProvider>
             </GroupProvider>
         </UserProvider>

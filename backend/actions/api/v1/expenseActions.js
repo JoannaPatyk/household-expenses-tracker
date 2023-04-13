@@ -5,7 +5,10 @@ class ExpenseActions {
     getExpenses = async (req, res) => {
         try {
             const groupId = req.userData.groupId;
-            const expenses = await Expense.find({ groupId: groupId });
+            const from = req.query.from;
+            const to = req.query.to;
+
+            const expenses = await Expense.find({ groupId: groupId, date: { $gte: from, $lte: to } });
 
             res.status(200).json(expenses);
         } catch (error) {

@@ -7,6 +7,7 @@ import reducer from '../reducers/ExpensesReducer';
 import { useCategoriesContext } from './CategoriesContext';
 import { useUserContext } from './UserContext';
 import handleError from '../utils/ErrorHandling';
+import { useDateContext } from './DateContext';
 
 const initialState = {
     expenses: []
@@ -16,23 +17,30 @@ const ExpensesContext = createContext();
 
 export const ExpensesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { categories } = useCategoriesContext();
-    const { isLogged } = useUserContext();
     const [expenseForEdit, setExpenseForEdit] = useState({
         expense: {},
         edit: false
     });
 
+    const { categories } = useCategoriesContext();
+    const { isLogged } = useUserContext();
+    const { startOfMonthUnixTime, endOfMonthUnixTime } = useDateContext();
+
     const fetchExpenses = useCallback(async () => {
         try {
-            const response = await axios.get(`${apiConfig.api}/expenses`);
+            const response = await axios.get(`${apiConfig.api}/expenses`, {
+                params: {
+                    from: startOfMonthUnixTime,
+                    to: endOfMonthUnixTime
+                }
+            });
 
             const data = response.data;
             addAllExpenses(data);
         } catch (error) {
             handleError(error);
         }
-    }, []);
+    }, [startOfMonthUnixTime, endOfMonthUnixTime]);
 
     useEffect(() => {
         if (isLogged) {

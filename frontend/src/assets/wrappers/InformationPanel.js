@@ -27,7 +27,7 @@ const Wrapper = styled.div`
     .info-box {
         position: relative;
         border-radius: 20px;
-        color: var(--secondary-600);
+        color: var(--primary-300);
         border: 2px solid var(--primary-900);
         box-shadow: var(--shadow-5);
         overflow: hidden;

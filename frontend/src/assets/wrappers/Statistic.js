@@ -47,6 +47,20 @@ const Wrapper = styled.div`
         right: 0;
     }
 
+    .no-data-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .no-data-icon {
+        font-size: 2rem;
+        margin: 1rem;
+        opacity: 0.5;
+    }
+
     @media (max-width: 960px) {
         .statistics-container {
             padding-top: 0;
