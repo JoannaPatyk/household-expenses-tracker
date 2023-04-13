@@ -17,7 +17,7 @@ const Wrapper = styled.nav`
         height: 6.75rem;
         width: 6.75rem;
         justify-content: center;
-        border: 2px solid var(--secondary-400);
+        border: 4px solid var(--secondary-400);
         box-shadow: var(--shadow-4);
         border-radius: 50%;
         background-color: transparent;
