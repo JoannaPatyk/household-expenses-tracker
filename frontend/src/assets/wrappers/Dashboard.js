@@ -5,7 +5,6 @@ const Wrapper = styled.div`
         h1 {
             font-size: 2rem;
             text-align: center;
-            text-transform: uppercase;
         }
 
         h2 {
@@ -16,9 +15,8 @@ const Wrapper = styled.div`
             font-size: 0.85rem;
             font-weight: 400;
             letter-spacing: 0;
-            padding: 0.25rem;
-            opacity: 0.8;
             text-align: center;
+            padding: 0.25rem;
         }
 
         .main-container {
@@ -30,12 +28,40 @@ const Wrapper = styled.div`
             justify-content: space-between;
             column-gap: 30px;
             place-self: center;
-            h1 {
-                margin: 0;
-                line-height: 10vh;
+
+            .date-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
                 border-radius: 20px;
                 border: 2px solid var(--primary-900);
                 box-shadow: var(--shadow-5);
+            }
+
+            h1 {
+                margin: 0;
+            }
+
+            .date-container .btn-toggle {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 25px;
+                height: 25px;
+                font-size: 1.1rem;
+                margin: 0 1rem;
+                padding: 0.5rem;
+                background-color: var(--primary-900);
+                cursor: pointer;
+            }
+
+            .left {
+                left: 0;
+            }
+
+            .right {
+                right: 0;
             }
         }
 
@@ -48,10 +74,12 @@ const Wrapper = styled.div`
             border-radius: 20px;
             border: 2px solid var(--primary-900);
             box-shadow: var(--shadow-5);
+
             h2,
             h5 {
                 margin: 0.25rem 0;
             }
+
             h5 {
                 color: var(--secondary-500);
             }
@@ -82,6 +110,9 @@ const Wrapper = styled.div`
 
     @media (max-width: 1130px) {
         .dashboard-container {
+            h1 {
+                font-size: 1.3rem;
+            }
             h2 {
                 font-size: 1rem;
             }
@@ -94,17 +125,8 @@ const Wrapper = styled.div`
     @media (max-width: 992px) {
         .dashboard-container {
             .main-container {
-                height: 25vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 h1 {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 25vh;
-                    line-height: 6vh;
-                    padding: 0.75rem;
+                    font-size: 1.1rem;
                 }
             }
 
@@ -112,8 +134,21 @@ const Wrapper = styled.div`
                 display: flex;
                 flex-direction: column;
                 margin: 0.2rem;
+
                 h5 {
                     padding: 0 1.5rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 992px) {
+        .dashboard-container {
+            .main-container {
+                h1 {
+                    writing-mode: vertical-rl;
+                    text-orientation: upright;
+                    line-height: 18vh;
                 }
             }
         }

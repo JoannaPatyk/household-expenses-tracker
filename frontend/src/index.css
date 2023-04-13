@@ -680,7 +680,7 @@ body.dark .landing-title h1 {
 /* DASHBOARD - light mode */
 
 body.light .dashboard-container .group-container,
-body.light .dashboard-container .main-container h1,
+body.light .dashboard-container .main-container .date-container,
 body.light .info-box,
 body.light .statistics-container {
     border: 2px solid var(--secondary-900);
@@ -690,7 +690,12 @@ body.light .info-box p {
     color: var(--secondary-800);
 }
 
-body.light .btn-toggle-chart {
+body.light .info-box {
+    color: var(--secondary-900);
+}
+
+body.light .btn-toggle-chart,
+body.light .dashboard-container .main-container .date-container .btn-toggle {
     color: var(--primary-900);
     background-color: var(--secondary-900);
 }

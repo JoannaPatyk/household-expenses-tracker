@@ -1,30 +1,53 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import Statistics from './Statistics';
 import InformationPanel from '../../components/InformationPanel';
 import Wrapper from '../../assets/wrappers/Dashboard';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { useGroupContext } from '../../context/GroupContext';
+import { useDateContext } from '../../context/DateContext';
 
 function Dashboard() {
-    const [date, setDate] = useState(new Date());
     const { group } = useGroupContext();
-    const dateWithMonthAndYear = date.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' });
     const groupName = (group.name || 'Twoja grupa').toUpperCase();
 
-    const tick = useCallback(() => {
-        setDate(new Date());
-    }, []);
+    const { month, setMonth, year, setYear } = useDateContext();
+    let selectedDate = `${month < 10 ? `0${month}` : month}.${year}`;
 
-    useEffect(() => {
-        const timerID = setInterval(() => tick(), 60000);
+    const increase = () => {
+        let newMonth = month + 1;
 
-        return () => clearInterval(timerID);
-    }, [tick]);
+        if (newMonth > 12) {
+            setMonth(1);
+            setYear(year + 1);
+        } else {
+            setMonth(newMonth);
+        }
+    };
 
+    const decrease = () => {
+        let newMonth = month - 1;
+
+        if (newMonth < 1) {
+            setMonth(12);
+            setYear(year - 1);
+        } else {
+            setMonth(newMonth);
+        }
+    };
     return (
         <Wrapper>
             <div className="dashboard-container">
                 <div className="main-container">
-                    <h1>{dateWithMonthAndYear}</h1>
+                    <div className="date-container">
+                        <button type="button" className="btn btn-toggle left" onClick={decrease}>
+                            <SlArrowLeft />
+                        </button>
+                        <h1>{selectedDate}</h1>
+                        <button type="button" className="btn btn-toggle right" onClick={increase}>
+                            <SlArrowRight />
+                        </button>
+                    </div>
+
                     <div className="group-container">
                         <h2>Nazwa grupy: {groupName}</h2>
                         <h5>

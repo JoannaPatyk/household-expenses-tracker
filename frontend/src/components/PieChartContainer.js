@@ -1,6 +1,7 @@
 import React from 'react';
 import { useBudgetContext } from '../context/BudgetContext';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AiOutlinePieChart } from 'react-icons/ai';
 
 const colors = [
     '#dbba79',
@@ -34,7 +35,12 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 function PieChartContainer() {
     const { summedExpensesByCategory } = useBudgetContext();
 
-    return (
+    return summedExpensesByCategory.length === 0 ? (
+        <div className="no-data-container">
+            <p>brak danych do wyświetlenia...</p>
+            <AiOutlinePieChart className="no-data-icon" />
+        </div>
+    ) : (
         <div className="chart-container">
             <h3>Stan wydatków według kategorii</h3>
             <ResponsiveContainer width={'100%'} height={370}>
