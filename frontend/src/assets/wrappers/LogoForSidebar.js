@@ -16,8 +16,8 @@ const Wrapper = styled.nav`
             height: 8rem;
             width: 8rem;
             justify-content: center;
-            border: 2px solid var(--primary-700);
-            box-shadow: var(--shadow-5);
+            border: 4px solid var(--primary-700);
+            box-shadow: var(--shadow-6);
             border-radius: 50%;
             background-color: transparent;
             .logo-icon {
