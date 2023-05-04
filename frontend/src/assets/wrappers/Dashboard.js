@@ -4,10 +4,12 @@ const Wrapper = styled.div`
     .dashboard-container {
         h1 {
             font-size: 2rem;
+            font-weight: 100;
             text-align: center;
         }
 
         h2 {
+            font-weight: 100;
             text-align: center;
         }
 
@@ -24,7 +26,7 @@ const Wrapper = styled.div`
             margin-top: 5rem;
             margin-bottom: 2rem;
             display: grid;
-            grid-template-columns: 1.5fr 2.25fr;
+            grid-template-columns: 1.5fr 4fr;
             justify-content: space-between;
             column-gap: 30px;
             place-self: center;
@@ -49,9 +51,9 @@ const Wrapper = styled.div`
                 transform: translateY(-50%);
                 width: 25px;
                 height: 25px;
-                font-size: 1.1rem;
+                font-size: 2rem;
                 margin: 0 1rem;
-                padding: 0.5rem;
+                padding: 0.2rem;
                 background-color: var(--primary-900);
                 cursor: pointer;
             }
