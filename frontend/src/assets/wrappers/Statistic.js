@@ -14,8 +14,6 @@ const Wrapper = styled.div`
         width: 100%;
         overflow: hidden;
         border-radius: 20px;
-        border: 2px solid var(--primary-900);
-        box-shadow: var(--shadow-5);
     }
 
     .chart-container {
@@ -25,6 +23,7 @@ const Wrapper = styled.div`
         h3 {
             margin: -1rem 3rem 1rem;
             text-align: center;
+            font-weight: 100;
             letter-spacing: var(--letterSpacing);
         }
     }
@@ -34,8 +33,8 @@ const Wrapper = styled.div`
         top: 0;
         width: 25px;
         height: 25px;
-        font-size: 1.1rem;
-        padding: 0.5rem;
+        font-size: 2rem;
+        padding: 0.2rem;
         background-color: var(--primary-900);
     }
 

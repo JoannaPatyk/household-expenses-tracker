@@ -30,6 +30,7 @@ const Wrapper = styled.div`
         color: var(--primary-300);
         border: 2px solid var(--primary-900);
         box-shadow: var(--shadow-5);
+
         overflow: hidden;
     }
 
@@ -37,10 +38,10 @@ const Wrapper = styled.div`
         position: absolute;
         right: 5%;
         top: 50%;
-        transform: translateY(-50%);
         font-size: 5rem;
         z-index: -100;
-        opacity: 0.2;
+        opacity: 0.3;
+        animation: changeSize 3s infinite;
     }
 
     .minus {
@@ -78,6 +79,18 @@ const Wrapper = styled.div`
         border: none;
         background-color: transparent;
         cursor: pointer;
+    }
+
+    @keyframes changeSize {
+        0% {
+            transform: translateY(-50%) scale(1);
+        }
+        50% {
+            transform: translateY(-50%) scale(0.9);
+        }
+        100% {
+            transform: translateY(-50%) scale(1);
+        }
     }
 
     @media (max-width: 1305px) {
