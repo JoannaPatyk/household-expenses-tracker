@@ -36,6 +36,9 @@ app.use('/api/v1', expenseRouters);
 app.use('/api/v1', budgetRouters);
 app.use('/api/v1', userRouters);
 app.use('/api/v1', groupRouters);
+app.use('/api/v1/heartbeat', (req, res) => {
+    res.status(200).json({ message: 'I am alive 🎉' });
+});
 
 // routes error handling
 app.use((req, res) => {
