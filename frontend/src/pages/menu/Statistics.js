@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Wrapper from '../../assets/wrappers/Statistic';
-import { GoArrowSmallLeft, GoArrowSmallRight } from 'react-icons/go';
+import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 import PieChartContainer from '../../components/PieChartContainer';
 import BarChartContainer from '../../components/BarChartContainer';
 
@@ -11,10 +11,10 @@ function Statistics() {
         <Wrapper>
             <div className="statistics-container">
                 <button type="button" className="btn btn-toggle-chart left" onClick={() => setBarChart(!barChart)}>
-                    <GoArrowSmallLeft />
+                    <GoArrowLeft />
                 </button>
                 <button type="button" className="btn btn-toggle-chart right" onClick={() => setBarChart(!barChart)}>
-                    <GoArrowSmallRight />
+                    <GoArrowRight />
                 </button>
                 {barChart ? <BarChartContainer /> : <PieChartContainer />}
             </div>

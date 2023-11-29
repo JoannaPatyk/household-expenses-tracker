@@ -2,7 +2,7 @@ import React from 'react';
 import Statistics from './Statistics';
 import InformationPanel from '../../components/InformationPanel';
 import Wrapper from '../../assets/wrappers/Dashboard';
-import { GoArrowSmallLeft, GoArrowSmallRight } from 'react-icons/go';
+import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 import { useGroupContext } from '../../context/GroupContext';
 import { useDateContext } from '../../context/DateContext';
 
@@ -41,11 +41,11 @@ function Dashboard() {
                 <div className="main-container">
                     <div className="date-container">
                         <button type="button" className="btn btn-toggle left" onClick={decrease}>
-                            <GoArrowSmallLeft />
+                            <GoArrowLeft />
                         </button>
                         <h1>{selectedDate}</h1>
                         <button type="button" className="btn btn-toggle right" onClick={increase}>
-                            <GoArrowSmallRight />
+                            <GoArrowRight />
                         </button>
                     </div>
 
